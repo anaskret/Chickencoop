@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "K3ha296BsxOVzMCLZREL20uqeL77UyW5gEDGqUk0phJp6GBLk+mPJeEZqZgFh8OrLnwc25oV8rzOwwYSrBhGhA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\an000\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.7.0\\system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

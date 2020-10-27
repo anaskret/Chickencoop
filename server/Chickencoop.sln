@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chickencoop.App", "Chickencoop.App\Chickencoop.App.csproj", "{815A1403-8F10-4E06-813A-85BCF9F05846}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chickencoop.DataAccess", "Chickencoop.DataAccess\Chickencoop.DataAccess.csproj", "{6E13C1D0-FF68-4825-AFCF-7EC3FB7F97C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chickencoop.Services", "Chickencoop.Services\Chickencoop.Services.csproj", "{E1ABB5C0-CD99-4F57-83E3-1B724E9B49C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chickencoop.Repositories", "Chickencoop.Repositories\Chickencoop.Repositories.csproj", "{C9882F62-12A5-4317-B98D-40DBD1595723}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chickencoop.Models", "Chickencoop.Models\Chickencoop.Models.csproj", "{330B74E3-12A3-4076-A221-B2563EC3A194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickencoop.Tests", "Chickencoop.Tests\Chickencoop.Tests.csproj", "{7B104A9B-08B6-4BD9-8E5E-C56902EF92D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{815A1403-8F10-4E06-813A-85BCF9F05846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{815A1403-8F10-4E06-813A-85BCF9F05846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{815A1403-8F10-4E06-813A-85BCF9F05846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{815A1403-8F10-4E06-813A-85BCF9F05846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E13C1D0-FF68-4825-AFCF-7EC3FB7F97C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E13C1D0-FF68-4825-AFCF-7EC3FB7F97C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E13C1D0-FF68-4825-AFCF-7EC3FB7F97C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E13C1D0-FF68-4825-AFCF-7EC3FB7F97C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1ABB5C0-CD99-4F57-83E3-1B724E9B49C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1ABB5C0-CD99-4F57-83E3-1B724E9B49C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1ABB5C0-CD99-4F57-83E3-1B724E9B49C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1ABB5C0-CD99-4F57-83E3-1B724E9B49C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9882F62-12A5-4317-B98D-40DBD1595723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9882F62-12A5-4317-B98D-40DBD1595723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9882F62-12A5-4317-B98D-40DBD1595723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9882F62-12A5-4317-B98D-40DBD1595723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330B74E3-12A3-4076-A221-B2563EC3A194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330B74E3-12A3-4076-A221-B2563EC3A194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330B74E3-12A3-4076-A221-B2563EC3A194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330B74E3-12A3-4076-A221-B2563EC3A194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B104A9B-08B6-4BD9-8E5E-C56902EF92D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B104A9B-08B6-4BD9-8E5E-C56902EF92D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B104A9B-08B6-4BD9-8E5E-C56902EF92D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B104A9B-08B6-4BD9-8E5E-C56902EF92D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26404B2D-ADF2-437C-A844-1F641C8D175E}
+	EndGlobalSection
+EndGlobal

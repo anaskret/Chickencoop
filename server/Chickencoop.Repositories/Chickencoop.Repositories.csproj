@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chickencoop.DataAccess\Chickencoop.DataAccess.csproj" />
+    <ProjectReference Include="..\Chickencoop.Models\Chickencoop.Models.csproj" />
+  </ItemGroup>
+
+</Project>
