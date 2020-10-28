@@ -9,6 +9,9 @@ namespace Chickencoop.App.Hubs
 {
     public class TicTacToeHub : Hub<ITicTacToeHub>
     {
-
+        public async Task TurnChange(int x, int y, string player)
+        {
+            await Clients.Others.TurnChange(x, y, player);
+        }
     }
 }

@@ -29,8 +29,7 @@ namespace Chickencoop.App
 
         public static class TicTacToe
         {
-            public const string Boardstate = Root + "/tictactoe";
-            public const string ChangeBoardstate = Root + "/tictactoe";
+            public const string TurnChange = Root + "/tictactoe";
         }
     }
 }

@@ -19,26 +19,20 @@ namespace Chickencoop.App.Controllers
             this.hubContext = hubContext;
         }
 
-        [HttpGet(ApiRoutes.TicTacToe.Boardstate)]
-        public IActionResult GetBoardstate()
-        {
-            return new JsonResult(board);
-        }
-
-        [HttpPatch(ApiRoutes.TicTacToe.ChangeBoardstate)]
-        public async Task<IActionResult> ChangeBoardstate(int x, int y, string player)
+        [HttpPatch(ApiRoutes.TicTacToe.TurnChange)]
+        public async Task<IActionResult> TurnChange(int x, int y, string player)
         {
             board[x, y] = player;
 
-            if (player == "x")
+            /*if (player == "x")
                 player = "o";
             else
-                player = "x";
+                player = "x";*/
 
             await this.hubContext
                 .Clients
                 .All
-                .BoardstateChange(board, player);
+                .OpponentTurnEnd(x, y, player);
 
             return new JsonResult(board);
         }

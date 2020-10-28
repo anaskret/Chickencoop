@@ -32,31 +32,26 @@
       board: new Board()
     } },
 
+    created(){
+      this.$tictactoeHub.$on('opponent-turn-end', this.onTurnChange)
+    },
+
     methods: {
       performMove(x, y) {
-
-        if (this.gameOver) {
-          return;
-        }
-
-        if(this.turn === 'x')
-        {
-            if (!this.board.doMove(x, y, 'x')) {
-                // Invalid move.
+        this.$tictactoeHub.$turnChange('TurnChange', x, y, this.turn)
+        
+          if (this.gameOver) {
             return;
-            }
-            if (!this.board.isGameOver())
-                this.turn='o';
+          }
 
-        }
+        /*
         else{
             if (!this.board.doMove(x, y, 'o')) {
                 // Invalid move.
             return;
             }
             if (!this.board.isGameOver())
-            this.turn='x';
-        }
+        }*/
 
         this.$forceUpdate();
 
@@ -73,6 +68,19 @@
           this.gameOver = false;
           this.gameOverText = '';
           this.turn = 'x';
+      },
+
+      onTurnChange({x, y, player}){
+
+        if (!this.board.doMove(x, y, player)) {
+        return;
+        }
+
+        this.turn = player;
+      },
+
+      beforeDestroy (){
+        this.$tictactoeHub.$off('opponent-turn-end', this.onTurnChange)
       }
     }
   }
