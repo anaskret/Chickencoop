@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <tic-tac-toe />
+    <router-view/>
   </div>
 </template>
  

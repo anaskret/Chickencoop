@@ -25,15 +25,5 @@ namespace Chickencoop.App.Hubs
         {
             await Clients.All.Victory(player);
         }
-
-        public async Task JoinLobby(Guid lobbyId)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, lobbyId.ToString());
-        }
-
-        public async Task LeaveLobby(Guid lobbyId)
-        {
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, lobbyId.ToString());
-        }
     }
 }

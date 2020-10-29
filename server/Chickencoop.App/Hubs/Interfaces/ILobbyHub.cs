@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace Chickencoop.App.Hubs.Interfaces
 {
-    public interface ITicTacToeHub
+    public interface ILobbyHub
     {
-        Task TurnChange(int x, int y, string player);
-        Task Victory(string player);
-
+        Task JoinLobby(Guid lobbyId);
+        Task LeaveLobby(Guid lobbyId);
     }
 }

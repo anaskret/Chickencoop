@@ -1,7 +1,7 @@
 
 <template>
   <v-app>
-    <v-content>
+    <v-main>
       <div class="tictactoe-board">
         <div v-for="(n, i) in 3" :key="i">
           <div v-for="(n, j) in 3" :key="j">
@@ -16,7 +16,7 @@
         </div>
       </div>
       <v-btn class="reset-button" color="primary" elevation="6" @click="restart()">Reset</v-btn>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -58,10 +58,10 @@
       },
       
       restart(){
-          this.board.resetBoard();
-          this.gameOver = false;
-          this.gameOverText = '';
-          this.turn = 'x';
+          this.board.resetBoard()
+          this.gameOver = false
+          this.gameOverText = ''
+          this.turn = 'x'
       },
 
       onTurnChange({x, y, player}){

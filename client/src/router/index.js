@@ -2,28 +2,25 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Lobbies from "../views/Lobbies.vue";
 import TicTacToe from "../views/TicTacToe.vue";
+import NewLobby from "../components/NewLobby.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "lobbies",
+    path: "/lobbies",
+    name: "Lobbies",
     component: Lobbies
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  },
-  {
-    path: '/tictactoe',
+    path: '/tictactoe/:id',
     name: 'TicTacToe',
     component: TicTacToe
+  },
+  {
+    path: "/lobbies/newlobby",
+    name: "NewLobby",
+    component: NewLobby
   }
 ];
 
