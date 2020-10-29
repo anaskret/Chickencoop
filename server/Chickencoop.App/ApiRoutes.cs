@@ -26,6 +26,15 @@ namespace Chickencoop.App
             public const string Update = Root + "/records/{id:guid}";
             public const string Delete = Root + "/records/{id:guid}";
         }
+        
+        public static class Lobby
+        {
+            public const string Create = Root + "/lobbies";
+            public const string GetAll = Root + "/lobbies";
+            public const string Get = Root + "/lobbies/{id:guid}";
+            public const string Update = Root + "/lobbies/{id:guid}";
+            public const string Delete = Root + "/lobbies/{id:guid}";
+        }
 
         public static class TicTacToe
         {

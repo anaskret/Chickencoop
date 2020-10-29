@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Lobbies from "../views/Lobbies.vue";
 import TicTacToe from "../views/TicTacToe.vue";
 
 Vue.use(VueRouter);
@@ -8,8 +8,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "lobbies",
+    component: Lobbies
   },
   {
     path: "/about",

@@ -10,5 +10,6 @@ namespace Chickencoop.Models.Models
         public string Nickname { get; set; }
 
         public virtual ICollection<PersonalLeaderboard> PersonalLeaderboards { get; set; }
+        public virtual ICollection<Lobby> Lobbies { get; set; }
     }
 }

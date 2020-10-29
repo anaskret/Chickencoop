@@ -11,6 +11,9 @@ using Chickencoop.Models.Dtos.BaseDtos;
 using Chickencoop.Models.Dtos.GetDtos;
 using Chickencoop.Models.Dtos.CreateDtos;
 using Chickencoop.Models.Dtos.UpdateDtos;
+using AutoMapper;
+using Chickencoop.Services.Mapping;
+using Chickencoop.Models.Mapping;
 
 namespace Chickencoop.App.Configuration
 {
@@ -33,6 +36,8 @@ namespace Chickencoop.App.Configuration
 
             services.AddSignalR();
 
+            services.AddAutoMapper(typeof(PlayerProfile), typeof(PersonalLeaderboardProfile), typeof(LobbyProfile));
+
             services.AddSwaggerGen(x =>
                 {
                     x.SwaggerDoc("v1", new OpenApiInfo { Title = "Chickencoop API" });
@@ -43,6 +48,9 @@ namespace Chickencoop.App.Configuration
             
             services.AddTransient<IPersonalLeaderboardService, PersonalLeaderboardService>();
             services.AddScoped<IPersonalLeaderboardRepository, PersonalLeaderboardRepository>();
+            
+            services.AddTransient<ILobbyService, LobbyService>();
+            services.AddScoped<ILobbyRepository, LobbyRepository>();
         }
     }
 }

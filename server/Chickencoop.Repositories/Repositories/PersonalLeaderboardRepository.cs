@@ -53,8 +53,6 @@ namespace Chickencoop.Repositories.Repositories
             try
             {
                 var opponent = await _context.PersonalLeaderboards.FirstOrDefaultAsync(p => p.OpponentId == personalLeaderboard.OpponentId);
-
-
             }
             catch
             { 
@@ -86,7 +84,7 @@ namespace Chickencoop.Repositories.Repositories
             }
             catch
             {
-                    throw new NullReferenceException("Selected record doesn't exist");
+                throw new NullReferenceException("Selected record doesn't exist");
             }
             try
             {

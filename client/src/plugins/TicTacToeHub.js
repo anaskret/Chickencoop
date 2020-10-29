@@ -1,9 +1,12 @@
-import { HubConnectionBuilder, LogLevel } from '@aspnet/signalr'
+import { HubConnectionBuilder, HttpTransportType, LogLevel } from '@aspnet/signalr'
 
 export default {
   install (Vue) {
     const connection = new HubConnectionBuilder()
-      .withUrl('http://localhost:5001/tictactoehub')
+      .withUrl('https://localhost:5001/tictactoehub', {
+        skipNegotiation:true,
+        transport: HttpTransportType.WebSockets
+      })
       .configureLogging(LogLevel.Information)
       .build()  
 
@@ -11,13 +14,23 @@ export default {
 
       Vue.prototype.$tictactoeHub = tictactoeHub
 
-      connection.on('OpponentTurnEnd', (x, y, player) => {
+      connection.on('TurnChange', (x, y, player) => {
         tictactoeHub.$emit('opponent-turn-end', {x, y, player})
+      })
+
+      connection.on('Victory', (player) => {
+        tictactoeHub.$emit('who-won', {player})
       })
 
       tictactoeHub.turnChange = (x, y, player) =>{
         return startedPromise
         .then(() => connection.invoke('TurnChange', x, y, player))
+        .catch(console.error)
+      }
+
+      tictactoeHub.victory = (player) =>{
+        return startedPromise
+        .then(() => connection.invoke('Victory', player))
         .catch(console.error)
       }
 

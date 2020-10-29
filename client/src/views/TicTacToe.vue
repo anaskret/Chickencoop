@@ -34,31 +34,25 @@
 
     created(){
       this.$tictactoeHub.$on('opponent-turn-end', this.onTurnChange)
+      this.$tictactoeHub.$on('who-won', this.onVictory)
     },
 
     methods: {
       performMove(x, y) {
-        this.$tictactoeHub.$turnChange('TurnChange', x, y, this.turn)
         
-          if (this.gameOver) {
-            return;
-          }
+        if (!this.board.doMove(x, y, 'x')) {
+          return;
+        }
 
-        /*
-        else{
-            if (!this.board.doMove(x, y, 'o')) {
-                // Invalid move.
-            return;
-            }
-            if (!this.board.isGameOver())
-        }*/
-
-        this.$forceUpdate();
+        this.$tictactoeHub.turnChange(x, y, this.turn)
+      
+        this.$forceUpdate()
 
         if (this.board.isGameOver()) {
-          this.gameOver = true;
+          this.$tictactoeHub.victory(this.turn)
+          this.gameOver = true
           
-          this.gameOverText = this.board.playerHas3InARow(this.turn) ? `Player ${this.turn} wins!` : `Draw`;
+          this.gameOverText = this.board.playerHas3InARow(this.turn) ? `Player ${this.turn} wins!` : `Draw`
           return;
         }
       },
@@ -71,12 +65,23 @@
       },
 
       onTurnChange({x, y, player}){
+        
+        this.board.doMove(x, y, player)
 
-        if (!this.board.doMove(x, y, player)) {
-        return;
-        }
-
+        this.$forceUpdate();
         this.turn = player;
+      },
+
+      onVictory({player}){
+        
+        this.gameOver = true;
+
+        if(player == this.turn/*change to: currentPlayer*/){
+          this.gameOverText = this.board.playerHas3InARow(player) ? 'You won!' : 'Draw'
+        }
+        else{
+          this.gameOverText = 'You lost'
+        }
       },
 
       beforeDestroy (){

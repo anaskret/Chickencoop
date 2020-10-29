@@ -12,6 +12,7 @@ namespace Chickencoop.DataAccess
 
         public virtual DbSet<Player> Players { get; set; }
         public virtual DbSet<PersonalLeaderboard> PersonalLeaderboards { get; set; }
+        public virtual DbSet<Lobby> Lobbies{ get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,6 +30,12 @@ namespace Chickencoop.DataAccess
                 .HasOne(pl => pl.Player)
                 .WithMany(p => p.PersonalLeaderboards)
                 .HasForeignKey(pl => pl.PlayerId);
+
+            modelBuilder.Entity<Lobby>()
+                .HasOne(e => e.Player)
+                .WithMany(p => p.Lobbies)
+                .HasForeignKey(e => e.PlayerOneId)
+                .HasForeignKey(e => e.PlayerTwoId);
         }
     }
 }

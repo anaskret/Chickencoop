@@ -32,7 +32,6 @@ namespace Chickencoop.App
         public void ConfigureServices(IServiceCollection services)
         {
             ServicesConfig.InstallServices(Configuration, services);
-            services.AddAutoMapper(typeof(PlayerProfile), typeof(PersonalLeaderboardProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

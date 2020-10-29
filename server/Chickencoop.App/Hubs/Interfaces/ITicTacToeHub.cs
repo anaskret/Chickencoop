@@ -8,6 +8,9 @@ namespace Chickencoop.App.Hubs.Interfaces
     public interface ITicTacToeHub
     {
         Task TurnChange(int x, int y, string player);
-        Task OpponentTurnEnd(int x, int y, string player);
+        Task Victory(string player);
+        Task JoinLobby(Guid lobbyId);
+        Task LeaveLobby(Guid lobbyId);
+
     }
 }

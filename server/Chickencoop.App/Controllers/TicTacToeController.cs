@@ -11,7 +11,6 @@ namespace Chickencoop.App.Controllers
 {
     public class TicTacToeController: Controller
     {
-        private string[,] board = new string[3, 3] { { "", "", "" }, { "", "", "" }, { "", "", "" } };
         private readonly IHubContext<TicTacToeHub, ITicTacToeHub> hubContext;
 
         public TicTacToeController(IHubContext<TicTacToeHub, ITicTacToeHub> hubContext)
@@ -19,22 +18,16 @@ namespace Chickencoop.App.Controllers
             this.hubContext = hubContext;
         }
 
-        [HttpPatch(ApiRoutes.TicTacToe.TurnChange)]
-        public async Task<IActionResult> TurnChange(int x, int y, string player)
+        /*[HttpPatch(ApiRoutes.TicTacToe.TurnChange)]
+        public async Task<IActionResult> ChangePlayer(int x, int y, string player)
         {
-            board[x, y] = player;
-
-            /*if (player == "x")
-                player = "o";
-            else
-                player = "x";*/
 
             await this.hubContext
                 .Clients
                 .All
-                .OpponentTurnEnd(x, y, player);
+                .TurnChange(x, y, player);
 
             return new JsonResult(board);
-        }
+        }*/
     }
 }
