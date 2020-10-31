@@ -9,5 +9,7 @@ namespace Chickencoop.App.Hubs.Interfaces
     {
         Task JoinLobby(Guid lobbyId);
         Task LeaveLobby(Guid lobbyId);
+        Task NewPlayer(Guid? playerTwoId, Guid lobbyId);
+        Task LobbyChange();
     }
 }

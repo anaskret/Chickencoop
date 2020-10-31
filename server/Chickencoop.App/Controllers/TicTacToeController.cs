@@ -17,17 +17,5 @@ namespace Chickencoop.App.Controllers
         {
             this.hubContext = hubContext;
         }
-
-        /*[HttpPatch(ApiRoutes.TicTacToe.TurnChange)]
-        public async Task<IActionResult> ChangePlayer(int x, int y, string player)
-        {
-
-            await this.hubContext
-                .Clients
-                .All
-                .TurnChange(x, y, player);
-
-            return new JsonResult(board);
-        }*/
     }
 }

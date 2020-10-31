@@ -32,14 +32,7 @@ namespace Chickencoop.Services.Services
 
         public async Task<GetPlayerDto> GetPlayer(Guid id)
         {
-            try
-            {
-                return _mapper.Map<GetPlayerDto>(await _playerRepository.Get(id));
-            }
-            catch
-            {
-                throw;
-            }
+            return _mapper.Map<GetPlayerDto>(await _playerRepository.Get(id));
         }
 
         public async Task<Player> CreatePlayer(CreatePlayerDto createPlayerDto)
@@ -54,36 +47,22 @@ namespace Chickencoop.Services.Services
         }
         public async Task<bool> UpdatePlayer(UpdatePlayerDto updatePlayerDto)
         {
-            try
-            {
-                var updated = await _playerRepository.Update(_mapper.Map<Player>(updatePlayerDto));
+            var updated = await _playerRepository.Update(_mapper.Map<Player>(updatePlayerDto));
 
-                if (!updated)
-                    throw new Exception("Failed to update the Player");
+            if (!updated)
+                throw new Exception("Failed to update the Player");
 
-                return updated;
-            }
-            catch
-            {
-                throw;
-            }
+            return updated;
         }
 
         public async Task<bool> DeletePlayer(Guid id)
         {
-            try
-            {
-                var deleted = await _playerRepository.Delete(id);
+            var deleted = await _playerRepository.Delete(id);
 
-                if (!deleted)
-                    throw new Exception("Failed to delete the Player");
+            if (!deleted)
+                throw new Exception("Failed to delete the Player");
 
-                return deleted;
-            }
-            catch
-            {
-                throw;
-            }
+            return deleted;
         }
     }
 }

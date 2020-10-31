@@ -3,7 +3,7 @@ import { HubConnectionBuilder, HttpTransportType, LogLevel } from '@aspnet/signa
 export default {
   install (Vue) {
     const connection = new HubConnectionBuilder()
-      .withUrl('https://localhost:5001/tictactoehub', {
+      .withUrl('https://localhost:5001/lobbyhub', {
         skipNegotiation:true,
         transport: HttpTransportType.WebSockets
       })
@@ -14,17 +14,33 @@ export default {
 
       Vue.prototype.$lobbyHub = lobbyHub
 
-      tictactoeHub.joinLobby = (id) =>{
+      
+    
+      lobbyHub.joinLobby = (id) =>{
         return startedPromise
         .then(() => connection.invoke('JoinLobby', id))
         .catch(console.error)
       }
-
-      tictactoeHub.leaveLobby = (id) =>{
+      
+      lobbyHub.leaveLobby = (id) =>{
         return startedPromise
         .then(() => connection.invoke('LeaveLobby', id))
         .catch(console.error)
       }
+
+      lobbyHub.lobbyChange = () =>{
+        return startedPromise
+        .then(() => connection.invoke('LobbyChange'))
+        .catch(console.error)
+      }
+      
+     connection.on('LobbyChange', () => {
+        lobbyHub.$emit('lobby-change')
+     })
+    
+      connection.on('NewPlayer', (playerId, lobbyId) => {
+        lobbyHub.$emit('new-player', {playerId, lobbyId})
+      })
 
       let startedPromise = null
       function start () {

@@ -1,5 +1,4 @@
 <template>
-    <v-app>
          <form class="submit-form">
                 <div>
                     <v-text-field
@@ -23,10 +22,9 @@
                     hide-details="auto"
                     ></v-text-field>
 
-                    <v-btn @click.prevent="saveLobby()" class="btn-success">Submit</v-btn>
+                    <v-btn @click.prevent="saveLobby" class="btn-success">Submit</v-btn>
                 </div>
             </form>
-    </v-app>
 </template>
 
 <script>
@@ -55,17 +53,16 @@ export default {
             LobbyDataService.create(data)
                 .then(response => {
                     this.lobbyId = response.data.id
-                    console.log(this.lobbyId)
-                    console.log(response.data.id)})
+                    this.$lobbyHub.lobbyChange()
+                     this.$router.push({name: 'TicTacToe', params: {id: response.data.id}})
+                    })
                 .catch(e => {
                     console.log(e);
                 })
             
-            debugger
 
             console.log(this.lobbyId)
-
-            this.$router.push({name: 'TicTacToe', params: {id: this.lobbyId}})
+        
         },
     }
 }

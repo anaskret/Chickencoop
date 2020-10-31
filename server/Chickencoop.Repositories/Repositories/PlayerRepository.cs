@@ -23,24 +23,12 @@ namespace Chickencoop.Repositories.Repositories
         }
 
         public async Task<Player> Get(Guid id)
-        {
-            try
-            {
-                var get = await _context.Players.FirstOrDefaultAsync(p => p.Id == id);
-
-                return get;
-            }
-            catch
-            {
-                throw new NullReferenceException("Player with that Id doesn't exist");
-            }
+        {  
+            return await DoesPlayerExists(id);
         }
 
         public async Task<bool> Create(Player player)
         {
-            if (player.Nickname.Length < 3 || player.Nickname.Length > 20)
-                throw new ArgumentException("Player nickname can't be shorter than 3 characters and longer than 20 characters");
-
             await _context.AddAsync(player);
 
             var created = await _context.SaveChangesAsync();
@@ -50,23 +38,13 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<bool> Update(Player player)
         {
-            try
-            {
-                if (player.Nickname.Length < 3 && player.Nickname.Length > 20)
-                    throw new ArgumentException("Player nickname can't be shorter than 3 characters and longer than 20 characters");
+            var update = await DoesPlayerExists(player.Id);
 
-                var update = await _context.Players.FirstOrDefaultAsync(p => p.Id == player.Id);
+            _context.Players.Update(update);
 
-                _context.Players.Update(update);
+            var updated = await _context.SaveChangesAsync();
 
-                var updated = await _context.SaveChangesAsync();
-
-                return updated > 0;
-            }
-            catch(NullReferenceException)
-            {
-                throw new NullReferenceException("Player with that Id doesn't exist");
-            }
+            return updated > 0;
         }
 
         public async Task<bool> Delete(Guid id)
@@ -86,5 +64,20 @@ namespace Chickencoop.Repositories.Repositories
                 throw new NullReferenceException("Player with that Id doesn't exist");
             }
         }
+
+        #region tests
+        private async Task<Player> DoesPlayerExists(Guid id)
+        {
+            try
+            {
+                return await _context.Players.FirstOrDefaultAsync(pl => pl.Id == id);
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException("Player with this id doesn't exist");
+            }
+        }
+
+        #endregion tests
     }
 }

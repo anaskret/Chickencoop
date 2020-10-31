@@ -30,65 +30,37 @@ namespace Chickencoop.Services.Services
 
         public async Task<GetPersonalLeaderboardDto> GetRecord(Guid id)
         {
-            try
-            {
-                return _mapper.Map<GetPersonalLeaderboardDto>(await _repository.Get(id));
-            }
-            catch
-            {
-                throw;
-            }
+             return _mapper.Map<GetPersonalLeaderboardDto>(await _repository.Get(id));
         }
 
         public async Task<PersonalLeaderboard> CreateRecord(CreatePersonalLeaderboardDto createPersonalLeaderboard)
         {
-            try
-            {
-                PersonalLeaderboard mappedLeaderboard = _mapper.Map<PersonalLeaderboard>(createPersonalLeaderboard);
-                var created = await _repository.Create(mappedLeaderboard);
+            PersonalLeaderboard mappedLeaderboard = _mapper.Map<PersonalLeaderboard>(createPersonalLeaderboard);
+            var created = await _repository.Create(mappedLeaderboard);
 
-                if (!created)
-                    throw new Exception("Failed to create the record");
+            if (!created)
+                throw new Exception("Failed to create the record");
 
-                return mappedLeaderboard;
-            }
-            catch
-            {
-                throw;
-            }
+            return mappedLeaderboard;
         }
         public async Task<bool> UpdateRecord(UpdatePersonalLeaderboardDto updatePersonalLeaderboard)
         {
-            try
-            {
-                var updated = await _repository.Update(_mapper.Map<PersonalLeaderboard>(updatePersonalLeaderboard));
+            var updated = await _repository.Update(_mapper.Map<PersonalLeaderboard>(updatePersonalLeaderboard));
 
-                if (!updated)
-                    throw new Exception("Failed to update the record");
+            if (!updated)
+                throw new Exception("Failed to update the record");
 
-                return updated;
-            }
-            catch
-            {
-                throw;
-            }
+            return updated;
         }
 
         public async Task<bool> DeleteRecord(Guid id)
         {
-            try
-            {
-                var deleted = await _repository.Delete(id);
+            var deleted = await _repository.Delete(id);
 
-                if (!deleted)
-                    throw new Exception("Failed to delete the record");
+            if (!deleted)
+                throw new Exception("Failed to delete the record");
 
-                return deleted;
-            }
-            catch
-            {
-                throw;
-            }
+            return deleted;
         }
     }
 }

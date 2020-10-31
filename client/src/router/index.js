@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Lobbies from "../views/Lobbies.vue";
 import TicTacToe from "../views/TicTacToe.vue";
 import NewLobby from "../components/NewLobby.vue";
-
+import Login from "../views/Login.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -21,6 +21,11 @@ const routes = [
     path: "/lobbies/newlobby",
     name: "NewLobby",
     component: NewLobby
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
   }
 ];
 

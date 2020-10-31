@@ -14,23 +14,23 @@ export default {
 
       Vue.prototype.$tictactoeHub = tictactoeHub
 
-      connection.on('TurnChange', (x, y, player) => {
-        tictactoeHub.$emit('opponent-turn-end', {x, y, player})
+      connection.on('TurnChange', (x, y, player, lobbyId) => {
+        tictactoeHub.$emit('opponent-turn-end', {x, y, player, lobbyId})
       })
 
-      connection.on('Victory', (player) => {
-        tictactoeHub.$emit('who-won', {player})
+      connection.on('Victory', (player, lobbyId) => {
+        tictactoeHub.$emit('who-won', {player, lobbyId})
       })
 
-      tictactoeHub.turnChange = (x, y, player) =>{
+      tictactoeHub.turnChange = (x, y, player, lobbyId) =>{
         return startedPromise
-        .then(() => connection.invoke('TurnChange', x, y, player))
+        .then(() => connection.invoke('TurnChange', x, y, player, lobbyId))
         .catch(console.error)
       }
 
-      tictactoeHub.victory = (player) =>{
+      tictactoeHub.victory = (player, lobbyId) =>{
         return startedPromise
-        .then(() => connection.invoke('Victory', player))
+        .then(() => connection.invoke('Victory', player, lobbyId))
         .catch(console.error)
       }
 

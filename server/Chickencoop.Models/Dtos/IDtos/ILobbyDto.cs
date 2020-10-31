@@ -11,6 +11,6 @@ namespace Chickencoop.Models.Dtos.IDtos
         Games GameName{ get; set; }
         Guid PlayerOneId{ get; set; }
         Guid? PlayerTwoId{ get; set; }
-
+        bool isFull { get; set; }
     }
 }

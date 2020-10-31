@@ -22,48 +22,23 @@ namespace Chickencoop.Repositories.Repositories
         public async Task<List<Lobby>> GetAll()
         {
             return await _context.Lobbies.ToListAsync();
-
         }
 
         public async Task<Lobby> Get(Guid id)
         {
-            try
-            {
-                var get = await _context.Lobbies.FirstOrDefaultAsync(pl => pl.Id == id);
-
-                return get;
-            }
-            catch
-            {
-                throw new NullReferenceException("Record with this id doesn't exist");
-            }
+            return await DoesLobbyExist(id);
         }
 
         
         public async Task<bool> Create(Lobby lobby)
         {
-            try
-            {
-                var playerOne = await _context.Lobbies.FirstOrDefaultAsync(p => p.PlayerOneId == lobby.PlayerOneId);
+            await DoesLobbyExist(lobby.PlayerOneId);
+            DoesEnumExists(lobby.GameName);
 
-            }
-            catch
-            {
-                throw new NullReferenceException("Selected playerOne doesn't exist");
-            }
             if (lobby.PlayerTwoId != null)
             {
-                try
-                {
-                    var playerTwo = await _context.Lobbies.FirstOrDefaultAsync(p => p.PlayerTwoId == lobby.PlayerTwoId);
-                }
-                catch
-                {
-                    throw new NullReferenceException("Selected playerTwo doesn't exist");
-                }
+                await DoesLobbyExist(lobby.PlayerTwoId);
             }
-            if (!Enum.IsDefined(typeof(Games), lobby.GameName))
-                throw new ArgumentException("Wrong GameName");
 
             await _context.Lobbies.AddAsync(lobby);
             var created = await _context.SaveChangesAsync();
@@ -72,36 +47,15 @@ namespace Chickencoop.Repositories.Repositories
         }
         public async Task<bool> Update(Lobby lobby)
         {
-            try
-            {
-                var doesLobbbyExist = await _context.Lobbies.FirstOrDefaultAsync(l => l.Id == lobby.Id);
-            }
-            catch
-            {
-                throw new NullReferenceException("Selected lobby doesn't exist");
-            }
-            try
-            {
-                var playerOne = await _context.Lobbies.FirstOrDefaultAsync(p => p.PlayerOneId == lobby.PlayerOneId);
+            await DoesLobbyExist(lobby.Id);
+            await DoesLobbyExist(lobby.PlayerOneId);
+            DoesEnumExists(lobby.GameName);
 
-            }
-            catch
-            {
-                throw new NullReferenceException("Selected playerOne doesn't exist");
-            }
             if (lobby.PlayerTwoId != null)
             {
-                try
-                {
-                    var playerTwo = await _context.Lobbies.FirstOrDefaultAsync(p => p.PlayerTwoId == lobby.PlayerTwoId);
-                }
-                catch
-                {
-                    throw new NullReferenceException("Selected playerTwo doesn't exist");
-                }
+                await DoesLobbyExist(lobby.PlayerTwoId);
             }
-            if (!Enum.IsDefined(typeof(Games), lobby.GameName))
-                throw new ArgumentException("Wrong GameName");
+
 
             _context.Lobbies.Update(lobby);
             var updated = await _context.SaveChangesAsync();
@@ -111,18 +65,39 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<bool> Delete(Guid id)
         {
+            var doesLobbbyExist = await DoesLobbyExist(id);
+            _context.Remove(doesLobbbyExist);
+            var deleted = await _context.SaveChangesAsync();
+
+            return deleted > 0;
+        }
+
+
+
+        #region tests
+        private async void Tests(Lobby lobby)
+        {
+
+        }
+        private async Task<Lobby> DoesLobbyExist(Guid? id)
+        {
             try
             {
-                var doesLobbbyExist = await _context.Lobbies.FirstOrDefaultAsync(l => l.Id == id);
-                _context.Remove(doesLobbbyExist);
-                var deleted = await _context.SaveChangesAsync();
-
-                return deleted > 0;
+                return await _context.Lobbies.FirstOrDefaultAsync(pl => pl.Id == id);
             }
-            catch
+            catch(NullReferenceException)
             {
-                throw new NullReferenceException("Selected lobby doesn't exist");
+                throw new NullReferenceException("Lobby with this id doesn't exist");
             }
         }
+
+        private bool DoesEnumExists(Games games)
+        {
+            if (!Enum.IsDefined(typeof(Games), games))
+                throw new ArgumentException("Wrong GameName");
+
+            return true;
+        }
+        #endregion tests
     }
 }

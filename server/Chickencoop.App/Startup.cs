@@ -73,6 +73,7 @@ namespace Chickencoop.App
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<TicTacToeHub>("/tictactoehub");
+                endpoints.MapHub<LobbyHub>("/lobbyhub");
             });
         }
     }

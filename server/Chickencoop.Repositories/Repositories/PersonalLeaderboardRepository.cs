@@ -27,49 +27,12 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<PersonalLeaderboard> Get(Guid id)
         {
-            try
-            {
-                var get = await _context.PersonalLeaderboards.FirstOrDefaultAsync(pl => pl.Id == id);
-
-                return get;
-            }
-            catch
-            {
-                 throw new NullReferenceException("Record with this id doesn't exist");
-            }
+            return await DoesLeaderboardExists(id);
         }
 
         public async Task<bool> Create(PersonalLeaderboard personalLeaderboard)
         {
-            try
-            {
-                var player = await _context.PersonalLeaderboards.FirstOrDefaultAsync(p => p.PlayerId == personalLeaderboard.PlayerId);
-
-            }
-            catch
-            { 
-                throw new NullReferenceException("Selected player doesn't exist"); 
-            }
-            try
-            {
-                var opponent = await _context.PersonalLeaderboards.FirstOrDefaultAsync(p => p.OpponentId == personalLeaderboard.OpponentId);
-            }
-            catch
-            { 
-                throw new NullReferenceException("Selected opponent doesn't exist"); 
-            }
-
-            if (personalLeaderboard.GameDate != DateTime.Today)
-                throw new ArgumentException("Game Date can't be different than today");
-
-            if (personalLeaderboard.GameTime < TimeSpan.Zero)
-                throw new ArgumentException("Game Time can't be smaller than 0");
-
-            if (personalLeaderboard.OpponentId == personalLeaderboard.PlayerId)
-                throw new ArgumentException("Opponents Id can't be the same as the players Id");
-
-            if (!Enum.IsDefined(typeof(ResultType), personalLeaderboard.Result))
-                throw new ArgumentException("Wrong Result Type");
+            Tests(personalLeaderboard);
 
             await _context.PersonalLeaderboards.AddAsync(personalLeaderboard);
             var created = await _context.SaveChangesAsync();
@@ -78,42 +41,7 @@ namespace Chickencoop.Repositories.Repositories
         }
         public async Task<bool> Update(PersonalLeaderboard personalLeaderboard)
         {
-            try
-            {
-                var record = await _context.PersonalLeaderboards.FirstOrDefaultAsync(pl => pl.Id == personalLeaderboard.Id);
-            }
-            catch
-            {
-                throw new NullReferenceException("Selected record doesn't exist");
-            }
-            try
-            {
-                var player = await _context.PersonalLeaderboards.FirstOrDefaultAsync(p => p.PlayerId == personalLeaderboard.PlayerId);
-            }
-            catch
-            {
-                throw new NullReferenceException("Selected player doesn't exist");
-            }
-            try
-            {
-                var opponent = await _context.PersonalLeaderboards.FirstOrDefaultAsync(p => p.OpponentId == personalLeaderboard.OpponentId);
-            }
-            catch
-            {
-                throw new NullReferenceException("Selected opponent doesn't exist");
-            }
-
-            if (personalLeaderboard.GameDate != DateTime.Today)
-                throw new ArgumentException("Game Date can't be different than today");
-
-            if (personalLeaderboard.GameTime < TimeSpan.Zero)
-                throw new ArgumentException("Game Time can't be smaller than 0");
-
-            if (personalLeaderboard.OpponentId == personalLeaderboard.PlayerId)
-                throw new ArgumentException("Opponents Id can't be the same as the players Id");
-
-            if (!Enum.IsDefined(typeof(ResultType), personalLeaderboard.Result))
-                throw new ArgumentException("Wrong Result Type");
+            Tests(personalLeaderboard);
 
             _context.PersonalLeaderboards.Update(personalLeaderboard);
             var updated = await _context.SaveChangesAsync();
@@ -123,19 +51,72 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<bool> Delete(Guid id)
         {
-            try
-            {
-                var record = await _context.PersonalLeaderboards.FirstOrDefaultAsync(pl => pl.Id == id);
-                _context.Remove(record);
-                var deleted = await _context.SaveChangesAsync();
+            var record = await DoesLeaderboardExists(id);
+            _context.Remove(record);
+            var deleted = await _context.SaveChangesAsync();
 
-                return deleted > 0;
-            }
-            catch
-            {
-                throw new NullReferenceException("Selected record doesn't exist");
-            }
+            return deleted > 0;
 
         }
+
+    #region tests
+        private async void Tests(PersonalLeaderboard personalLeaderboard)
+        {
+            await DoesPlayerExists(personalLeaderboard.PlayerId);
+            await DoesPlayerExists(personalLeaderboard.OpponentId);
+            DoesEnumExists(personalLeaderboard.Result);
+            IsPlayerSameAsOpponent(personalLeaderboard.PlayerId, personalLeaderboard.OpponentId);
+            IsGameDateToday(personalLeaderboard.GameDate);
+            IsGameTimeLargerThanZero(personalLeaderboard.GameTime);
+        }
+
+        private async Task<PersonalLeaderboard> DoesLeaderboardExists(Guid id)
+        {
+            try
+            {
+                return await _context.PersonalLeaderboards.FirstOrDefaultAsync(pl => pl.Id == id);
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException("Record with this id doesn't exist");
+            }
+        }
+
+        private async Task<Player> DoesPlayerExists(Guid id)
+        {
+            try
+            {
+                return await _context.Players.FirstOrDefaultAsync(pl => pl.Id == id);
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException("Player with this id doesn't exist");
+            }
+        }
+
+        private void DoesEnumExists(ResultType results)
+        {
+            if (!Enum.IsDefined(typeof(ResultType), results))
+                throw new ArgumentException("Wrong ResultType");
+        }
+
+        private void IsPlayerSameAsOpponent(Guid playerId, Guid opponentId)
+        {
+            if (playerId == opponentId)
+                throw new ArgumentException("Opponents Id can't be the same as the players Id");
+        }
+
+        private void IsGameDateToday(DateTime dateTime)
+        {
+            if (dateTime != DateTime.Today)
+                throw new ArgumentException("Game Date can't be different than today");
+        }
+
+        private void IsGameTimeLargerThanZero(TimeSpan timeSpan)
+        {
+            if (timeSpan < TimeSpan.Zero)
+                throw new ArgumentException("Game Time can't be smaller than 0");
+        }
+        #endregion tests
     }
 }

@@ -13,5 +13,6 @@ namespace Chickencoop.Models.Dtos.UpdateDtos
         public Games GameName { get; set; }
         public Guid PlayerOneId { get; set; }
         public Guid? PlayerTwoId { get; set; }
+        public bool isFull { get; set; }
     }
 }

@@ -13,10 +13,20 @@ namespace Chickencoop.App.Hubs
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, lobbyId.ToString());
         }
+
         public async Task LeaveLobby(Guid lobbyId)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, lobbyId.ToString());
+        }
 
+        public async Task NewPlayer(Guid? playerId, Guid lobbyId)
+        {
+            await Clients.Group(lobbyId.ToString()).NewPlayer(playerId, lobbyId);
+        }
+
+        public async Task LobbyChange() 
+        {
+            await Clients.All.LobbyChange();
         }
     }
 }

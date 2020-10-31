@@ -11,8 +11,9 @@ namespace Chickencoop.Models.Models
         public Guid Id { get; set; }
         public string Title { get; set; }
         public Games GameName { get; set; }
-        public Guid PlayerOneId { get; set; }
+        public Guid PlayerOneId { get; set; } //host
         public Guid? PlayerTwoId { get; set; }
+        public bool IsFull { get; set; } = false;
 
         public virtual Player Player { get; set; }
     }

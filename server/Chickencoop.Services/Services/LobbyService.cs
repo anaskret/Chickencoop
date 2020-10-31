@@ -32,67 +32,38 @@ namespace Chickencoop.Services.Services
 
         public async Task<GetLobbyDto> GetLobby(Guid id)
         {
-            try
-            {
-                return _mapper.Map<GetLobbyDto>(await _lobbyRepository.Get(id));
-            }
-            catch
-            {
-                throw;
-            }
+            return _mapper.Map<GetLobbyDto>(await _lobbyRepository.Get(id));
         }
 
         public async Task<Lobby> CreateLobby(CreateLobbyDto createLobby)
         {
-            try
-            {
-                Lobby mappedLobby = _mapper.Map<Lobby>(createLobby);
-                var created = await _lobbyRepository.Create(mappedLobby);
+            Lobby mappedLobby = _mapper.Map<Lobby>(createLobby);
+            var created = await _lobbyRepository.Create(mappedLobby);
 
-                if (!created)
-                    throw new Exception("Failed to create the lobby");
+            if (!created)
+                throw new Exception("Failed to create the lobby");
 
-                return mappedLobby;
-            }
-            catch
-            {
-                throw;
-            }
+            return mappedLobby;
         }
         public async Task<bool> UpdateLobby(UpdateLobbyDto updateLobby)
         {
-            try
-            {
-                var updated = await _lobbyRepository.Update(_mapper.Map<Lobby>(updateLobby));
+            var updated = await _lobbyRepository.Update(_mapper.Map<Lobby>(updateLobby));
 
-                if (!updated)
-                    throw new Exception("Failed to update the lobby");
+            if (!updated)
+                throw new Exception("Failed to update the lobby");
 
-                return updated;
-            }
-            catch
-            {
-                throw;
-            }
+            return updated;
         }
 
         public async Task<bool> DeleteLobby(Guid id)
         {
-            try
-            {
-                var deleted = await _lobbyRepository.Delete(id);
+            var deleted = await _lobbyRepository.Delete(id);
 
-                if (!deleted)
-                    throw new Exception("Failed to delete the lobby");
+            if (!deleted)
+                throw new Exception("Failed to delete the lobby");
 
-                return deleted;
-            }
-            catch
-            {
-                throw;
-            }
+            return deleted;
         }
-
 
     }
 }
