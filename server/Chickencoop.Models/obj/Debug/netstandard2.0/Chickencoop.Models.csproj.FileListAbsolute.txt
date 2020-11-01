@@ -6,3 +6,4 @@ C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\nets
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.AssemblyInfo.cs
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.dll
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.pdb
+C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.csproj.CoreCompileInputs.cache

@@ -34,6 +34,7 @@ namespace Chickencoop.Repositories.Repositories
         {
             await DoesLobbyExist(lobby.PlayerOneId);
             DoesEnumExists(lobby.GameName);
+            IsPlayerSameAsOpponent(lobby);
 
             if (lobby.PlayerTwoId != null)
             {
@@ -50,6 +51,7 @@ namespace Chickencoop.Repositories.Repositories
             await DoesLobbyExist(lobby.Id);
             await DoesLobbyExist(lobby.PlayerOneId);
             DoesEnumExists(lobby.GameName);
+            IsPlayerSameAsOpponent(lobby);
 
             if (lobby.PlayerTwoId != null)
             {
@@ -75,10 +77,7 @@ namespace Chickencoop.Repositories.Repositories
 
 
         #region tests
-        private async void Tests(Lobby lobby)
-        {
-
-        }
+        
         private async Task<Lobby> DoesLobbyExist(Guid? id)
         {
             try
@@ -91,12 +90,16 @@ namespace Chickencoop.Repositories.Repositories
             }
         }
 
-        private bool DoesEnumExists(Games games)
+        private void DoesEnumExists(Games games)
         {
             if (!Enum.IsDefined(typeof(Games), games))
                 throw new ArgumentException("Wrong GameName");
+        }
 
-            return true;
+        private void IsPlayerSameAsOpponent(Lobby lobby)
+        {
+            if (lobby.PlayerOneId == lobby.PlayerTwoId)
+                throw new ArgumentException("Opponents Id can't be the same as the players Id");
         }
         #endregion tests
     }

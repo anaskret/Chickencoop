@@ -1385,7 +1385,8 @@
       },
       "Chickencoop.Models/1.0.0": {
         "dependencies": {
-          "AutoMapper": "10.1.1"
+          "AutoMapper": "10.1.1",
+          "System.ComponentModel.Annotations": "4.7.0"
         },
         "runtime": {
           "Chickencoop.Models.dll": {}

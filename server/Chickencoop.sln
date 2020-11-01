@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chickencoop.Repositories", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chickencoop.Models", "Chickencoop.Models\Chickencoop.Models.csproj", "{330B74E3-12A3-4076-A221-B2563EC3A194}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chickencoop.Tests", "Chickencoop.Tests\Chickencoop.Tests.csproj", "{7B104A9B-08B6-4BD9-8E5E-C56902EF92D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chickencoop.Tests", "Chickencoop.Tests\Chickencoop.Tests.csproj", "{7B104A9B-08B6-4BD9-8E5E-C56902EF92D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
