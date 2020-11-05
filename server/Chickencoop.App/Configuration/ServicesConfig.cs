@@ -14,6 +14,8 @@ using Chickencoop.Models.Dtos.UpdateDtos;
 using AutoMapper;
 using Chickencoop.Services.Mapping;
 using Chickencoop.Models.Mapping;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace Chickencoop.App.Configuration
 {
@@ -33,6 +35,20 @@ namespace Chickencoop.App.Configuration
             services.AddControllers().AddNewtonsoftJson(options =>
                  options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
              );
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddCookie()
+            .AddOpenIdConnect(options =>
+            {
+                options.ResponseType = configuration["Authentication:Cognito:ResponseType"];
+                options.MetadataAddress = configuration["Authentication:Cognito:MetadataAddress"];
+                options.ClientId = configuration["Authentication:Cognito:ClientId"];
+            });
 
             services.AddSignalR();
 

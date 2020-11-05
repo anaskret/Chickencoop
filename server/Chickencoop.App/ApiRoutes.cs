@@ -17,6 +17,11 @@ namespace Chickencoop.App
             public const string Update = Root + "/players/{id:guid}";
             public const string Delete = Root + "/players/{id:guid}";
         }
+        public static class Users
+        {
+            public const string Signin = Root + "/users";
+            public const string Signup = Root + "/users";
+        }
         
         public static class PersonalLeaderboard
         {

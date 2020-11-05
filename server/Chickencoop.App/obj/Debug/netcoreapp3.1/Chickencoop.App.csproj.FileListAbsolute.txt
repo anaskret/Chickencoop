@@ -75,6 +75,7 @@ C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.App\bin\Debug\netcore
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.App\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.App\bin\Debug\netcoreapp3.1\AutoMapper.Collection.dll
+C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.App\obj\Debug\netcoreapp3.1\Chickencoop.App.csproj.CoreCompileInputs.cache
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.App\obj\Debug\netcoreapp3.1\Chickencoop.App.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.App\obj\Debug\netcoreapp3.1\Chickencoop.App.MvcApplicationPartsAssemblyInfo.cache

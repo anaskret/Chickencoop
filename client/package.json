@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@aspnet/signalr": "^1.1.4",
+    "aws-amplify": "^3.3.7",
+    "aws-amplify-vue": "^0.2.12-beta.0",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
