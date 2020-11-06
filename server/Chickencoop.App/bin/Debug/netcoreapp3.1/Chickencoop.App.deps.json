@@ -24,6 +24,8 @@
     ".NETCoreApp,Version=v3.1": {
       "Chickencoop.App/1.0.0": {
         "dependencies": {
+          "AWSSDK.CognitoIdentityProvider": "3.5.0.35",
+          "AWSSDK.Core": "3.5.1.33",
           "AutoMapper": "10.1.1",
           "AutoMapper.Collection": "7.0.0",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.0",
@@ -356,6 +358,31 @@
         },
         "compile": {
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "AWSSDK.CognitoIdentityProvider/3.5.0.35": {
+        "dependencies": {
+          "AWSSDK.Core": "3.5.1.33"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.CognitoIdentityProvider.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.5.0.35"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.CognitoIdentityProvider.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.5.1.33": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.5.1.33"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication.OpenIdConnect/3.1.9": {
@@ -3158,6 +3185,20 @@
       "sha512": "sha512-dQyGCAYcHbGuimVvCMu4Ea2S1oYOlgO9XfVdClmY5wgygJMZoS57emPzH0qNfknmtzMm4QbDO9i237W5IDjU1A==",
       "path": "automapper.extensions.microsoft.dependencyinjection/8.1.0",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512"
+    },
+    "AWSSDK.CognitoIdentityProvider/3.5.0.35": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q7eZ7NSPeYAd1jiYp4PuOT8mgwVDk50/AQDt49Oy1EAymZwLeUKYBbXcvFCf6c6ldlGNzWyX3CMLuSXgTsS44Q==",
+      "path": "awssdk.cognitoidentityprovider/3.5.0.35",
+      "hashPath": "awssdk.cognitoidentityprovider.3.5.0.35.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.5.1.33": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AjEKCgmFFFqIbmyUxbe59PWu20eaC13RQPzcXj9g5KxO1oV1ve6idtT2XspMkwnmKJkPSUS/r1ZUkzS1nctVPg==",
+      "path": "awssdk.core/3.5.1.33",
+      "hashPath": "awssdk.core.3.5.1.33.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.OpenIdConnect/3.1.9": {
       "type": "package",

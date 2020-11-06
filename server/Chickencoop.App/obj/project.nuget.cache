@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "urYM/u4wpClkxr6c/AyCRSbjsLJlLC2DOJEW4hA/Bw4xehJaOuQA2kNcPHY3N9JDMalBMZS+AbqhYNHwD6HxSQ==",
+  "dgSpecHash": "nKxo4jsOlLf5rYfkJFZB3eG3kAU3/XqIdqjMmuBBBoJlyvRjDrYJcQ7eMVcjCC4Q+YQD5E8H6Zhc0txbS9P4XQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.App\\Chickencoop.App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\an000\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\automapper.collection\\7.0.0\\automapper.collection.7.0.0.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\awssdk.cognitoidentityprovider\\3.5.0.35\\awssdk.cognitoidentityprovider.3.5.0.35.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\awssdk.core\\3.5.1.33\\awssdk.core.3.5.1.33.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\3.1.9\\microsoft.aspnetcore.authentication.openidconnect.3.1.9.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.9\\microsoft.aspnetcore.jsonpatch.3.1.9.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.9\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.9.nupkg.sha512",

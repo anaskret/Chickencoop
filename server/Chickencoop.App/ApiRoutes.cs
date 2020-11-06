@@ -19,8 +19,8 @@ namespace Chickencoop.App
         }
         public static class Users
         {
-            public const string Signin = Root + "/users";
-            public const string Signup = Root + "/users";
+            public const string Signin = Root + "/users/signin";
+            public const string Signup = Root + "/users/signup";
         }
         
         public static class PersonalLeaderboard
