@@ -7,13 +7,8 @@ using static Chickencoop.Models.Enums.GamesEnum;
 
 namespace Chickencoop.Models.Dtos.GetDtos
 {
-    public class GetLobbyDto : ILobbyDto
+    public class GetLobbyDto : LobbyDto
     {
         public Guid Id { get; set; }
-        public string Title { get; set; }
-        public Games GameName { get; set; }
-        public Guid PlayerOneId { get; set; }
-        public Guid? PlayerTwoId { get; set; }
-        public bool isFull { get; set; }
     }
 }

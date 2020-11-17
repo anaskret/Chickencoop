@@ -6,9 +6,7 @@ using System.Text;
 
 namespace Chickencoop.Models.Dtos.CreateDtos
 {
-    public class CreatePlayerDto : IPlayerDto
+    public class CreatePlayerDto : PlayerDto
     {
-        [StringLength(20, MinimumLength = 3)]
-        public string Nickname { get; set; }
     }
 }

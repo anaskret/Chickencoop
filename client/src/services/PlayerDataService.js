@@ -5,8 +5,12 @@ class PlayerDataService{
         return http.get("/players");
     }
 
-    get(id) {
-        return http.get(`/players/${id}`);
+    get(username) {
+        return http.get(`/players/${username}`);
+    }
+
+     getById(id) {
+        return   http.get(`/playersById/${id}`);
     }
 
     create(data) {

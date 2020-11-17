@@ -9,6 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "Chickencoop.Services/1.0.0": {
         "dependencies": {
+          "AWSSDK.CognitoIdentityProvider": "3.5.0.35",
           "AutoMapper": "10.1.1",
           "Chickencoop.Models": "1.0.0",
           "Chickencoop.Repositories": "1.0.0",
@@ -27,6 +28,28 @@
           "lib/netstandard2.0/AutoMapper.dll": {
             "assemblyVersion": "10.0.0.0",
             "fileVersion": "10.1.1.0"
+          }
+        }
+      },
+      "AWSSDK.CognitoIdentityProvider/3.5.0.35": {
+        "dependencies": {
+          "AWSSDK.Core": "3.5.1.33"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.CognitoIdentityProvider.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.5.0.35"
+          }
+        }
+      },
+      "AWSSDK.Core/3.5.1.33": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "1.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.5.1.33"
           }
         }
       },
@@ -1287,6 +1310,20 @@
       "sha512": "sha512-uMgbqOdu9ZG5cIOty0C85hzzayBH2i9BthnS5FlMqKtMSHDv4ts81a2jS1VFaDBVhlBeIqJ/kQKjQY95BZde9w==",
       "path": "automapper/10.1.1",
       "hashPath": "automapper.10.1.1.nupkg.sha512"
+    },
+    "AWSSDK.CognitoIdentityProvider/3.5.0.35": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q7eZ7NSPeYAd1jiYp4PuOT8mgwVDk50/AQDt49Oy1EAymZwLeUKYBbXcvFCf6c6ldlGNzWyX3CMLuSXgTsS44Q==",
+      "path": "awssdk.cognitoidentityprovider/3.5.0.35",
+      "hashPath": "awssdk.cognitoidentityprovider.3.5.0.35.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.5.1.33": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AjEKCgmFFFqIbmyUxbe59PWu20eaC13RQPzcXj9g5KxO1oV1ve6idtT2XspMkwnmKJkPSUS/r1ZUkzS1nctVPg==",
+      "path": "awssdk.core/3.5.1.33",
+      "hashPath": "awssdk.core.3.5.1.33.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

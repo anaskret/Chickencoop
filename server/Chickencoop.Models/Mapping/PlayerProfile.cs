@@ -12,12 +12,10 @@ namespace Chickencoop.Services.Mapping
     {
         public PlayerProfile()
         {
-            CreateMap<Player, CreatePlayerDto>();
+            CreateMap<CreatePlayerDto, Player>();
             CreateMap<Player, GetPlayerDto>();
-            CreateMap<Player, UpdatePlayerDto>();
-            CreateMap<IPlayerDto, Player>()
-                .ForMember(d => d.Id, opt => opt.Ignore());
-            CreateMap<List<Player>, List<IPlayerDto>>();
+            CreateMap<UpdatePlayerDto, Player>();
+            CreateMap<List<Player>, List<PlayerDto>>();
         }
     }
 }

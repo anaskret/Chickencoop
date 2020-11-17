@@ -1,9 +1,8 @@
 <template>
-
-
     <v-card
     full-width
     class="mx-auto"
+    v-if="lobbies"
   >
     <v-toolbar
       color="light-blue"
@@ -17,46 +16,26 @@
     </v-toolbar>
 
     <v-list>
-      <v-list-item
+      <LobbyListView
         v-for="lobby in lobbies"
         :key="lobby.id"
-      >
-        <v-list-item-content>
-          <v-list-item-title v-text="lobby.title"></v-list-item-title>
-
-          <v-list-item-subtitle v-text="lobby.player"></v-list-item-subtitle>
-        </v-list-item-content>
-
-        <v-list-item-action>
-          <v-btn 
-          color="success"
-          success
-          :disabled="lobby.isFull"
-          @click="joinLobby(lobby.id)"
-          >
-            Join Lobby
-          </v-btn>
-           <v-btn 
-          color="error"
-          
-          @click="deleteLobby(lobby.id)"
-          >
-            WYJEB
-          </v-btn>
-        </v-list-item-action>
-      </v-list-item>
+        :item="lobby"
+        @onDelete="deleteLobby"
+      />
+      
 
 
     </v-list>
   </v-card>
-           
-
 </template>
 
 <script>
+import LobbyListView from '../components/LobbyListItem'
 import LobbyDataService from "../services/LobbyDataService";
+// import PlayerDataService from '../services/PlayerDataService';
 
 export default {
+  components:{LobbyListView},
     data: () => ({
         onlyNotFull:false,
         showMenu: false,
@@ -66,29 +45,26 @@ export default {
             {text:'',value:''},
         ],
         lobbies:[
-        ]
+        ],
     }),
     created(){
-        this.$lobbyHub.$on('lobby-change', this.getAll)
-        this.getAll()
+      this.$lobbyHub.$on('lobby-change', this.getAll)
+      this.getAll()
     },
-
     methods: {
-        joinLobby(id){
-          this.$router.push({name: 'TicTacToe', params: {id:id}})
-        },
-        deleteLobby(id){
-          LobbyDataService.delete(id)
-          this.$lobbyHub.lobbyChange()
-          const newList =  this.lobbies.filter(lobby=>lobby.id !== id)
-          this.lobbies = newList
-        },
       getAll(){
           LobbyDataService.getAll().then((res)=>{
           console.log(res.data)
           this.lobbies = res.data
       })
-    }
+      },
+       deleteLobby(id){
+        LobbyDataService.delete(id)
+        this.$lobbyHub.lobbyChange()
+        const newList =  this.lobbies.filter(lobby=>lobby.id !== id)
+        this.lobbies = newList
+      },
+
     }
 }
 </script>

@@ -15,13 +15,6 @@
                     hide-details="auto"
                     ></v-text-field>
 
-                    <v-text-field
-                    label="Player Id"
-                    id="playerOneId"
-                    v-model="lobby.playerOneId"
-                    hide-details="auto"
-                    ></v-text-field>
-
                     <v-btn @click.prevent="saveLobby" class="btn-success">Submit</v-btn>
                 </div>
             </form>
@@ -36,8 +29,7 @@ export default {
         return {
             lobby: {
                 title: "",
-                game: 0,
-                playerOneId: ""
+                game: 0
             },
             lobbyId: "",
         };
@@ -47,7 +39,7 @@ export default {
             var data = {
                 Title: this.lobby.title,
                 Game: this.lobby.game,
-                PlayerOneId: this.lobby.playerOneId
+                PlayerOneId: this.$store.state.playerId
             };
 
             LobbyDataService.create(data)

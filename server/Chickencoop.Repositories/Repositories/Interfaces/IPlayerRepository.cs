@@ -8,6 +8,7 @@ namespace Chickencoop.Repositories.Repositories.Interfaces
     public interface IPlayerRepository
     {
         Task<List<Player>> GetAll();
+        Task<Player> Get(string username);
         Task<Player> Get(Guid id);
         Task<bool> Create(Player player);
         Task<bool> Update(Player player);

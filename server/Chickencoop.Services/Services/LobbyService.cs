@@ -47,7 +47,9 @@ namespace Chickencoop.Services.Services
         }
         public async Task<bool> UpdateLobby(UpdateLobbyDto updateLobby)
         {
-            var updated = await _lobbyRepository.Update(_mapper.Map<Lobby>(updateLobby));
+            var lobby = _mapper.Map<Lobby>(updateLobby);
+
+            var updated = await _lobbyRepository.Update(lobby);
 
             if (!updated)
                 throw new Exception("Failed to update the lobby");

@@ -16,6 +16,7 @@ using Chickencoop.Services.Mapping;
 using Chickencoop.Models.Mapping;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Extensions.Logging;
 
 namespace Chickencoop.App.Configuration
 {
@@ -23,9 +24,11 @@ namespace Chickencoop.App.Configuration
     {
         public static void InstallServices(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddDbContext<ChickencoopContext>(options =>
-                  options.UseSqlServer(
-                      configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ChickencoopContext>(options => {
+                options.UseSqlServer(
+                    configuration.GetConnectionString("DefaultConnection"));
+                options.EnableSensitiveDataLogging(true);
+            });
             services.AddControllersWithViews();
 
             services.AddCors();
@@ -59,13 +62,19 @@ namespace Chickencoop.App.Configuration
                     x.SwaggerDoc("v1", new OpenApiInfo { Title = "Chickencoop API" });
                 });
 
-            services.AddTransient<IPlayerService, PlayerService>();
+            /*services.AddLogging(loggingBuilder => {
+                loggingBuilder.AddConsole()
+                    .AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information);
+                loggingBuilder.AddDebug();
+            });*/
+
+            services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             
-            services.AddTransient<IPersonalLeaderboardService, PersonalLeaderboardService>();
+            services.AddScoped<IPersonalLeaderboardService, PersonalLeaderboardService>();
             services.AddScoped<IPersonalLeaderboardRepository, PersonalLeaderboardRepository>();
             
-            services.AddTransient<ILobbyService, LobbyService>();
+            services.AddScoped<ILobbyService, LobbyService>();
             services.AddScoped<ILobbyRepository, LobbyRepository>();
         }
     }

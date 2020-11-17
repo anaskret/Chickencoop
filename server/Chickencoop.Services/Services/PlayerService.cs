@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Amazon.CognitoIdentityProvider.Model;
+using AutoMapper;
 using Chickencoop.Models.Dtos.CreateDtos;
 using Chickencoop.Models.Dtos.GetDtos;
 using Chickencoop.Models.Dtos.UpdateDtos;
@@ -30,7 +31,12 @@ namespace Chickencoop.Services.Services
             return getAll.Select(p => _mapper.Map<GetPlayerDto>(p)).ToList();
         }
 
-        public async Task<GetPlayerDto> GetPlayer(Guid id)
+        public async Task<GetPlayerDto> GetPlayer(string username)
+        {
+            return _mapper.Map<GetPlayerDto>(await _playerRepository.Get(username));
+        }
+        
+        public async Task<GetPlayerDto> GetPlayerById(Guid id)
         {
             return _mapper.Map<GetPlayerDto>(await _playerRepository.Get(id));
         }
@@ -64,5 +70,54 @@ namespace Chickencoop.Services.Services
 
             return deleted;
         }
+
+        public async Task<bool> CheckPlayers(ListUsersResponse listUsers)
+        {
+            var getAll = await GetAllPlayers();
+
+            var missingUsers = CompareUsersInDatabases(getAll, listUsers);
+
+            if (missingUsers.Count() == 0)
+                return true;
+
+            foreach (var user in missingUsers)
+            {
+                CreatePlayerDto createPlayer = new CreatePlayerDto
+                {
+                    Nickname = user
+                };
+
+                if (!await _playerRepository.Create(_mapper.Map<Player>(createPlayer)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private List<string> CompareUsersInDatabases(List<GetPlayerDto> players, ListUsersResponse listUsers)
+        {
+            List<string> usernames = new List<string>();
+            
+            foreach(var user in listUsers.Users)
+            {
+                usernames.Add(user.Username);
+            }
+            foreach(var player in players)
+            {
+                if(usernames.Contains(player.Nickname))
+                {
+                    usernames.Remove(player.Nickname);
+                }
+                else
+                {
+                    usernames.Remove(player.Nickname);
+                    _playerRepository.Delete(player.Id);
+                }
+            }
+
+            return usernames;
+        }
+
     }
 }

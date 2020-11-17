@@ -28,6 +28,9 @@ namespace Chickencoop.DataAccess.Migrations
                     b.Property<int>("GameName")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsFull")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("PlayerOneId")
                         .HasColumnType("uniqueidentifier");
 
@@ -36,9 +39,6 @@ namespace Chickencoop.DataAccess.Migrations
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isFull")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

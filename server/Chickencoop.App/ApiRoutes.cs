@@ -13,14 +13,11 @@ namespace Chickencoop.App
         {
             public const string Create = Root + "/players";
             public const string GetAll = Root + "/players";
-            public const string Get = Root + "/players/{id:guid}";
+            public const string Get = Root + "/players/{username}";
+            public const string GetById = Root + "/playersById/{id}";
             public const string Update = Root + "/players/{id:guid}";
             public const string Delete = Root + "/players/{id:guid}";
-        }
-        public static class Users
-        {
-            public const string Signin = Root + "/users/signin";
-            public const string Signup = Root + "/users/signup";
+            public const string CheckForUpdates = Root + "/checkPlayers";
         }
         
         public static class PersonalLeaderboard

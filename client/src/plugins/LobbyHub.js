@@ -38,8 +38,15 @@ export default {
         lobbyHub.$emit('lobby-change')
      })
     
-      connection.on('NewPlayer', (playerId, lobbyId) => {
-        lobbyHub.$emit('new-player', {playerId, lobbyId})
+
+     lobbyHub.newPlayer = (lobbyId, playerId) =>{
+      return startedPromise
+      .then(() => connection.invoke('NewPlayer', lobbyId, playerId))
+      .catch(console.error)
+      }
+
+      connection.on('NewPlayer', (lobbyId, playerId) => {
+        lobbyHub.$emit('new-player', lobbyId, playerId)
       })
 
       let startedPromise = null

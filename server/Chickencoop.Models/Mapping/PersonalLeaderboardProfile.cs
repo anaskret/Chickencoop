@@ -14,11 +14,9 @@ namespace Chickencoop.Models.Mapping
     {
         public PersonalLeaderboardProfile()
         {
-            CreateMap<PersonalLeaderboard, CreatePersonalLeaderboardDto>();
+            CreateMap<CreatePersonalLeaderboardDto, PersonalLeaderboard>();
             CreateMap<PersonalLeaderboard, GetPersonalLeaderboardDto>();
-            CreateMap<PersonalLeaderboard, UpdatePersonalLeaderboardDto>();
-            CreateMap<IPersonalLeaderboardDto, PersonalLeaderboard>()
-                .ForMember(d => d.Id, opt => opt.Ignore());
+            CreateMap<UpdatePersonalLeaderboardDto, PersonalLeaderboard>();
         }
     }
 }

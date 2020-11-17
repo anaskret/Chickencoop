@@ -1580,6 +1580,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "AWSSDK.CognitoIdentityProvider": "3.5.0.35",
           "AutoMapper": "10.1.1",
           "Chickencoop.Models": "1.0.0",
           "Chickencoop.Repositories": "1.0.0"

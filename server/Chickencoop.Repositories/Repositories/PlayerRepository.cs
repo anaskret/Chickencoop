@@ -22,9 +22,14 @@ namespace Chickencoop.Repositories.Repositories
             return await _context.Players.ToListAsync();
         }
 
+        public async Task<Player> Get(string username)
+        {  
+            return await DoesPlayerExists(username);
+        }
+        
         public async Task<Player> Get(Guid id)
         {  
-            return await DoesPlayerExists(id);
+            return await DoesPlayerExistsById(id);
         }
 
         public async Task<bool> Create(Player player)
@@ -38,7 +43,7 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<bool> Update(Player player)
         {
-            var update = await DoesPlayerExists(player.Id);
+            var update = await DoesPlayerExists(player.Nickname);
 
             _context.Players.Update(update);
 
@@ -66,7 +71,19 @@ namespace Chickencoop.Repositories.Repositories
         }
 
         #region tests
-        private async Task<Player> DoesPlayerExists(Guid id)
+        private async Task<Player> DoesPlayerExists(string username)
+        {
+            try
+            {
+                return await _context.Players.FirstOrDefaultAsync(pl => pl.Nickname == username);
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException("Player with this id doesn't exist");
+            }
+        }
+        
+        private async Task<Player> DoesPlayerExistsById(Guid id)
         {
             try
             {

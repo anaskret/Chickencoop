@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "XIZgPsvZu6lLPwXz7bGhh42b5fKE07Rn3kJJP0AWPAjr2FvjsAA7hkPELupWl8a2Ggp1qwo84f6niQ7oVDRKZQ==",
+  "dgSpecHash": "8eq3sOn3Xi4Pq/+5rfqayrJfizuO3m3NJEERfp5fUqyUHpC6KvfcW+w8QR0MBEHIITOCjtsRS5/jKQdQqJppug==",
   "success": true,
   "projectFilePath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\an000\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\awssdk.cognitoidentityprovider\\3.5.0.35\\awssdk.cognitoidentityprovider.3.5.0.35.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\awssdk.core\\3.5.1.33\\awssdk.core.3.5.1.33.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

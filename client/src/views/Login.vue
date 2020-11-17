@@ -10,7 +10,7 @@
               <v-card>
                 <v-card-text class="pt-4">
                   <div>
-                      <v-form v-model="valid" ref="form">
+                      <!-- <v-form v-model="valid" ref="form">
                         <v-text-field
                           label="Enter your e-mail address"
                           v-model="email"
@@ -30,7 +30,9 @@
                             <v-btn @click="submit" :class=" { 'blue darken-4 white--text' : valid, disabled: !valid }">Login</v-btn>
                             <a href="">Forgot Password</a>
                         </v-layout>
-                      </v-form>
+                      </v-form> -->
+                            <amplify-sign-out></amplify-sign-out>
+
                   </div>
                 </v-card-text>
               </v-card>

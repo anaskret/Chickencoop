@@ -9,8 +9,8 @@ C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\obj\Debug\ne
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\bin\Debug\netstandard2.0\Chickencoop.Models.dll
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\bin\Debug\netstandard2.0\Chickencoop.Models.pdb
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\obj\Debug\netstandard2.0\Chickencoop.Services.csproj.CopyComplete
-C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\obj\Debug\netstandard2.0\Chickencoop.Services.csproj.CoreCompileInputs.cache
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\bin\Debug\netstandard2.0\Chickencoop.DataAccess.dll
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\bin\Debug\netstandard2.0\Chickencoop.Repositories.dll
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\bin\Debug\netstandard2.0\Chickencoop.Repositories.pdb
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\bin\Debug\netstandard2.0\Chickencoop.DataAccess.pdb
+C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Services\obj\Debug\netstandard2.0\Chickencoop.Services.csproj.CoreCompileInputs.cache

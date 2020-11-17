@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "clienta584a70e_identitypool_a584a70e",
+    "identityPoolName": "clientbff1a7ad_identitypool_bff1a7ad",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "clienta584a70e",
-    "userPoolName": "clienta584a70e_userpool_a584a70e",
+    "resourceNameTruncated": "clientbff1a7ad",
+    "userPoolName": "clientbff1a7ad_userpool_bff1a7ad",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -14,9 +14,13 @@
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": false,
+    "defaultPasswordPolicy": true,
     "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [],
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Uppercase",
+        "Requires Numbers"
+    ],
     "requiredAttributes": [
         "email"
     ],
@@ -28,10 +32,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "clienta584a70e_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "clientbff1a7ad_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "a584a70e",
-    "resourceName": "clienta584a70e",
+    "sharedId": "bff1a7ad",
+    "resourceName": "clientbff1a7ad",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -45,8 +49,21 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "manual",
+    "triggers": "{}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
-    "dependsOn": []
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "dependsOn": [],
+    "thirdPartyAuth": false,
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "hostedUI": true,
+    "hostedUIDomainName": "chickencoop",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:8080/signin/\"],\"LogoutURLs\":[\"http://localhost:8080/signout/\"]}"
 }

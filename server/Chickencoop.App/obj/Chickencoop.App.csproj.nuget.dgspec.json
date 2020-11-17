@@ -357,6 +357,10 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "AWSSDK.CognitoIdentityProvider": {
+              "target": "Package",
+              "version": "[3.5.0.35, )"
+            },
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"

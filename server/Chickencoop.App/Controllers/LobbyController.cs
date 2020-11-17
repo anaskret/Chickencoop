@@ -72,14 +72,6 @@ namespace Chickencoop.App.Controllers
             {
                 updateLobby.Id = id;
 
-                if (updateLobby.PlayerTwoId != null)
-                {
-                    await _hubContext
-                      .Clients
-                      .Group(updateLobby.Id.ToString())
-                      .NewPlayer(updateLobby.PlayerTwoId, updateLobby.Id);
-                }
-
                 return Ok(await _lobbyService.UpdateLobby(updateLobby));
             }
             catch (NullReferenceException ex)

@@ -4,6 +4,7 @@ using Chickencoop.Repositories.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Chickencoop.Models.Enums.GamesEnum;
@@ -26,19 +27,20 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<Lobby> Get(Guid id)
         {
-            return await DoesLobbyExist(id);
+            DoesLobbyExists(id);
+            return await _context.Lobbies.FirstOrDefaultAsync(pl => pl.Id == id);
         }
 
         
         public async Task<bool> Create(Lobby lobby)
         {
-            await DoesLobbyExist(lobby.PlayerOneId);
+            DoesPlayerExists(lobby.PlayerOneId);
             DoesEnumExists(lobby.GameName);
             IsPlayerSameAsOpponent(lobby);
 
             if (lobby.PlayerTwoId != null)
             {
-                await DoesLobbyExist(lobby.PlayerTwoId);
+                DoesPlayerExists(lobby.PlayerTwoId);
             }
 
             await _context.Lobbies.AddAsync(lobby);
@@ -48,16 +50,15 @@ namespace Chickencoop.Repositories.Repositories
         }
         public async Task<bool> Update(Lobby lobby)
         {
-            await DoesLobbyExist(lobby.Id);
-            await DoesLobbyExist(lobby.PlayerOneId);
+            //DoesLobbyExists(lobby.Id);
+            DoesPlayerExists(lobby.PlayerOneId);
             DoesEnumExists(lobby.GameName);
             IsPlayerSameAsOpponent(lobby);
 
             if (lobby.PlayerTwoId != null)
             {
-                await DoesLobbyExist(lobby.PlayerTwoId);
+                DoesPlayerExists(lobby.PlayerTwoId);
             }
-
 
             _context.Lobbies.Update(lobby);
             var updated = await _context.SaveChangesAsync();
@@ -67,7 +68,8 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<bool> Delete(Guid id)
         {
-            var doesLobbbyExist = await DoesLobbyExist(id);
+            DoesLobbyExists(id);
+            var doesLobbbyExist = await _context.Lobbies.FirstOrDefaultAsync(pl => pl.Id == id);
             _context.Remove(doesLobbbyExist);
             var deleted = await _context.SaveChangesAsync();
 
@@ -78,16 +80,18 @@ namespace Chickencoop.Repositories.Repositories
 
         #region tests
         
-        private async Task<Lobby> DoesLobbyExist(Guid? id)
+        private void DoesLobbyExists(Guid id)
         {
-            try
-            {
-                return await _context.Lobbies.FirstOrDefaultAsync(pl => pl.Id == id);
-            }
-            catch(NullReferenceException)
-            {
+            var lobby = _context.Lobbies.FirstOrDefault(pl => pl.Id == id);
+            if (lobby == null)
                 throw new NullReferenceException("Lobby with this id doesn't exist");
-            }
+        }
+        
+        private void DoesPlayerExists(Guid? id)
+        {
+            var player = _context.Players.FirstOrDefault(pl => pl.Id == id);
+            if (player == null)
+                throw new NullReferenceException("Player with this id doesn't exist");
         }
 
         private void DoesEnumExists(Games games)

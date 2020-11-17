@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Chickencoop.Models.Dtos.GetDtos
 {
-    public class GetPlayerDto : IPlayerDto
+    public class GetPlayerDto : PlayerDto
     {
         public Guid Id { get; set; }
-        public string Nickname { get; set; }
     }
 }
