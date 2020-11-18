@@ -49,6 +49,16 @@ export default {
         lobbyHub.$emit('new-player', lobbyId, playerId)
       })
 
+      lobbyHub.hostChange = (lobbyId) =>{
+        return startedPromise
+        .then(() => connection.invoke('HostChange', lobbyId))
+        .catch(console.error)
+        }
+  
+        connection.on('HostChange', (lobbyId) => {
+          lobbyHub.$emit('host-change', lobbyId)
+        })
+
       let startedPromise = null
       function start () {
         startedPromise = connection.start().catch(err => {

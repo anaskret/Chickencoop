@@ -1,7 +1,7 @@
 
 <template>
   <v-app>
-    <v-row justify="center" v-if="!startGame">
+    <v-row justify="center">
       <v-dialog
         v-model="dialog"
         persistent
@@ -18,7 +18,7 @@
       </v-dialog>
     </v-row>
 
-    <v-main v-if="startGame">
+    <v-main>
       <div class="tictactoe-board">
         <div v-for="(n, i) in 3" :key="i">
           <div v-for="(n, j) in 3" :key="j">
@@ -32,7 +32,7 @@
             {{ gameOverText }}
         </div>
       </div>
-      <v-btn class="reset-button" color="primary" elevation="6" @click="restart()">Reset</v-btn>
+      <v-btn v-if="gameOver" class="reset-button" color="primary" elevation="6" @click="restart()">New Game</v-btn>
     </v-main>
   </v-app>
 </template>
@@ -44,19 +44,21 @@ import LobbyDataService from "../services/LobbyDataService";
   export default {
     data() { 
         return {
-          startGame:false,
           dialog:false,
           gameOver: false,
           gameOverText: '',
           yourMark: 'x',
           turn: 'x',
           lobbyId: this.$route.params.id,
-          board: new Board()
+          board: new Board(),
+          gameStartTime: 0,
+          gameEndTime: 0,
+          result: 'nothing',
     } },
 
     created(){
+
       LobbyDataService.get(this.$route.params.id).then(res=>{
-      console.log(res.data)
       if(res.data.isFull){
         this.$router.push('/lobbies')  // WYPIERDALAJ BO FULL
       }
@@ -67,13 +69,14 @@ import LobbyDataService from "../services/LobbyDataService";
       }
     })
     },
-   mounted(){
-      this.dialog = true;
-      this.$tictactoeHub.$on('opponent-turn-end', this.onTurnChange)
-      this.$tictactoeHub.$on('who-won', this.onVictory)
-      this.$lobbyHub.$on('new-player', this.onNewPlayer)
-      this.$lobbyHub.joinLobby(this.lobbyId)
-   },
+    mounted(){
+        this.dialog = true;
+        this.$tictactoeHub.$on('opponent-turn-end', this.onTurnChange)
+        this.$tictactoeHub.$on('who-won', this.onVictory)
+        this.$lobbyHub.$on('new-player', this.onNewPlayer)
+        this.$lobbyHub.$on('host-change', this.hostChange)
+        this.$lobbyHub.joinLobby(this.lobbyId)
+    },
     methods: {
       performMove(x, y) {
         if(!this.startGame || this.yourMark != this.turn) return;
@@ -115,17 +118,26 @@ import LobbyDataService from "../services/LobbyDataService";
         
         this.gameOver = true;
 
-        if(player == this.yourMark){
-          this.gameOverText = this.board.playerHas3InARow(player) ? 'You won!' : 'Draw'
+        var today = new Date();
+        this.gameEndTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+        if(player == this.yourMark && this.board.playerHas3InARow(player)){
+          this.gameOverText = 'You won!';
+          this.result = 'win';
+        }
+        else if(!this.board.playerHas3InARow(player)){
+          this.gameOverText = 'Draw';
+          this.result = 'draw';
         }
         else{
-          this.gameOverText = 'You lost'
+          this.gameOverText = 'You lost!';
+          this.result = 'loss';
         }
       },
 
       onNewPlayer(lobbyId, playerId){
         LobbyDataService.get(lobbyId).then(res=>{
-        var data = {
+        let data = {
                 Title: res.data.title,
                 Game: res.data.game,
                 PlayerOneId: res.data.playerOneId,
@@ -134,15 +146,55 @@ import LobbyDataService from "../services/LobbyDataService";
             };
             LobbyDataService.update(this.lobbyId, data);
         });
-        this.startGame = true;
+        this.dialog = false;
+        var today = new Date();
+        this.gameStartTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       },
-      beforeDestroy (){
-        this.$tictactoeHub.$off('opponent-turn-end', this.onTurnChange)
-        this.lobbyHub.leaveLobby(this.lobbyId)
-        //  TY TO HOST ?  
+
+      hostChange(){
+        this.dialog = true
+        this.yourMark = 'x'
+        this.turn = 'x'
+        console.log("New host")
+      }
+    },
+    beforeDestroy (){
+      this.$tictactoeHub.$off('opponent-turn-end', this.onTurnChange)
+      this.$tictactoeHub.$off('who-won', this.onVictory)
+      this.$lobbyHub.$off('new-player', this.onNewPlayer)
+      this.$lobbyHub.$off('host-change', this.onNewPlayer)
+      
+      LobbyDataService.get(this.lobbyId).then(res=>{
+        if(this.yourMark == 'x' && res.data.playerTwoId == null){
+          LobbyDataService.delete(this.lobbyId)
+          this.$lobbyHub.lobbyChange()
+        }
+        else if(this.yourMark == 'x' && res.data.playerTwoId != null){
+          let data = {
+                  Title: res.data.title,
+                  Game: res.data.game,
+                  PlayerOneId: res.data.playerTwoId,
+                  PlayerTwoId: null,
+                  IsFull: false
+              };
+          LobbyDataService.update(this.lobbyId, data)
+          this.$lobbyHub.hostChange(this.lobbyId, data)
+        }
+        else{
+          let data = {
+                  Title: res.data.title,
+                  Game: res.data.game,
+                  PlayerOneId: res.data.playerOneId,
+                  PlayerTwoId: null,
+                  IsFull: false
+              };
+          LobbyDataService.update(this.lobbyId, data)
+        }
+      })
+
+      this.$lobbyHub.leaveLobby(this.lobbyId)
         
       }
-    }
   }
 </script>
 

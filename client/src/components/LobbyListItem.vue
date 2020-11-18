@@ -3,7 +3,8 @@
         <v-list-item-content>
           <v-list-item-title v-text="item.title"></v-list-item-title>
 
-          <v-list-item-subtitle> {{player}} </v-list-item-subtitle>
+          <v-list-item-subtitle>Players:</v-list-item-subtitle>
+          <v-list-item-subtitle v-text="player"></v-list-item-subtitle>
           <v-list-item-subtitle v-text="playerTwo"></v-list-item-subtitle>
         </v-list-item-content>
 
@@ -31,44 +32,43 @@
 import PlayerDataService from '../services/PlayerDataService';
 
 export default {
-name:"LobbyListItem",
-props:{
-    item:{
-        type:Object,
-        default:()=>({
-            id:'chuj',
-        })
-    }
-},
-data(){
-    return{
-        player:'nikt',
-        playerTwo: 'nikt'
-    }
-},
-created(){
-        this.getPlayer()
-},
-methods:{
+  name:"LobbyListItem",
+  props:{
+      item:{
+          type:Object,
+          default:()=>({
+              id:'id',
+          })
+      }
+  },
+  data(){
+      return{
+          player:'nobody',
+          playerTwo: 'nobody'
+      }
+  },
+  created(){
+          this.getPlayer()
+  },
+  methods:{
 
- joinLobby(){
-        this.$router.push({name: 'TicTacToe', params: {id:this.item.id}})
+    joinLobby(id){
+        this.$router.push({name: 'TicTacToe', params: {id:id}})
       },
       deleteLobby(){
        this.$emit('onDelete',this.item.id)
       },
 
     async getPlayer(){
-        try{
-          const res =  await PlayerDataService.getById(this.item.playerOneId)
-          const resPlayerTwo =  await PlayerDataService.getById(this.item.playerTwoId)
-          this.player =  res.data.nickname
-          this.playerTwo = resPlayerTwo.data.nickname
-        }catch(e){
-            console.error(e)
-        }
-       
-}
+      try{
+        const resPlayerOne =  await PlayerDataService.getById(this.item.playerOneId)
+        const resPlayerTwo =  await PlayerDataService.getById(this.item.playerTwoId)
+        this.player =  resPlayerOne.data.nickname
+        this.playerTwo = resPlayerTwo.data.nickname
+      }catch(e){
+          console.error(e)
+      } 
+    }
 }
 }
 </script>

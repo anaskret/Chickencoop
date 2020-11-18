@@ -54,7 +54,6 @@ export default {
     methods: {
       getAll(){
           LobbyDataService.getAll().then((res)=>{
-          console.log(res.data)
           this.lobbies = res.data
       })
       },

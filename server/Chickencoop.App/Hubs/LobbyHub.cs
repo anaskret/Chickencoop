@@ -1,4 +1,5 @@
 ﻿using Chickencoop.App.Hubs.Interfaces;
+using Chickencoop.Models.Dtos.UpdateDtos;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,11 @@ namespace Chickencoop.App.Hubs
         public async Task LobbyChange() 
         {
             await Clients.All.LobbyChange();
+        }
+
+        public async Task HostChange(Guid lobbyId)
+        {
+            await Clients.OthersInGroup(lobbyId.ToString()).HostChange(lobbyId);
         }
     }
 }
