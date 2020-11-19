@@ -38,7 +38,7 @@ namespace Chickencoop.App.Controllers
         }
 
         [HttpPost(ApiRoutes.PersonalLeaderboard.Create)]
-        public async Task<IActionResult> Create([FromBody] CreatePersonalLeaderboardDto createRecord) //Nie przypisuje wartości do createRecord
+        public async Task<IActionResult> Create([FromBody] CreatePersonalLeaderboardDto createRecord)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Chickencoop.App.Controllers
             {
                 return NotFound(ex);
             }
-            catch(Exception ex)
+            catch(ArgumentException ex)
             {
                 return BadRequest(ex);
             }

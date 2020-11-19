@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chickencoop.App.Hubs
 {
-    public class LobbyHub: Hub<ILobbyHub>
+    public class LobbyHub : Hub<ILobbyHub>
     {
         public async Task JoinLobby(Guid lobbyId)
         {
@@ -25,7 +25,7 @@ namespace Chickencoop.App.Hubs
             await Clients.Group(lobbyId.ToString()).NewPlayer(lobbyId, playerId);
         }
 
-        public async Task LobbyChange() 
+        public async Task LobbyChange()
         {
             await Clients.All.LobbyChange();
         }
@@ -33,6 +33,21 @@ namespace Chickencoop.App.Hubs
         public async Task HostChange(Guid lobbyId)
         {
             await Clients.OthersInGroup(lobbyId.ToString()).HostChange(lobbyId);
+        }
+
+        public async Task NewGame(Guid lobbyId)
+        {
+            await Clients.OthersInGroup(lobbyId.ToString()).NewGame(lobbyId);
+        }
+
+        public async Task OpponentLeft(Guid lobbyId)
+        {
+            await Clients.OthersInGroup(lobbyId.ToString()).OpponentLeft(lobbyId);
+        }
+        
+        public async Task GameAccepted(Guid lobbyId)
+        {
+            await Clients.Group(lobbyId.ToString()).GameAccepted(lobbyId);
         }
     }
 }

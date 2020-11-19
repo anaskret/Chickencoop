@@ -4,6 +4,7 @@ import Lobbies from "../views/Lobbies.vue";
 import TicTacToe from "../views/TicTacToe.vue";
 import NewLobby from "../components/NewLobby.vue";
 import Login from "../views/Login.vue";
+import Profile from "../views/Profile.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login
+  },
+  {
+    path: "/profile/:id",
+    name: "Profile",
+    component: Profile
   }
 ];
 

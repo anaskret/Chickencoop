@@ -12,14 +12,58 @@
           <v-card-title class="headline">
           Wait for player
           </v-card-title>
-          <v-card-text>Jak gracz dołaczy gra sie rozpocznie ok?</v-card-text>
+          <v-card-text>The game will start when another player joins</v-card-text>
         
         </v-card>
       </v-dialog>
     </v-row>
 
+    <v-row justify="center" v-if="startNewGame">
+        <v-dialog
+            v-model="startNewGame"
+            persistent
+            max-width="790"
+        >
+
+            <v-card>
+            <v-card-title class="headline">
+            Do you want to play a new game?
+            </v-card-title>
+            <v-card-actions>
+                <v-btn
+                elevation="2"
+                color="red"
+                dark
+                @click="gameDeclined()"
+                >Leave</v-btn>
+                <v-btn
+                elevation="2"
+                color="primary"
+                @click="gameAccepted()"
+                >Play</v-btn> 
+            </v-card-actions>
+            </v-card>
+        </v-dialog>
+        </v-row>
+        
+        <v-row justify="center">
+        <v-dialog
+            v-model="awaitAccepting"
+            persistent
+            max-width="790"
+        >
+
+            <v-card>
+            <v-card-title class="headline">
+            Wait for the other player to accept
+            </v-card-title> 
+            </v-card>
+        </v-dialog>
+        </v-row>
+
     <v-main>
       <div class="tictactoe-board">
+        <h2>You are: {{this.yourMark}}</h2>
         <div v-for="(n, i) in 3" :key="i">
           <div v-for="(n, j) in 3" :key="j">
             <cell @click="performMove(j, i)" :value="board.cells[j][i]"></cell>
@@ -32,7 +76,7 @@
             {{ gameOverText }}
         </div>
       </div>
-      <v-btn v-if="gameOver" class="reset-button" color="primary" elevation="6" @click="restart()">New Game</v-btn>
+      <v-btn v-if="gameOver" class="reset-button" color="primary" elevation="2" @click="newGame()">New Game</v-btn>
     </v-main>
   </v-app>
 </template>
@@ -40,11 +84,14 @@
 <script>
 import Board from "../components/Board";
 import LobbyDataService from "../services/LobbyDataService";
+import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataService";
 
   export default {
     data() { 
         return {
           dialog:false,
+          startNewGame:false,
+          awaitAccepting: false,
           gameOver: false,
           gameOverText: '',
           yourMark: 'x',
@@ -57,17 +104,16 @@ import LobbyDataService from "../services/LobbyDataService";
     } },
 
     created(){
-
       LobbyDataService.get(this.$route.params.id).then(res=>{
-      if(res.data.isFull){
-        this.$router.push('/lobbies')  // WYPIERDALAJ BO FULL
-      }
-      this.$lobbyHub.joinLobby(this.lobbyId);
-      if(res.data.playerOneId !== this.$store.state.playerId && res.data.playerTwoId == null){
-        this.yourMark = 'o';
-        this.$lobbyHub.newPlayer(this.lobbyId, this.$store.state.playerId);
-      }
-    })
+        if(res.data.isFull){
+          this.$router.push('/lobbies')  // WYPIERDALAJ BO FULL
+        }
+        this.$lobbyHub.joinLobby(this.lobbyId);
+        if(res.data.playerOneId !== this.$store.state.playerId && res.data.playerTwoId == null){
+          this.yourMark = 'o';
+          this.$lobbyHub.newPlayer(this.lobbyId, this.$store.state.playerId);
+        }
+      })
     },
     mounted(){
         this.dialog = true;
@@ -75,11 +121,17 @@ import LobbyDataService from "../services/LobbyDataService";
         this.$tictactoeHub.$on('who-won', this.onVictory)
         this.$lobbyHub.$on('new-player', this.onNewPlayer)
         this.$lobbyHub.$on('host-change', this.hostChange)
+        this.$lobbyHub.$on('new-game', this.onNewGame)
+        this.$lobbyHub.$on('game-accepted', this.onGameAccepted)
+        this.$lobbyHub.$on('opponent-left', this.onOpponentLeft)
         this.$lobbyHub.joinLobby(this.lobbyId)
+        console.log(this.startNewGame)
     },
     methods: {
       performMove(x, y) {
-        if(!this.startGame || this.yourMark != this.turn) return;
+        console.log(this.yourMark)
+        if(this.yourMark != this.turn) return;
+
         if (!this.board.doMove(x, y, this.turn)) {
           return;
         }
@@ -96,14 +148,12 @@ import LobbyDataService from "../services/LobbyDataService";
           return;
         }
       },
-      
       restart(){
           this.board.resetBoard()
           this.gameOver = false
           this.gameOverText = ''
           this.turn = 'x'
       },
-
       onTurnChange({x, y, player}){
         if(player == 'x')
           this.board.doMove(x, y, 'o');
@@ -113,44 +163,91 @@ import LobbyDataService from "../services/LobbyDataService";
         this.$forceUpdate();
         this.turn = player;
       },
-
       onVictory({player}){
         
-        this.gameOver = true;
+        this.gameOver = true
 
-        var today = new Date();
-        this.gameEndTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var today = new Date()
+        let gameEndTime = today
+        let gameDate =  today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate()
 
         if(player == this.yourMark && this.board.playerHas3InARow(player)){
-          this.gameOverText = 'You won!';
-          this.result = 'win';
+          this.gameOverText = 'You won!'
+          this.result = 'win'
         }
         else if(!this.board.playerHas3InARow(player)){
-          this.gameOverText = 'Draw';
-          this.result = 'draw';
+          this.gameOverText = 'Draw'
+          this.result = 'draw'
         }
         else{
-          this.gameOverText = 'You lost!';
-          this.result = 'loss';
+          this.gameOverText = 'You lost!'
+          this.result = 'loss'
         }
-      },
+        LobbyDataService.get(this.lobbyId).then(res=>{
+          if(this.yourMark == 'x'){
+            let data = {
+              gameTime: (gameEndTime.getMinutes() - this.gameStartTime.getMinutes()) + ":" + (gameEndTime.getSeconds() - this.gameStartTime.getSeconds()),
+              gameDate: gameDate,
+              playerId: res.data.playerOneId,
+              opponentId: res.data.playerTwoId,
+              result: this.result
+            } 
+            console.log(data)
+            PersonalLeaderboardDataService.create(data)
+          }else{
+            let data = {
+              gameTime: (gameEndTime.getMinutes() - this.gameStartTime.getMinutes()) + ":" + (gameEndTime.getSeconds() - this.gameStartTime.getSeconds()),
+              gameDate: gameDate,
+              playerId: res.data.playerTwoId,
+              opponentId: res.data.playerOneId,
+              result: this.result
+            }
+            console.log(data)
+            PersonalLeaderboardDataService.create(data);
+          }
 
+        })
+      },
       onNewPlayer(lobbyId, playerId){
         LobbyDataService.get(lobbyId).then(res=>{
-        let data = {
-                Title: res.data.title,
-                Game: res.data.game,
-                PlayerOneId: res.data.playerOneId,
-                PlayerTwoId: playerId,
-                IsFull: true
-            };
-            LobbyDataService.update(this.lobbyId, data);
-        });
-        this.dialog = false;
-        var today = new Date();
-        this.gameStartTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+          let data = {
+                  Title: res.data.title,
+                  Game: res.data.game,
+                  PlayerOneId: res.data.playerOneId,
+                  PlayerTwoId: playerId,
+                  IsFull: true
+              }
+              LobbyDataService.update(this.lobbyId, data)
+          })
+          this.dialog = false
+          this.gameStartTime = new Date()
       },
-
+      newGame(){
+        this.awaitAccepting = true
+        this.$lobbyHub.newGame(this.lobbyId)
+      },
+      onNewGame(){
+        this.startNewGame = true
+      },
+      gameAccepted(){
+        this.$lobbyHub.gameAccepted(this.lobbyId)
+      },
+      onGameAccepted(){
+        this.restart()
+        this.dialog = false
+        this.startNewGame = false
+        this.awaitAccepting = false
+        this.gameStartTime = new Date()
+      },
+      gameDeclined(){
+        this.$lobbyHub.opponentLeft(this.lobbyId)
+        this.$router.push('/lobbies')
+      },
+      onOpponentLeft(){
+        this.dialog = true
+        this.restart()
+        this.awaitAccepting = false
+      },
       hostChange(){
         this.dialog = true
         this.yourMark = 'x'
@@ -211,6 +308,9 @@ import LobbyDataService from "../services/LobbyDataService";
     margin-left: -100px;
   }
   .game-over-text{
+    margin-left: 60px;
+  }
+  h2{
     margin-left: 45px;
   }
   .player-turn{
@@ -221,6 +321,6 @@ import LobbyDataService from "../services/LobbyDataService";
     top: 40%;
     left: 50%;
     margin-top: 170px;
-    margin-left: -45px;
+    margin-left: -65px;
   }
 </style>

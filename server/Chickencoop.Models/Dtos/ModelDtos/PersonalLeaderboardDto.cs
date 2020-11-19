@@ -11,6 +11,6 @@ namespace Chickencoop.Models.Dtos.IDtos
         public DateTime GameDate { get; set; }
         public Guid PlayerId { get; set; }
         public Guid OpponentId { get; set; }
-        public ResultType ResultType { get; set; }
+        public ResultType Result { get; set; }
     }
 }

@@ -13,5 +13,8 @@ namespace Chickencoop.App.Hubs.Interfaces
         Task NewPlayer(Guid lobbyId, Guid playerId);
         Task LobbyChange();
         Task HostChange(Guid lobbyId);
+        Task NewGame(Guid lobbyId);
+        Task OpponentLeft(Guid lobbyId);
+        Task GameAccepted(Guid lobbyId);
     }
 }

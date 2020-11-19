@@ -82,7 +82,7 @@ export default {
       //signedIn: false,
       isAuth:true,
         links: [
-        'TicTacToe',
+        'Lobbies',
         'Profile', 
       ],
       formFields: [
@@ -114,12 +114,12 @@ export default {
     async findUser(){
       try{
         const user = await Auth.currentAuthenticatedUser();
+        //this.$router.push("lobbies")
         this.$store.state.signedIn = true;
         this.$store.state.user = user;
 
         PlayerDataService.get(user.username).then(res => {
           this.$store.state.playerId = res.data.id;
-          console.log(user, this.$store.state.playerId);
         });
       }
       catch(err){

@@ -48,8 +48,10 @@ export default {
         ],
     }),
     created(){
-      this.$lobbyHub.$on('lobby-change', this.getAll)
       this.getAll()
+    },
+    mounted(){
+      this.$lobbyHub.$on('lobby-change', this.getAll)
     },
     methods: {
       getAll(){

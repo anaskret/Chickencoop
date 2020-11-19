@@ -62,10 +62,10 @@ namespace Chickencoop.Repositories.Repositories
 
 
     #region tests
-        private async void Tests(PersonalLeaderboard personalLeaderboard)
+        private void Tests(PersonalLeaderboard personalLeaderboard)
         {
-            await DoesPlayerExists(personalLeaderboard.PlayerId);
-            await DoesPlayerExists(personalLeaderboard.OpponentId);
+            DoesPlayerExists(personalLeaderboard.PlayerId);
+            DoesPlayerExists(personalLeaderboard.OpponentId);
             DoesEnumExists(personalLeaderboard.Result);
             IsPlayerSameAsOpponent(personalLeaderboard.PlayerId, personalLeaderboard.OpponentId);
             IsGameDateToday(personalLeaderboard.GameDate);
@@ -84,11 +84,11 @@ namespace Chickencoop.Repositories.Repositories
             }
         }
 
-        private async Task<Player> DoesPlayerExists(Guid id)
+        private void DoesPlayerExists(Guid id)
         {
             try
             {
-                return await _context.Players.FirstOrDefaultAsync(pl => pl.Id == id);
+                _context.Players.FirstOrDefault(pl => pl.Id == id);
             }
             catch (NullReferenceException)
             {
