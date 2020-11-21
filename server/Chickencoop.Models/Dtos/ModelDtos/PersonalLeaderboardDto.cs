@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using static Chickencoop.Models.Enums.GamesEnum;
@@ -12,7 +14,9 @@ namespace Chickencoop.Models.Dtos.IDtos
         public DateTime GameDate { get; set; }
         public Guid PlayerId { get; set; }
         public Guid OpponentId { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
         public ResultType Result { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
         public Games GameName{ get; set; }
     }
 }

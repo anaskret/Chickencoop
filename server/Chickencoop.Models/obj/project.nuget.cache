@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cxYBTeDKLwHG+cJTb7l9pmAJMI4cHdf5fuNd3Y3wXhsSPSspmGOw+V9049BalDTLC5YK2JEIEZnpjC8ph+5EQQ==",
+  "dgSpecHash": "FpICJixZBYuAjq8gP8BBaXQu+TNzlqXIM/Gc6kPdwg2y3WVY8XOQulhF+KglWKC30jEvPmOwtaaxUl4hb/apxw==",
   "success": true,
   "projectFilePath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\an000\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\an000\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\an000\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.7.0\\system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512"

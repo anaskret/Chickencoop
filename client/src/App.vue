@@ -6,15 +6,15 @@
   <v-app v-if="signedIn" id="inspire">
     <v-app-bar
     v-if="isAuth"
-      app
-      color="white"
-      flat
+    app
+    color="white"
+    flat
     >
       <v-btn
       @click="$router.push('/lobbies/newlobby')"
       elevation="2"
-        color="warning"
-        dark
+      color="warning"
+      dark
       >Create new lobby
       </v-btn>
 
@@ -32,7 +32,13 @@
         </v-tab>
       </v-tabs>
 
-      <amplify-sign-out/>
+      <v-btn
+      @click="signOut()"
+      elevation="2"
+      color="red"
+      dark
+      >Sign Out
+      </v-btn>
       
       <v-avatar
       :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
@@ -105,6 +111,7 @@ export default {
       else{
         this.$store.state.signedIn = false;
         this.$store.state.user = null;
+        this.$store.state.playerId = null;
       }
     })
   },
@@ -136,6 +143,16 @@ export default {
         this.$store.state.user = null;
       }
     },
+    async signOut() {
+      try {
+          await Auth.signOut();
+          this.$store.state.signedIn = false;
+          this.$store.state.user = null;
+          this.$store.state.playerId = null;
+      } catch (error) {
+          console.log('error signing out: ', error);
+      }
+    },
     changeTab(name){
       if(name == 'Profile'){
         let id = this.$store.state.playerId
@@ -158,3 +175,9 @@ export default {
   }*/
 }
 </script>
+
+<style>
+amplify-sign-out{
+  border-radius: 25px
+}
+</style>

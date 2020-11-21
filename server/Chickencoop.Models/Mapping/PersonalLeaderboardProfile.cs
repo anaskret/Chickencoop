@@ -7,6 +7,7 @@ using Chickencoop.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static Chickencoop.Models.Enums.ResultTypeEnum;
 
 namespace Chickencoop.Models.Mapping
 {

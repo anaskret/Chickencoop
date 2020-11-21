@@ -9,12 +9,13 @@
         :items-per-page="10"
         class="elevation-1"
         >
-            <template v-slot:[`item.online`]="{ item }">
+            <template v-slot:[`item.actions`]="{ item }">
                 <v-icon
                 small
                 class="mr-2"
                 color="green"
-                v-if="item.isOnline"
+                v-if="item.isOnline" 
+                @click="goToProfile(item.id)"
                 >
                     mdi-account
                 </v-icon>
@@ -22,15 +23,7 @@
                 small
                 class="mr-2"
                 color="red"
-                v-if="!item.isOnline"
-                >
-                    mdi-account
-                </v-icon>
-            </template>
-            <template v-slot:[`item.actions`]="{ item }">
-                <v-icon
-                small
-                class="mr-2"
+                v-else
                 @click="goToProfile(item.id)"
                 >
                     mdi-account
@@ -50,8 +43,7 @@ export default {
             headers: [
                 { text: 'Player', value: 'nickname'},
                 { text: 'Wins', value: 'wins'},
-                { text: "", value: "actions", sortable: false, align:"center", width: "5%" },
-                { text: '', value: "online", width: "1%"}
+                { text: "Profile", value: "actions", sortable: false, align:"center", width: "5%" }
             ],
             players:[
             ],

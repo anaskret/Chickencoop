@@ -21,7 +21,8 @@ namespace Chickencoop.App.Controllers
         [HttpGet(ApiRoutes.PersonalLeaderboard.GetAll)]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _service.GetAllRecords());
+            var get = await _service.GetAllRecords();
+            return Ok(get);
         }
 
         [HttpGet(ApiRoutes.PersonalLeaderboard.GetAllByPlayer)]

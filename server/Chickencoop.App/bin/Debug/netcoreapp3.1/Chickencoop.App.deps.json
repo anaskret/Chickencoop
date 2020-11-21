@@ -1509,6 +1509,7 @@
       "Chickencoop.Models/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.1.1",
+          "Newtonsoft.Json": "12.0.3",
           "System.ComponentModel.Annotations": "4.7.0"
         },
         "runtime": {

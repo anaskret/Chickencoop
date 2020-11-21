@@ -8,7 +8,7 @@ namespace Chickencoop.Models.Enums
     {
         public enum Games
         {
-            TicTacToe = 0
+            TicTacToe
         }
     }
 }
