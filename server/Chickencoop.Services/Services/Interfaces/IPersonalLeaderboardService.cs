@@ -12,6 +12,8 @@ namespace Chickencoop.Services.Services.Interfaces
     public interface IPersonalLeaderboardService
     {
         Task<List<GetPersonalLeaderboardDto>> GetAllRecords();
+        Task<List<GetPersonalLeaderboardWithNicknameDto>> GetAllRecordsByPlayer(Guid playerId);
+        Task<List<GetNumberOfWinsPerPlayerDto>> GetRanking();
         Task<GetPersonalLeaderboardDto> GetRecord(Guid id);
         Task<PersonalLeaderboard> CreateRecord(CreatePersonalLeaderboardDto createPersonalLeaderboard);
         Task<bool> UpdateRecord(UpdatePersonalLeaderboardDto updatePersonalLeaderboard);

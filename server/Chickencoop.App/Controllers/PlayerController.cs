@@ -16,7 +16,7 @@ namespace Chickencoop.App.Controllers
         private readonly IPlayerService _playerService;
         private readonly AmazonCognitoIdentityProviderClient _client = new AmazonCognitoIdentityProviderClient();
 
-        private readonly string _clientId = "1s15mbpqua63v46o0qbgd20m71";
+        //private readonly string_clientId = "1s15mbpqua63v46o0qbgd20m71";
         private readonly string _poolId = "eu-central-1_jvYBzSwNe";
         public PlayerController(IPlayerService playerService)
         {
@@ -118,6 +118,7 @@ namespace Chickencoop.App.Controllers
             try 
             { 
                 ListUsersRequest request = new ListUsersRequest() { UserPoolId = _poolId };
+
                 var listOfUsers = await _client.ListUsersAsync(request);
 
                 if (!await _playerService.CheckPlayers(listOfUsers))

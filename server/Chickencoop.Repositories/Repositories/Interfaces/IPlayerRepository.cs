@@ -9,7 +9,7 @@ namespace Chickencoop.Repositories.Repositories.Interfaces
     {
         Task<List<Player>> GetAll();
         Task<Player> Get(string username);
-        Task<Player> Get(Guid id);
+        Task<Player> GetById(Guid id);
         Task<bool> Create(Player player);
         Task<bool> Update(Player player);
         Task<bool> Delete(Guid id);

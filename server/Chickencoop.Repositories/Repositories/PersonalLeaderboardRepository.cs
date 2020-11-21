@@ -25,6 +25,13 @@ namespace Chickencoop.Repositories.Repositories
             return await _context.PersonalLeaderboards.ToListAsync();
         }
 
+        public async Task<List<PersonalLeaderboard>> GetAllByPlayer(Guid playerId)
+        {
+            DoesPlayerExists(playerId);
+
+            return await _context.PersonalLeaderboards.Where(pl => pl.PlayerId == playerId).ToListAsync();
+        }
+
         public async Task<PersonalLeaderboard> Get(Guid id)
         {
             return await DoesLeaderboardExists(id);

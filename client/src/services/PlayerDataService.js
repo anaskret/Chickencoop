@@ -10,7 +10,7 @@ class PlayerDataService{
     }
 
      getById(id) {
-        return   http.get(`/playersById/${id}`);
+        return http.get(`/playersById/${id}`);
     }
 
     create(data) {
@@ -23,6 +23,10 @@ class PlayerDataService{
 
     delete(id) {
         return http.delete(`/players/${id}`);
+    }
+
+    checkForUpdate(){
+        return http.post("checkPlayers");
     }
 }
 

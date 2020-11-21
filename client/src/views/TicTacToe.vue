@@ -190,7 +190,8 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
               gameDate: gameDate,
               playerId: res.data.playerOneId,
               opponentId: res.data.playerTwoId,
-              result: this.result
+              result: this.result,
+              gameName: res.data.gameName
             } 
             console.log(data)
             PersonalLeaderboardDataService.create(data)
@@ -200,7 +201,8 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
               gameDate: gameDate,
               playerId: res.data.playerTwoId,
               opponentId: res.data.playerOneId,
-              result: this.result
+              result: this.result,
+              gameName: res.data.gameName
             }
             console.log(data)
             PersonalLeaderboardDataService.create(data);

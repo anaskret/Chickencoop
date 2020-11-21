@@ -27,7 +27,7 @@ namespace Chickencoop.Repositories.Repositories
             return await DoesPlayerExists(username);
         }
         
-        public async Task<Player> Get(Guid id)
+        public async Task<Player> GetById(Guid id)
         {  
             return await DoesPlayerExistsById(id);
         }
@@ -43,9 +43,9 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<bool> Update(Player player)
         {
-            var update = await DoesPlayerExists(player.Nickname);
+            await DoesPlayerExistsById(player.Id);
 
-            _context.Players.Update(update);
+            _context.Players.Update(player);
 
             var updated = await _context.SaveChangesAsync();
 
@@ -87,7 +87,7 @@ namespace Chickencoop.Repositories.Repositories
         {
             try
             {
-                return await _context.Players.FirstOrDefaultAsync(pl => pl.Id == id);
+                return await _context.Players.AsNoTracking().FirstOrDefaultAsync(pl => pl.Id == id);
             }
             catch (NullReferenceException)
             {

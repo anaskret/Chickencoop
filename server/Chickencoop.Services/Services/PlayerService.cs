@@ -38,7 +38,7 @@ namespace Chickencoop.Services.Services
         
         public async Task<GetPlayerDto> GetPlayerById(Guid id)
         {
-            return _mapper.Map<GetPlayerDto>(await _playerRepository.Get(id));
+            return _mapper.Map<GetPlayerDto>(await _playerRepository.GetById(id));
         }
 
         public async Task<Player> CreatePlayer(CreatePlayerDto createPlayerDto)
@@ -100,7 +100,7 @@ namespace Chickencoop.Services.Services
             List<string> usernames = new List<string>();
             
             foreach(var user in listUsers.Users)
-            {
+            { 
                 usernames.Add(user.Username);
             }
             foreach(var player in players)

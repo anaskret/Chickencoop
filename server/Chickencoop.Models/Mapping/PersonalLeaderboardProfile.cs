@@ -16,6 +16,8 @@ namespace Chickencoop.Models.Mapping
         {
             CreateMap<CreatePersonalLeaderboardDto, PersonalLeaderboard>();
             CreateMap<PersonalLeaderboard, GetPersonalLeaderboardDto>();
+            CreateMap<PersonalLeaderboard, GetPersonalLeaderboardWithNicknameDto>()
+                .ForMember(dest => dest.OpponentNickname, opt => opt.Ignore());
             CreateMap<UpdatePersonalLeaderboardDto, PersonalLeaderboard>();
         }
     }

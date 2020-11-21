@@ -9,6 +9,7 @@ namespace Chickencoop.Repositories.Repositories.Interfaces
     public interface IPersonalLeaderboardRepository
     {
         Task<List<PersonalLeaderboard>> GetAll();
+        Task<List<PersonalLeaderboard>> GetAllByPlayer(Guid playerId);
         Task<PersonalLeaderboard> Get(Guid id);
         Task<bool> Create(PersonalLeaderboard personalLeaderboard);
         Task<bool> Update(PersonalLeaderboard personalLeaderboard);

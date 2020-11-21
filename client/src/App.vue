@@ -26,6 +26,7 @@
         <v-tab
           v-for="link in links"
           :key="link"
+          @click="changeTab(link)"
         >
           {{ link }}
         </v-tab>
@@ -83,7 +84,8 @@ export default {
       isAuth:true,
         links: [
         'Lobbies',
-        'Profile', 
+        'Profile',
+        'Ranking'
       ],
       formFields: [
         {type: 'username'},
@@ -93,6 +95,7 @@ export default {
     }
   },
   created(){
+    PlayerDataService.checkForUpdate()
     this.findUser();
 
     AmplifyEventBus.$on('authState', info => {
@@ -114,19 +117,44 @@ export default {
     async findUser(){
       try{
         const user = await Auth.currentAuthenticatedUser();
-        //this.$router.push("lobbies")
         this.$store.state.signedIn = true;
         this.$store.state.user = user;
 
-        PlayerDataService.get(user.username).then(res => {
-          this.$store.state.playerId = res.data.id;
+        await PlayerDataService.get(user.username).then(res => {
+          this.$store.state.playerId = res.data.id
         });
+
+        let data = {
+          Nickname: user.username,
+          IsOnline: true  
+        }
+
+        PlayerDataService.update(this.$store.state.playerId, data)
       }
       catch(err){
         this.$store.state.signedIn = false;
         this.$store.state.user = null;
       }
+    },
+    changeTab(name){
+      if(name == 'Profile'){
+        let id = this.$store.state.playerId
+        this.$router.push({name: name, params: {id:id}})
+      }
+      else
+        this.$router.push({name: name})
     }
-  }
+  },
+ /*beforeDestroy(){
+    let data = {
+            Nickname: this.$store.state.user.username,
+            IsOnline: false  
+          }
+
+    PlayerDataService.update(this.$store.state.playerId, data)
+
+    this.$store.state.signedIn = false;
+    this.$store.state.user = null;
+  }*/
 }
 </script>

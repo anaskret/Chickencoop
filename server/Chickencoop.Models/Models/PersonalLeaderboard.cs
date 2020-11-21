@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static Chickencoop.Models.Enums.GamesEnum;
 using static Chickencoop.Models.Enums.ResultTypeEnum;
 
 namespace Chickencoop.Models.Models
@@ -13,6 +14,7 @@ namespace Chickencoop.Models.Models
         public Guid PlayerId { get; set; }
         public Guid OpponentId { get; set; }
         public ResultType Result { get; set; }
+        public Games GameName { get; set; }
 
         public virtual Player Player { get; set; }
     }

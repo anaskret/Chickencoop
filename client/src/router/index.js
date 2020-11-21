@@ -5,6 +5,8 @@ import TicTacToe from "../views/TicTacToe.vue";
 import NewLobby from "../components/NewLobby.vue";
 import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
+import Ranking from "../views/Ranking.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -32,7 +34,12 @@ const routes = [
     path: "/profile/:id",
     name: "Profile",
     component: Profile
-  }
+  },
+  {
+    path: "/ranking",
+    name: "Ranking",
+    component: Ranking
+  },
 ];
 
 const router = new VueRouter({

@@ -4,6 +4,14 @@ class PersonalLeaderboardDataService{
     getAll(){
         return http.get("/records");
     }
+    
+    getAllByPlayerId(id){
+        return http.get(`/records/player/${id}`);
+    }
+
+    getRanking(){
+        return http.get("/ranking");
+    }
 
     get(id) {
         return http.get(`/records/${id}`);

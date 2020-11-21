@@ -24,9 +24,15 @@ namespace Chickencoop.App
         {
             public const string Create = Root + "/records";
             public const string GetAll = Root + "/records";
+            public const string GetAllByPlayer = Root + "/records/player/{id:guid}";
             public const string Get = Root + "/records/{id:guid}";
             public const string Update = Root + "/records/{id:guid}";
             public const string Delete = Root + "/records/{id:guid}";
+        }
+        
+        public static class Ranking
+        {
+            public const string GetAll = Root + "/ranking";
         }
         
         public static class Lobby

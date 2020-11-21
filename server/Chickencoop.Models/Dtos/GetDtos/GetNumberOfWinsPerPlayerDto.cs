@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Chickencoop.Models.Dtos.BaseDtos
+namespace Chickencoop.Models.Dtos.GetDtos
 {
-    public abstract class PlayerDto
+    public class GetNumberOfWinsPerPlayerDto
     {
-        [StringLength(20, MinimumLength = 3)]
+        public Guid Id { get; set; }
         public string Nickname { get; set; }
+        public int Wins { get; set; }
         public bool IsOnline { get; set; }
     }
 }

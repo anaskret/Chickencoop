@@ -1,8 +1,8 @@
 <template>
-    <v-card
-    full-width
-    class="mx-auto"
-    v-if="lobbies"
+  <v-card
+  full-width
+  class="mx-auto"
+  v-if="lobbies"
   >
     <v-toolbar
       color="light-blue"
@@ -22,9 +22,6 @@
         :item="lobby"
         @onDelete="deleteLobby"
       />
-      
-
-
     </v-list>
   </v-card>
 </template>
@@ -56,7 +53,7 @@ export default {
     methods: {
       getAll(){
           LobbyDataService.getAll().then((res)=>{
-          this.lobbies = res.data
+            this.lobbies = res.data
       })
       },
        deleteLobby(id){

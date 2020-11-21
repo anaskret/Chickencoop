@@ -24,6 +24,40 @@ namespace Chickencoop.App.Controllers
             return Ok(await _service.GetAllRecords());
         }
 
+        [HttpGet(ApiRoutes.PersonalLeaderboard.GetAllByPlayer)]
+        public async Task<IActionResult> GetAllByPlayerId([FromRoute] Guid id) //playerId
+        {
+            try
+            {
+                return Ok(await _service.GetAllRecordsByPlayer(id));
+            }
+            catch(NullReferenceException ex)
+            {
+                return NotFound(ex);
+            }
+            catch(ArgumentException ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpGet(ApiRoutes.Ranking.GetAll)]
+        public async Task<IActionResult> GetRanking()
+        {
+            try
+            {
+                return Ok(await _service.GetRanking());
+            }
+            catch (NullReferenceException ex)
+            {
+                return NotFound(ex);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
         [HttpGet(ApiRoutes.PersonalLeaderboard.Get)]
         public async Task<IActionResult> Get([FromRoute] Guid id)
         {
