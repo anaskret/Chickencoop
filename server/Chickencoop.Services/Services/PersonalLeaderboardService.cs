@@ -18,12 +18,14 @@ namespace Chickencoop.Services.Services
         private readonly IPersonalLeaderboardRepository _repository;
         private readonly IPlayerRepository _playerRepository;
         private readonly IMapper _mapper;
+
         public PersonalLeaderboardService(IMapper mapper, IPersonalLeaderboardRepository repository, IPlayerRepository playerRepository)
         {
             _mapper = mapper;
             _repository = repository;
             _playerRepository = playerRepository;
         }
+
         public async Task<List<GetPersonalLeaderboardDto>> GetAllRecords()
         {
             var getAll = await _repository.GetAll();

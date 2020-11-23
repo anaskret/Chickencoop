@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Chickencoop.Models.Enums.GamesEnum;
 using static Chickencoop.Models.Enums.ResultTypeEnum;
 
 namespace Chickencoop.Repositories.Repositories
@@ -73,7 +74,8 @@ namespace Chickencoop.Repositories.Repositories
         {
             DoesPlayerExists(personalLeaderboard.PlayerId);
             DoesPlayerExists(personalLeaderboard.OpponentId);
-            DoesEnumExists(personalLeaderboard.Result);
+            DoesResultEnumExists(personalLeaderboard.Result);
+            DoesGameNameEnumExists(personalLeaderboard.GameName);
             IsPlayerSameAsOpponent(personalLeaderboard.PlayerId, personalLeaderboard.OpponentId);
             IsGameDateToday(personalLeaderboard.GameDate);
             IsGameTimeLargerThanZero(personalLeaderboard.GameTime);
@@ -81,32 +83,32 @@ namespace Chickencoop.Repositories.Repositories
 
         private async Task<PersonalLeaderboard> DoesLeaderboardExists(Guid id)
         {
-            try
-            {
-                return await _context.PersonalLeaderboards.FirstOrDefaultAsync(pl => pl.Id == id);
-            }
-            catch (NullReferenceException)
-            {
+            var leaderboard = await _context.PersonalLeaderboards.FirstOrDefaultAsync(pl => pl.Id == id);
+
+            if (leaderboard == null)
                 throw new NullReferenceException("Record with this id doesn't exist");
-            }
+
+            return leaderboard;
         }
 
         private void DoesPlayerExists(Guid id)
         {
-            try
-            {
-                _context.Players.FirstOrDefault(pl => pl.Id == id);
-            }
-            catch (NullReferenceException)
-            {
+            var player = _context.Players.FirstOrDefault(pl => pl.Id == id);
+
+            if(player == null)
                 throw new NullReferenceException("Player with this id doesn't exist");
-            }
         }
 
-        private void DoesEnumExists(ResultType results)
+        private void DoesResultEnumExists(ResultType results)
         {
             if (!Enum.IsDefined(typeof(ResultType), results))
                 throw new ArgumentException("Wrong ResultType");
+        }
+        
+        private void DoesGameNameEnumExists(Games games)
+        {
+            if (!Enum.IsDefined(typeof(Games), games))
+                throw new ArgumentException("Wrong GameName");
         }
 
         private void IsPlayerSameAsOpponent(Guid playerId, Guid opponentId)

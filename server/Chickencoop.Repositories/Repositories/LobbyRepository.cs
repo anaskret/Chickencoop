@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static Chickencoop.Models.Enums.GamesEnum;
 
@@ -27,13 +28,14 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<Lobby> Get(Guid id)
         {
-            DoesLobbyExists(id);
-            return await _context.Lobbies.FirstOrDefaultAsync(pl => pl.Id == id);
+            
+            return await DoesLobbyExists(id);
         }
 
         
         public async Task<bool> Create(Lobby lobby)
         {
+            IsTitleCorrect(lobby.Title);
             DoesPlayerExists(lobby.PlayerOneId);
             DoesEnumExists(lobby.GameName);
             IsPlayerSameAsOpponent(lobby);
@@ -50,8 +52,11 @@ namespace Chickencoop.Repositories.Repositories
         }
         public async Task<bool> Update(Lobby lobby)
         {
-            //DoesLobbyExists(lobby.Id);
+            await DoesLobbyExists(lobby.Id);
+            IsTitleCorrect(lobby.Title);
             DoesPlayerExists(lobby.PlayerOneId);
+            if(lobby.PlayerTwoId != null)
+                DoesPlayerExists(lobby.PlayerTwoId);
             DoesEnumExists(lobby.GameName);
             IsPlayerSameAsOpponent(lobby);
 
@@ -68,7 +73,7 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<bool> Delete(Guid id)
         {
-            DoesLobbyExists(id);
+            await DoesLobbyExists(id);
             var doesLobbbyExist = await _context.Lobbies.FirstOrDefaultAsync(pl => pl.Id == id);
             _context.Remove(doesLobbbyExist);
             var deleted = await _context.SaveChangesAsync();
@@ -76,22 +81,29 @@ namespace Chickencoop.Repositories.Repositories
             return deleted > 0;
         }
 
-
-
         #region tests
         
-        private void DoesLobbyExists(Guid id)
+        private async Task<Lobby> DoesLobbyExists(Guid id)
         {
-            var lobby = _context.Lobbies.FirstOrDefault(pl => pl.Id == id);
+            var lobby = await _context.Lobbies.AsNoTracking().FirstOrDefaultAsync(pl => pl.Id == id);
+
             if (lobby == null)
                 throw new NullReferenceException("Lobby with this id doesn't exist");
+
+            return lobby;
         }
         
         private void DoesPlayerExists(Guid? id)
         {
             var player = _context.Players.FirstOrDefault(pl => pl.Id == id);
+
             if (player == null)
                 throw new NullReferenceException("Player with this id doesn't exist");
+        }
+        private void IsTitleCorrect(string title)
+        {
+            if (title.Length < 2 || title.Length > 50 || string.IsNullOrWhiteSpace(title))
+                throw new ArgumentException("Title has to be longer than 3 characters and shorter than 50");
         }
 
         private void DoesEnumExists(Games games)
@@ -99,11 +111,12 @@ namespace Chickencoop.Repositories.Repositories
             if (!Enum.IsDefined(typeof(Games), games))
                 throw new ArgumentException("Wrong GameName");
         }
+        
 
         private void IsPlayerSameAsOpponent(Lobby lobby)
         {
             if (lobby.PlayerOneId == lobby.PlayerTwoId)
-                throw new ArgumentException("Opponents Id can't be the same as the players Id");
+                throw new ArgumentException("Second players Id can't be the same as the first player Id");
         }
         #endregion tests
     }

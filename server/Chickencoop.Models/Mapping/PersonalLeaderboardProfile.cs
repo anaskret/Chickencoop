@@ -15,11 +15,14 @@ namespace Chickencoop.Models.Mapping
     {
         public PersonalLeaderboardProfile()
         {
-            CreateMap<CreatePersonalLeaderboardDto, PersonalLeaderboard>();
+            CreateMap<CreatePersonalLeaderboardDto, PersonalLeaderboard>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Player, opt => opt.Ignore());
             CreateMap<PersonalLeaderboard, GetPersonalLeaderboardDto>();
             CreateMap<PersonalLeaderboard, GetPersonalLeaderboardWithNicknameDto>()
                 .ForMember(dest => dest.OpponentNickname, opt => opt.Ignore());
-            CreateMap<UpdatePersonalLeaderboardDto, PersonalLeaderboard>();
+            CreateMap<UpdatePersonalLeaderboardDto, PersonalLeaderboard>()
+                .ForMember(dest => dest.Player, opt => opt.Ignore());
         }
     }
 }

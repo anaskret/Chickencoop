@@ -14,9 +14,13 @@ namespace Chickencoop.Models.Mapping
     {
         public LobbyProfile()
         {
-            CreateMap<CreateLobbyDto, Lobby>();
+            CreateMap<CreateLobbyDto, Lobby>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Player, opt => opt.Ignore());
             CreateMap<Lobby, GetLobbyDto>();
-            CreateMap<UpdateLobbyDto, Lobby>();
+            CreateMap<UpdateLobbyDto, Lobby>()
+                .ForMember(dest => dest.Player, opt => opt.Ignore());
+
         }
     }
 }
