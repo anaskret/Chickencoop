@@ -62,7 +62,8 @@ export default {
         lobbyHub.newGame = (lobbyId) =>{
           return startedPromise
           .then(() => connection.invoke('NewGame', lobbyId))
-          .catch(console.error)
+          .catch
+          (console.error)
           }
     
         connection.on('NewGame', (lobbyId) => {

@@ -32,7 +32,7 @@ namespace Chickencoop.App.Controllers
             {
                 return Ok(await _service.GetAllRecordsByPlayer(id));
             }
-            catch(NullReferenceException ex)
+            catch(ArgumentNullException ex)
             {
                 return NotFound(ex);
             }
@@ -49,7 +49,7 @@ namespace Chickencoop.App.Controllers
             {
                 return Ok(await _service.GetRanking());
             }
-            catch (NullReferenceException ex)
+            catch (ArgumentNullException ex)
             {
                 return NotFound(ex);
             }
@@ -84,7 +84,7 @@ namespace Chickencoop.App.Controllers
 
                 return Created(locationUri, record);
             }
-            catch(NullReferenceException ex)
+            catch(ArgumentNullException ex)
             {
                 return NotFound(ex);
             }
@@ -102,7 +102,7 @@ namespace Chickencoop.App.Controllers
                 updateRecord.Id = id;
                 return Ok(await _service.UpdateRecord(updateRecord));
             }
-            catch(NullReferenceException ex)
+            catch(ArgumentNullException ex)
             {
                 return NotFound(ex);
             }
@@ -119,7 +119,7 @@ namespace Chickencoop.App.Controllers
             {
                 return Ok(await _service.DeleteRecord(id));
             }
-            catch (NullReferenceException ex)
+            catch (ArgumentNullException ex)
             {
                 return NotFound(ex);
             }

@@ -18,7 +18,6 @@ namespace Chickencoop.Services.Mapping
                 .ForMember(dest => dest.PersonalLeaderboards, opt => opt.Ignore());
             CreateMap<Player, GetPlayerDto>();
             CreateMap<UpdatePlayerDto, Player>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Lobbies, opt => opt.Ignore())
                 .ForMember(dest => dest.PersonalLeaderboards, opt => opt.Ignore());
             CreateMap<List<Player>, List<PlayerDto>>();

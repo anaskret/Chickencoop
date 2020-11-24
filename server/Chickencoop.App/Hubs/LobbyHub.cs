@@ -23,6 +23,7 @@ namespace Chickencoop.App.Hubs
         public async Task NewPlayer(Guid lobbyId, Guid playerId)
         {
             await Clients.Group(lobbyId.ToString()).NewPlayer(lobbyId, playerId);
+            await LobbyChange();
         }
 
         public async Task LobbyChange()
@@ -33,16 +34,19 @@ namespace Chickencoop.App.Hubs
         public async Task HostChange(Guid lobbyId)
         {
             await Clients.OthersInGroup(lobbyId.ToString()).HostChange(lobbyId);
+            await LobbyChange();
         }
 
         public async Task NewGame(Guid lobbyId)
         {
             await Clients.OthersInGroup(lobbyId.ToString()).NewGame(lobbyId);
+            await LobbyChange();
         }
 
         public async Task OpponentLeft(Guid lobbyId)
         {
             await Clients.OthersInGroup(lobbyId.ToString()).OpponentLeft(lobbyId);
+            await LobbyChange();
         }
         
         public async Task GameAccepted(Guid lobbyId)

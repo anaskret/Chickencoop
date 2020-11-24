@@ -70,13 +70,13 @@ namespace Chickencoop.Repositories.Repositories
             }
         }
 
-        #region tests
+#region tests
         private async Task<Player> DoesPlayerExists(string username)
         {
             var player = await _context.Players.FirstOrDefaultAsync(pl => pl.Nickname == username);
             
             if(player == null)
-                throw new NullReferenceException("Player with this username doesn't exist");
+                throw new ArgumentNullException("Player with this username doesn't exist");
 
             return player;
         }
@@ -86,11 +86,11 @@ namespace Chickencoop.Repositories.Repositories
             var player = await _context.Players.AsNoTracking().FirstOrDefaultAsync(pl => pl.Id == id);
 
             if (player == null)
-                throw new NullReferenceException("Player with this id doesn't exist");
+                throw new ArgumentNullException("Player with this id doesn't exist");
 
             return player;
         }
 
-        #endregion tests
+#endregion tests
     }
 }

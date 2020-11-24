@@ -42,9 +42,9 @@
       
       <v-avatar
       :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
-      size="32"
+      size="36"
       >
-      <img src="https://scontent.frix7-1.fna.fbcdn.net/v/t1.0-9/52528710_2089406407822992_8364014239874023424_n.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=zMExb5ZSWOgAX_Ujk3L&_nc_ht=scontent.frix7-1.fna&oh=910cb44addc2740b2cbd5395530b7d17&oe=5FC1E3AA" alt="">
+      <img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg" alt="">
       </v-avatar>
     </v-app-bar>
 
@@ -130,12 +130,12 @@ export default {
         await PlayerDataService.get(user.username).then(res => {
           this.$store.state.playerId = res.data.id
         });
-
         let data = {
           Nickname: user.username,
           IsOnline: true  
         }
-
+        console.log(data)
+        console.log(this.$store.state.playerId)
         PlayerDataService.update(this.$store.state.playerId, data)
       }
       catch(err){
@@ -146,9 +146,18 @@ export default {
     async signOut() {
       try {
           await Auth.signOut();
+          
+          let data = {
+            Nickname: this.$store.state.user.username,
+            IsOnline: false  
+          }
+          PlayerDataService.update(this.$store.state.playerId, data)
+
           this.$store.state.signedIn = false;
           this.$store.state.user = null;
           this.$store.state.playerId = null;
+
+
       } catch (error) {
           console.log('error signing out: ', error);
       }

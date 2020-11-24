@@ -55,7 +55,7 @@ namespace Chickencoop.App.Controllers
 
                 return Created(locationUri, record);
             }
-            catch (NullReferenceException ex)
+            catch (ArgumentNullException ex)
             {
                 return NotFound(ex);
             }
@@ -74,7 +74,7 @@ namespace Chickencoop.App.Controllers
 
                 return Ok(await _lobbyService.UpdateLobby(updateLobby));
             }
-            catch (NullReferenceException ex)
+            catch (ArgumentNullException ex)
             {
                 return NotFound(ex);
             }
@@ -91,7 +91,7 @@ namespace Chickencoop.App.Controllers
             {
                 return Ok(await _lobbyService.DeleteLobby(id));
             }
-            catch (NullReferenceException ex)
+            catch (ArgumentNullException ex)
             {
                 return NotFound(ex);
             }

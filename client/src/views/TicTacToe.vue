@@ -18,48 +18,7 @@
       </v-dialog>
     </v-row>
 
-    <v-row justify="center" v-if="startNewGame">
-        <v-dialog
-            v-model="startNewGame"
-            persistent
-            max-width="790"
-        >
-
-            <v-card>
-            <v-card-title class="headline">
-            Do you want to play a new game?
-            </v-card-title>
-            <v-card-actions>
-                <v-btn
-                elevation="2"
-                color="red"
-                dark
-                @click="gameDeclined()"
-                >Leave</v-btn>
-                <v-btn
-                elevation="2"
-                color="primary"
-                @click="gameAccepted()"
-                >Play</v-btn> 
-            </v-card-actions>
-            </v-card>
-        </v-dialog>
-        </v-row>
-        
-        <v-row justify="center">
-        <v-dialog
-            v-model="awaitAccepting"
-            persistent
-            max-width="790"
-        >
-
-            <v-card>
-            <v-card-title class="headline">
-            Wait for the other player to accept
-            </v-card-title> 
-            </v-card>
-        </v-dialog>
-        </v-row>
+    <NewGame ref="newGameComponent"/>
 
     <v-main>
       <div class="tictactoe-board">
@@ -76,17 +35,19 @@
             {{ gameOverText }}
         </div>
       </div>
-      <v-btn v-if="gameOver" class="reset-button" color="primary" elevation="2" @click="newGame()">New Game</v-btn>
+      <v-btn v-if="gameOver" class="reset-button" color="primary" elevation="2" @click="this.$refs.newGameComponent.newGame">New Game</v-btn>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import Board from "../components/Board";
+import NewGame from "../components/NewGame";
 import LobbyDataService from "../services/LobbyDataService";
 import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataService";
 
   export default {
+    components:{NewGame},
     data() { 
         return {
           dialog:false,
@@ -101,15 +62,27 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
           gameStartTime: 0,
           gameEndTime: 0,
           result: 'nothing',
+          unwantedPlayer: false
     } },
 
     created(){
+      console.log(this.lobbyId)
       LobbyDataService.get(this.$route.params.id).then(res=>{
         if(res.data.isFull){
+          this.unwantedPlayer = true
           this.$router.push('/lobbies')  // WYPIERDALAJ BO FULL
         }
         this.$lobbyHub.joinLobby(this.lobbyId);
         if(res.data.playerOneId !== this.$store.state.playerId && res.data.playerTwoId == null){
+          let data = {
+            Title: res.data.title,
+            GameName: res.data.gameName,
+            PlayerOneId: res.data.playerOneId,
+            PlayerTwoId: this.$store.state.playerId,
+            IsFull: true
+          }
+          LobbyDataService.update(this.lobbyId, data)
+
           this.yourMark = 'o';
           this.$lobbyHub.newPlayer(this.lobbyId, this.$store.state.playerId);
         }
@@ -121,7 +94,6 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
         this.$tictactoeHub.$on('who-won', this.onVictory)
         this.$lobbyHub.$on('new-player', this.onNewPlayer)
         this.$lobbyHub.$on('host-change', this.hostChange)
-        this.$lobbyHub.$on('new-game', this.onNewGame)
         this.$lobbyHub.$on('game-accepted', this.onGameAccepted)
         this.$lobbyHub.$on('opponent-left', this.onOpponentLeft)
         this.$lobbyHub.joinLobby(this.lobbyId)
@@ -129,7 +101,6 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
     },
     methods: {
       performMove(x, y) {
-        console.log(this.yourMark)
         if(this.yourMark != this.turn) return;
 
         if (!this.board.doMove(x, y, this.turn)) {
@@ -174,58 +145,41 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
         if(player == this.yourMark && this.board.playerHas3InARow(player)){
           this.gameOverText = 'You won!'
           this.result = 'win'
-        }
-        else if(!this.board.playerHas3InARow(player)){
+        }else if(!this.board.playerHas3InARow(player)){
           this.gameOverText = 'Draw'
           this.result = 'draw'
-        }
-        else{
+        }else{
           this.gameOverText = 'You lost!'
           this.result = 'loss'
         }
+
         LobbyDataService.get(this.lobbyId).then(res=>{
-          if(this.yourMark == 'x'){
-            let data = {
+          let data = {
               gameTime: (gameEndTime.getMinutes() - this.gameStartTime.getMinutes()) + ":" + (gameEndTime.getSeconds() - this.gameStartTime.getSeconds()),
               gameDate: gameDate,
-              playerId: res.data.playerOneId,
-              opponentId: res.data.playerTwoId,
-              result: this.result,
-              gameName: res.data.gameName
-            } 
-            console.log(data)
-            PersonalLeaderboardDataService.create(data)
-          }else{
-            let data = {
-              gameTime: (gameEndTime.getMinutes() - this.gameStartTime.getMinutes()) + ":" + (gameEndTime.getSeconds() - this.gameStartTime.getSeconds()),
-              gameDate: gameDate,
-              playerId: res.data.playerTwoId,
-              opponentId: res.data.playerOneId,
+              playerId: 'id',
+              opponentId: 'id',
               result: this.result,
               gameName: res.data.gameName
             }
+          if(this.yourMark == 'x'){
+            data.playerId = res.data.playerOneId
+            data.opponentId = res.data.playerTwoId
+            console.log(data)
+            PersonalLeaderboardDataService.create(data)
+          }else{
+            data.playerId = res.data.playerTwoId
+            data.opponentId = res.data.playerOneId
             console.log(data)
             PersonalLeaderboardDataService.create(data);
           }
-
         })
       },
-      onNewPlayer(lobbyId, playerId){
-        LobbyDataService.get(lobbyId).then(res=>{
-          let data = {
-                  Title: res.data.title,
-                  Game: res.data.game,
-                  PlayerOneId: res.data.playerOneId,
-                  PlayerTwoId: playerId,
-                  IsFull: true
-              }
-              LobbyDataService.update(this.lobbyId, data)
-          })
+      onNewPlayer(){
           this.dialog = false
           this.gameStartTime = new Date()
       },
       newGame(){
-        this.awaitAccepting = true
         this.$lobbyHub.newGame(this.lobbyId)
       },
       onNewGame(){
@@ -237,18 +191,11 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
       onGameAccepted(){
         this.restart()
         this.dialog = false
-        this.startNewGame = false
-        this.awaitAccepting = false
         this.gameStartTime = new Date()
-      },
-      gameDeclined(){
-        this.$lobbyHub.opponentLeft(this.lobbyId)
-        this.$router.push('/lobbies')
       },
       onOpponentLeft(){
         this.dialog = true
         this.restart()
-        this.awaitAccepting = false
       },
       hostChange(){
         this.dialog = true
@@ -262,13 +209,17 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
       this.$tictactoeHub.$off('who-won', this.onVictory)
       this.$lobbyHub.$off('new-player', this.onNewPlayer)
       this.$lobbyHub.$off('host-change', this.onNewPlayer)
-      
+
+      if(this.unwantedPlayer){
+        this.$lobbyHub.leaveLobby(this.lobbyId)
+        return
+      }
+
       LobbyDataService.get(this.lobbyId).then(res=>{
-        if(this.yourMark == 'x' && res.data.playerTwoId == null){
+        if(res.data.playerOneId == this.$store.state.playerId && res.data.playerTwoId == null){
           LobbyDataService.delete(this.lobbyId)
-          this.$lobbyHub.lobbyChange()
         }
-        else if(this.yourMark == 'x' && res.data.playerTwoId != null){
+        else if(res.data.playerOneId == this.$store.state.playerId && res.data.playerTwoId != null){
           let data = {
                   Title: res.data.title,
                   Game: res.data.game,
@@ -280,6 +231,7 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
           this.$lobbyHub.hostChange(this.lobbyId, data)
         }
         else{
+          this.$lobbyHub.opponentLeft(this.lobbyId)
           let data = {
                   Title: res.data.title,
                   Game: res.data.game,
@@ -292,8 +244,7 @@ import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataS
       })
 
       this.$lobbyHub.leaveLobby(this.lobbyId)
-        
-      }
+    }
   }
 </script>
 

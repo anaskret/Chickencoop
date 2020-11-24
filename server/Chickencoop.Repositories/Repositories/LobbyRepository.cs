@@ -88,7 +88,7 @@ namespace Chickencoop.Repositories.Repositories
             var lobby = await _context.Lobbies.AsNoTracking().FirstOrDefaultAsync(pl => pl.Id == id);
 
             if (lobby == null)
-                throw new NullReferenceException("Lobby with this id doesn't exist");
+                throw new ArgumentNullException("Lobby with this id doesn't exist");
 
             return lobby;
         }
@@ -98,7 +98,7 @@ namespace Chickencoop.Repositories.Repositories
             var player = _context.Players.FirstOrDefault(pl => pl.Id == id);
 
             if (player == null)
-                throw new NullReferenceException("Player with this id doesn't exist");
+                throw new ArgumentNullException("Player with this id doesn't exist");
         }
         private void IsTitleCorrect(string title)
         {

@@ -85,7 +85,7 @@ namespace Chickencoop.App.Controllers
                 updatePlayer.Id = id;
                 return Ok(await _playerService.UpdatePlayer(updatePlayer));
             }
-            catch (NullReferenceException ex)
+            catch (ArgumentNullException ex)
             {
                 return NotFound(ex);
             }
@@ -102,7 +102,7 @@ namespace Chickencoop.App.Controllers
             {
                 return Ok(await _playerService.DeletePlayer(id));
             }
-            catch(NullReferenceException ex)
+            catch(ArgumentNullException ex)
             {
                 return NotFound(ex);
             }

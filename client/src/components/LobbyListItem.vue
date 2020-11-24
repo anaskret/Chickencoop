@@ -43,8 +43,8 @@ export default {
   },
   data(){
       return{
-          player:'nobody',
-          playerTwo: 'nobody'
+          player: '',
+          playerTwo: ''
       }
   },
   created(){
@@ -61,10 +61,16 @@ export default {
 
     async getPlayer(){
       try{
+        console.log(this.item)
         const resPlayerOne =  await PlayerDataService.getById(this.item.playerOneId)
-        const resPlayerTwo =  await PlayerDataService.getById(this.item.playerTwoId)
+
+        if(this.item.playerTwoId != null){
+          const resPlayerTwo =  await PlayerDataService.getById(this.item.playerTwoId)
+          this.playerTwo = resPlayerTwo.data.nickname
+        }
+        
         this.player =  resPlayerOne.data.nickname
-        this.playerTwo = resPlayerTwo.data.nickname
+        console.log(this.player)
       }catch(e){
           console.error(e)
       } 

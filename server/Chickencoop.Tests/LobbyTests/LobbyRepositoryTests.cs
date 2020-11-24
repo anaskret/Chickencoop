@@ -48,7 +48,7 @@ namespace Chickencoop.Tests.LobbyTests
         }
 
         [Fact]
-        public async void NoPlayerIndatabase_ThrowsNullReferenceException()
+        public async void NoPlayerIndatabase_ThrowsArgumentNullException()
         {
             var repository = new LobbyRepository(_context);
 
@@ -64,7 +64,7 @@ namespace Chickencoop.Tests.LobbyTests
 
             Func<Task> act = async () => await repository.Create(lobby);
 
-            act.Should().Throw<NullReferenceException>().WithMessage("Player with this id doesn't exist");
+            act.Should().Throw<ArgumentNullException>().WithMessage("Player with this id doesn't exist");
         }
 
         [Fact]
@@ -87,6 +87,8 @@ namespace Chickencoop.Tests.LobbyTests
             act.Should().Throw<ArgumentException>().WithMessage("Second players Id can't be the same as the first player Id");
 
         }
+
+
         private async Task<Player> InitiatePlayer(string nickname)
         {
             Player player = new Player

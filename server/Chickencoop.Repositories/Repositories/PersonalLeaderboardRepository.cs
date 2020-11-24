@@ -86,7 +86,7 @@ namespace Chickencoop.Repositories.Repositories
             var leaderboard = await _context.PersonalLeaderboards.FirstOrDefaultAsync(pl => pl.Id == id);
 
             if (leaderboard == null)
-                throw new NullReferenceException("Record with this id doesn't exist");
+                throw new ArgumentNullException("Record with this id doesn't exist");
 
             return leaderboard;
         }
@@ -96,7 +96,7 @@ namespace Chickencoop.Repositories.Repositories
             var player = _context.Players.FirstOrDefault(pl => pl.Id == id);
 
             if(player == null)
-                throw new NullReferenceException("Player with this id doesn't exist");
+                throw new ArgumentNullException("Player with this id doesn't exist");
         }
 
         private void DoesResultEnumExists(ResultType results)

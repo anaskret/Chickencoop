@@ -87,8 +87,7 @@ namespace Chickencoop.Tests.PersonalLeaderboardTests
         }
 
         [Fact]
-       // [MemberData(nameof(RepositoryTestCase.LeaderboardNullReferenceExceptionIndex), MemberType = typeof(RepositoryTestCase))]
-        public async void WrongPlayerId_ThrowsNullReferenceException()
+        public async void WrongPlayerId_ThrowsArgumentNullException()
         {
             var player = await InitiatePlayer("Szymon");
             var player2 = await InitiatePlayer("Michal");
@@ -106,7 +105,7 @@ namespace Chickencoop.Tests.PersonalLeaderboardTests
             };
             Func<Task> act = async () => await repository.Create(testCreate);
 
-            act.Should().Throw<NullReferenceException>().WithMessage("Player with this id doesn't exist");
+            act.Should().Throw<ArgumentNullException>().WithMessage("Player with this id doesn't exist");
         }
         
         [Fact]

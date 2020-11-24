@@ -4,11 +4,23 @@
     class="mx-auto"
     >
         <v-img height="100%" src="https://cdn.vuetifyjs.com/images/cards/server-room.jpg"></v-img>
-          <v-col>
+        <v-col>
             <v-avatar size="100" style="position:absolute; top: 130px">
-              <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
+                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
             </v-avatar>
-              <h1>{{this.nickname}}</h1>
+            <v-row>
+                <h1 class="nickname">{{this.nickname}}</h1>
+                <v-btn
+                class="edit-profile"
+                elevation="2"
+                outlined
+                >
+                    Edit Profile 
+                    <v-icon>
+                        mdi-pencil-outline
+                    </v-icon>
+                </v-btn>
+            </v-row>
         </v-col>
 
         <v-data-table
@@ -71,11 +83,20 @@ export default {
         },
         goToProfile(id){
             this.$router.push({name: 'Profile', params: {id:id}})
+            window.location.reload()
         }
     }
 }
 </script>
 
 <style>
-
+.nickname{
+    position: relative;
+    left: 10px;
+}
+.edit-profile{
+    position: absolute;
+    right: 10px; 
+    padding:5px
+}
 </style>
