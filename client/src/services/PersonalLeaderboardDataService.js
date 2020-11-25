@@ -1,33 +1,33 @@
 import http from "../http-common";
 
-class PersonalLeaderboardDataService{
-    getAll(){
-        return http.get("/records");
-    }
-    
-    getAllByPlayerId(id){
-        return http.get(`/records/player/${id}`);
-    }
+class PersonalLeaderboardDataService {
+  getAll() {
+    return http.get("/records");
+  }
 
-    getRanking(){
-        return http.get("/ranking");
-    }
+  getAllByPlayerId(id) {
+    return http.get(`/records/player/${id}`);
+  }
 
-    get(id) {
-        return http.get(`/records/${id}`);
-    }
+  getRanking() {
+    return http.get("/ranking");
+  }
 
-    create(data) {
-        return http.post("/records", data);
-    }
+  get(id) {
+    return http.get(`/records/${id}`);
+  }
 
-    update(id, data) {
-        return http.put(`/records/${id}`, data);
-    }
+  create(data) {
+    return http.post("/records", data);
+  }
 
-    delete(id) {
-        return http.delete(`/records/${id}`);
-    }
+  update(id, data) {
+    return http.put(`/records/${id}`, data);
+  }
+
+  delete(id) {
+    return http.delete(`/records/${id}`);
+  }
 }
 
 export default new PersonalLeaderboardDataService();

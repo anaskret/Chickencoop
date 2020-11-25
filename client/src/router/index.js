@@ -16,8 +16,8 @@ const routes = [
     component: Lobbies
   },
   {
-    path: '/tictactoe/:id',
-    name: 'TicTacToe',
+    path: "/tictactoe/:id",
+    name: "TicTacToe",
     component: TicTacToe
   },
   {
@@ -39,7 +39,7 @@ const routes = [
     path: "/ranking",
     name: "Ranking",
     component: Ranking
-  },
+  }
 ];
 
 const router = new VueRouter({
