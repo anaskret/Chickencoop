@@ -3,12 +3,22 @@
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="790">
         <v-card>
-          <v-card-title class="headline">
-            Wait for player
+          <v-card-title class="headline justify-center">
+            Wait for an opponent
           </v-card-title>
           <v-card-text
-            >The game will start when another player joins</v-card-text
+          class="text-center"
           >
+            The game will start when another player joins
+          </v-card-text>
+          <v-btn
+            class="game-against-ai"
+            elevation="2" 
+            color="primary"
+            @click="playAgainstTheAi"
+          >
+            Play against the AI
+          </v-btn>
         </v-card>
       </v-dialog>
     </v-row>
@@ -33,7 +43,7 @@
         class="reset-button"
         color="primary"
         elevation="2"
-        @click="this.$refs.newGameComponent.newGame"
+        @click="aiOpponent ? onGameAccepted() : this.$refs.newGameComponent.newGame"
         >New Game</v-btn
       >
     </v-main>
@@ -45,13 +55,13 @@ import Board from "../components/Board";
 import NewGame from "../components/NewGame";
 import LobbyDataService from "../services/LobbyDataService";
 import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataService";
+import PlayerDataService from '../services/PlayerDataService';
 
 export default {
   components: { NewGame },
   data() {
     return {
       dialog: false,
-      startNewGame: false,
       awaitAccepting: false,
       gameOver: false,
       gameOverText: "",
@@ -62,7 +72,8 @@ export default {
       gameStartTime: 0,
       gameEndTime: 0,
       result: "nothing",
-      unwantedPlayer: false
+      unwantedPlayer: false,
+      aiOpponent: false
     };
   },
 
@@ -71,7 +82,7 @@ export default {
     LobbyDataService.get(this.$route.params.id).then(res => {
       if (res.data.isFull) {
         this.unwantedPlayer = true;
-        this.$router.push("/lobbies"); // WYPIERDALAJ BO FULL
+        this.$router.push("/lobbies"); // game is full, kick the joining player out
       }
       this.$lobbyHub.joinLobby(this.lobbyId);
       if (
@@ -101,17 +112,15 @@ export default {
     this.$lobbyHub.$on("game-accepted", this.onGameAccepted);
     this.$lobbyHub.$on("opponent-left", this.onOpponentLeft);
     this.$lobbyHub.joinLobby(this.lobbyId);
-    console.log(this.startNewGame);
   },
   methods: {
     performMove(x, y) {
+      console.log(this.turn);
       if (this.yourMark != this.turn) return;
 
       if (!this.board.doMove(x, y, this.turn)) {
         return;
       }
-
-      this.$tictactoeHub.turnChange(x, y, this.turn, this.lobbyId);
 
       this.$forceUpdate();
 
@@ -124,6 +133,38 @@ export default {
           : `Draw`;
         return;
       }
+
+      if(this.aiOpponent == false){
+        this.$tictactoeHub.turnChange(x, y, this.turn, this.lobbyId);
+      }else{
+        this.turn = 'o';
+        this.performAiMove();
+      }
+
+      this.$forceUpdate();
+    },
+    performAiMove(){
+      let isMoveIncorrect = false;
+      
+      do{
+        let x = Math.floor(Math.random() * 3);
+        let y = Math.floor(Math.random() * 3);
+        isMoveIncorrect = !this.board.doMove(x, y, this.turn);
+      }while(isMoveIncorrect)
+
+      this.$forceUpdate();
+
+      if (this.board.isGameOver()) {
+        this.$tictactoeHub.victory(this.turn, this.lobbyId);
+        this.gameOver = true;
+
+        this.gameOverText = this.board.playerHas3InARow(this.turn)
+          ? `Player ${this.turn} wins!`
+          : `Draw`;
+        return;
+      }
+
+      this.turn = 'x';
     },
     restart() {
       this.board.resetBoard();
@@ -137,6 +178,23 @@ export default {
 
       this.$forceUpdate();
       this.turn = player;
+    },
+    playAgainstTheAi(){
+      this.aiOpponent = true;
+      LobbyDataService.get(this.$route.params.id).then(res => {
+        PlayerDataService.get('AiPlayer').then(playerRes => {
+          let data = {
+            Title: res.data.title,
+            GameName: res.data.gameName,
+            PlayerOneId: res.data.playerOneId,
+            PlayerTwoId: playerRes.data.id,
+            IsFull: true
+          };
+          LobbyDataService.update(this.lobbyId, data);
+        });
+      });
+      this.dialog = false;
+      this.gameStartTime = new Date();
     },
     onVictory({ player }) {
       this.gameOver = true;
@@ -153,12 +211,12 @@ export default {
       if (player == this.yourMark && this.board.playerHas3InARow(player)) {
         this.gameOverText = "You won!";
         this.result = "win";
-      } else if (!this.board.playerHas3InARow(player)) {
-        this.gameOverText = "Draw";
-        this.result = "draw";
-      } else {
+      } else if (player != this.yourMark && this.board.playerHas3InARow(player)) {
         this.gameOverText = "You lost!";
         this.result = "loss";
+      } else {
+        this.gameOverText = "Draw";
+        this.result = "draw";
       }
 
       LobbyDataService.get(this.lobbyId).then(res => {
@@ -177,11 +235,21 @@ export default {
         if (this.yourMark == "x") {
           data.playerId = res.data.playerOneId;
           data.opponentId = res.data.playerTwoId;
-          console.log(data);
           PersonalLeaderboardDataService.create(data);
         } else {
           data.playerId = res.data.playerTwoId;
           data.opponentId = res.data.playerOneId;
+          PersonalLeaderboardDataService.create(data);
+        }
+
+        if(this.aiOpponent == true){
+          data.playerId = res.data.playerTwoId;
+          data.opponentId = res.data.playerOneId;
+          if(this.result == 'win'){
+            data.result = 'loss';
+          }else if(this.result == 'loss'){
+            data.result = 'win';
+          };
           console.log(data);
           PersonalLeaderboardDataService.create(data);
         }
@@ -190,15 +258,6 @@ export default {
     onNewPlayer() {
       this.dialog = false;
       this.gameStartTime = new Date();
-    },
-    newGame() {
-      this.$lobbyHub.newGame(this.lobbyId);
-    },
-    onNewGame() {
-      this.startNewGame = true;
-    },
-    gameAccepted() {
-      this.$lobbyHub.gameAccepted(this.lobbyId);
     },
     onGameAccepted() {
       this.restart();
@@ -228,9 +287,13 @@ export default {
     }
 
     LobbyDataService.get(this.lobbyId).then(res => {
+      if(this.aiOpponent == true){
+        LobbyDataService.delete(this.lobbyId);
+      }
+  
       if (
-        res.data.playerOneId == this.$store.state.playerId &&
-        res.data.playerTwoId == null
+        (res.data.playerOneId == this.$store.state.playerId &&
+        res.data.playerTwoId == null)
       ) {
         LobbyDataService.delete(this.lobbyId);
       } else if (
@@ -287,9 +350,15 @@ h2 {
 }
 .reset-button {
   position: fixed;
-  top: 40%;
+  top: 45%;
   left: 50%;
   margin-top: 170px;
   margin-left: -65px;
+}
+.game-against-ai{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 5px;
 }
 </style>

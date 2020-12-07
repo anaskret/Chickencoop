@@ -6,5 +6,11 @@
       "dependsOn": [],
       "customAuth": false
     }
+  },
+  "storage": {
+    "chickencoopimages": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

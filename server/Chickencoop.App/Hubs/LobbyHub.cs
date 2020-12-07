@@ -40,7 +40,7 @@ namespace Chickencoop.App.Hubs
         public async Task NewGame(Guid lobbyId)
         {
             await Clients.OthersInGroup(lobbyId.ToString()).NewGame(lobbyId);
-            await LobbyChange();
+            //await LobbyChange();
         }
 
         public async Task OpponentLeft(Guid lobbyId)

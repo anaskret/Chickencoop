@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-dialog v-model="startNewGame" persistent max-width="790">
         <v-card>
-          <v-card-title class="headline">
+          <v-card-title class="headline justify-center">
             Do you want to play a new game?
           </v-card-title>
           <v-card-actions>
@@ -53,7 +53,6 @@ export default {
       this.$lobbyHub.newGame(this.lobbyId);
     },
     onNewGame() {
-      console.log("NEW GAME");
       this.startNewGame = true;
     },
     gameAccepted() {

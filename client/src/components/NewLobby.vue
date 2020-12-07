@@ -8,12 +8,12 @@
         required
       ></v-text-field>
 
-      <v-text-field
-        label="Game"
-        id="game"
+      <v-select
         v-model="lobby.game"
-        hide-details="auto"
-      ></v-text-field>
+        :items="games"
+        label="Game"
+        required
+      ></v-select>
 
       <v-btn @click.prevent="saveLobby" class="btn-success">Submit</v-btn>
     </div>
@@ -31,6 +31,7 @@ export default {
         title: "",
         game: 0
       },
+      games: ["TicTacToe"],
       lobbyId: ""
     };
   },
@@ -47,12 +48,13 @@ export default {
           this.lobbyId = response.data.id;
           this.$lobbyHub.lobbyChange();
           this.$router.push({
-            name: "TicTacToe",
+            name: this.lobby.game,
             params: { id: response.data.id }
           });
         })
         .catch(e => {
           console.log(e);
+          return;
         });
 
       console.log(this.lobbyId);

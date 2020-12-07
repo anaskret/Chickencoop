@@ -85,10 +85,6 @@ namespace Chickencoop.App.Controllers
                 updatePlayer.Id = id;
                 return Ok(await _playerService.UpdatePlayer(updatePlayer));
             }
-            catch (ArgumentNullException ex)
-            {
-                return NotFound(ex);
-            }
             catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -131,43 +127,5 @@ namespace Chickencoop.App.Controllers
                 return BadRequest(ex);
             }
         }
-
-        /*[HttpPost(ApiRoutes.Users.Signup)]
-        public async Task<IActionResult> SignUp(string password, string username, string email)
-        {
-            SignUpRequest signUpRequest = new SignUpRequest()
-            {
-                ClientId = _clientId,
-                Password = password,
-                Username = username
-            };
-            AttributeType emailAttribute = new AttributeType()
-            {
-                Name = "email",
-                Value = email
-            };
-
-            signUpRequest.UserAttributes.Add(emailAttribute);
-
-            var signUpResult = await _client.SignUpAsync(signUpRequest);
-
-            return Ok(signUpResult);
-        }
-
-        [HttpPost(ApiRoutes.Users.Signin)]
-        public async Task<IActionResult> SignIn(string username, string password)
-        {
-            var authReq = new InitiateAuthRequest()
-            {
-                ClientId = _clientId,
-                AuthFlow = AuthFlowType.USER_PASSWORD_AUTH
-            };
-            authReq.AuthParameters.Add("USERNAME", username);
-            authReq.AuthParameters.Add("PASSWORD", password);
-
-            var authResponse = await _client.InitiateAuthAsync(authReq);
-
-            return Ok(authResponse);
-        }*/
     }
 }
