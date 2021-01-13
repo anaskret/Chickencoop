@@ -6,14 +6,12 @@
           <v-card-title class="headline justify-center">
             Wait for an opponent
           </v-card-title>
-          <v-card-text
-          class="text-center"
-          >
+          <v-card-text class="text-center">
             The game will start when another player joins
           </v-card-text>
           <v-btn
             class="game-against-ai"
-            elevation="2" 
+            elevation="2"
             color="primary"
             @click="playAgainstTheAi"
           >

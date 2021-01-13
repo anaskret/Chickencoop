@@ -1,14 +1,9 @@
 <template>
   <v-card full-width class="mx-auto">
-    <v-img
-      height="100%"
-      src="https://cdn.vuetifyjs.com/images/cards/server-room.jpg"
-    ></v-img>
+    <v-img height="100%" :src="$store.state.background"></v-img>
     <v-col>
       <v-avatar size="100" style="position:absolute; top: 130px">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
-        ></v-img>
+        <v-img :src="$store.state.avatar"></v-img>
       </v-avatar>
       <v-row>
         <h1 class="nickname">{{ this.nickname }}</h1>
@@ -78,11 +73,15 @@
         <v-tabs-items v-model="tab">
           <v-tab-item v-for="item in items" :key="item">
             <v-card flat>
-              <v-list-item v-for="image in images" :key="image.name">
+              <v-list-item v-for="(image, index) in images" :key="index">
                 <v-list-item-avatar>
-                  <v-icon>
-                    mdi-camera
-                  </v-icon>
+                  <v-img
+                    :src="image.url"
+                    lazy-src="https://picsum.photos/id/11/10/6"
+                    max-height="40"
+                    max-width="40"
+                  >
+                  </v-img>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -91,10 +90,15 @@
 
                 <v-list-item-action>
                   <v-row>
-                    <v-btn color="green" dark style="right: 8px">
+                    <v-btn
+                      color="green"
+                      dark
+                      style="right: 8px"
+                      @click="imageSelected(image.url)"
+                    >
                       Select
                     </v-btn>
-                    <v-btn color="error">
+                    <v-btn color="error" @click="removeImage(image.key)">
                       Delete
                     </v-btn>
                   </v-row>
@@ -111,7 +115,7 @@
 <script>
 import PersonalLeaderboardDataService from "../services/PersonalLeaderboardDataService";
 import PlayerDataService from "../services/PlayerDataService";
-import S3ImageUpload from "../services/S3ImageUpload";
+import S3ImageService from "../services/S3ImageService";
 
 export default {
   data() {
@@ -133,7 +137,7 @@ export default {
       records: [],
       nickname: "nobody",
       startEditing: false,
-      tab: null,
+      tab: 0,
       items: ["avatar", "background"],
       images: [
         {
@@ -142,7 +146,7 @@ export default {
         {
           name: "photo2"
         }
-      ],
+      ]
     };
   },
   created() {
@@ -171,8 +175,59 @@ export default {
       window.location.reload();
     },
     editProfile(event) {
-      const name = (this.tab == 0) ? "avatar" : "background";
-      S3ImageUpload.uploadImage(event, name);
+      const name = this.tab == 0 ? "avatar" : "background";
+      S3ImageService.uploadImage(event, name);
+    },
+    imageSelected(image){
+      PlayerDataService.getById(this.$route.params.id).then(res => {
+        let data = {
+          nickname: res.data.nickname,
+          avatarUrl: res.data.avatarUrl,
+          backgroundUrl: res.data.backgroundUrl,
+          isOnline: res.data.isOnline
+        };
+        if (this.tab == 0) {
+          data.avatarUrl = image;
+          this.$store.state.avatar = image;
+        } else if (this.tab == 1) {
+          data.backgroundUrl = image;
+          this.$store.state.backgroundUrl = image;
+        }
+        PlayerDataService.update(this.$route.params.id, data);
+      });
+      this.startEditing = false;
+    },
+    async listImages() {
+      this.images = [];
+      const name = this.tab == 0 ? "avatar" : "background";
+      const res = await S3ImageService.listImages(name);
+      // debugger;
+      console.log(res);
+      const promises = res.map(e => S3ImageService.getImgByKey(e.key));
+      const results = Promise.all(promises)
+      results.then(data=>{
+        data.forEach((e,index)=>{
+          this.images.push({url:e,...res[index]})
+        })
+      });
+      // res.forEach(e=>{
+      //   const img = await S3ImageService.getImgByKey(e.key);
+      //   this.images.push({name:'xd',url:img})
+      // })
+      //this.images = res.map(image => ({ name: image.name }));
+    },
+    removeImage(key) {
+      S3ImageService.removeImage(key).then(() => {
+        this.images = this.images.filter(i => i.key !== key)
+      });
+    }
+  },
+  watch: {
+    startEditing(val) {
+      val && this.listImages();
+    },
+    tab() {
+      this.listImages();
     }
   }
 };

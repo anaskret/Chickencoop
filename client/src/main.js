@@ -5,7 +5,7 @@ import router from "./router/index";
 import store from "./store/index";
 
 import Amplify, * as AmplifyModules from "aws-amplify";
-import Storage from "aws-amplify";
+import {Storage} from "aws-amplify";
 import { AmplifyPlugin } from "aws-amplify-vue";
 import awsconfig from "./aws-exports";
 Amplify.configure(awsconfig);

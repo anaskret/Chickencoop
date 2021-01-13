@@ -30,10 +30,7 @@
           "
           size="36"
         >
-          <img
-            src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
-            alt=""
-          />
+          <img :src="$store.state.avatar" alt="" />
         </v-avatar>
       </v-app-bar>
 
@@ -120,13 +117,20 @@ export default {
 
         await PlayerDataService.get(user.username).then(res => {
           this.$store.state.playerId = res.data.id;
+          this.$store.state.avatar = res.data.avatarUrl;
+          this.$store.state.background = res.data.backgroundUrl;
+          console.log(res.data.avatarUrl);
+          console.log(res.data.backgroundUrl);
         });
         let data = {
           Nickname: user.username,
+          avatarUrl: this.$store.state.avatarUrl,
+          backgroundUrl: this.$store.state.backgroundUrl,
           IsOnline: true
         };
         console.log(data);
         console.log(this.$store.state.playerId);
+        PlayerDataService.checkForUpdate();
         PlayerDataService.update(this.$store.state.playerId, data);
       } catch (err) {
         this.$store.state.signedIn = false;
@@ -139,6 +143,8 @@ export default {
 
         let data = {
           Nickname: this.$store.state.user.username,
+          avatarUrl: this.$store.state.avatar,
+          backgroundUrl: this.$store.state.background,
           IsOnline: false
         };
         PlayerDataService.update(this.$store.state.playerId, data);

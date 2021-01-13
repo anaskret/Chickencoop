@@ -8,7 +8,9 @@ export default new Vuex.Store({
     user: null,
     playerId: null,
     signedIn: false,
-    showAutoLogoutModal: false
+    showAutoLogoutModal: false,
+    avatar: null,
+    background: null
   },
   mutations: {},
   actions: {},
