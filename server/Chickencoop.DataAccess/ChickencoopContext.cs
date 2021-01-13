@@ -52,6 +52,14 @@ namespace Chickencoop.DataAccess
             modelBuilder.Entity<Lobby>()
                 .Property(l => l.GameName)
                 .HasConversion(new EnumToStringConverter<Games>());
+
+            modelBuilder.Entity<Player>()
+                .Property(p => p.AvatarUrl)
+                .HasDefaultValue("https://cdn.vuetifyjs.com/images/profiles/marcus.jpg");
+
+            modelBuilder.Entity<Player>()
+                .Property(p => p.BackgroundUrl)
+                .HasDefaultValue("https://cdn.vuetifyjs.com/images/cards/server-room.jpg");
         }
     }
 }

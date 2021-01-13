@@ -8,6 +8,8 @@ namespace Chickencoop.Models.Models
     {
         public Guid Id { get; set; }
         public string Nickname { get; set; }
+        public string AvatarUrl { get; set; }
+        public string BackgroundUrl { get; set; }
         public bool IsOnline { get; set; } = false;
 
         public virtual ICollection<PersonalLeaderboard> PersonalLeaderboards { get; set; }

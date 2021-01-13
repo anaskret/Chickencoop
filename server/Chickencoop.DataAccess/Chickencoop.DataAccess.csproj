@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20201029114116_Lobbies.Designer.cs" />
     <Compile Remove="Migrations\20201114195544_EnumsAsString.cs" />
     <Compile Remove="Migrations\20201114195544_EnumsAsString.Designer.cs" />
+    <Compile Remove="Migrations\20210113194712_DefaultPhoto.cs" />
+    <Compile Remove="Migrations\20210113194712_DefaultPhoto.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

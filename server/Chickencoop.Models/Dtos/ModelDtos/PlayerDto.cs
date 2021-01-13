@@ -9,6 +9,8 @@ namespace Chickencoop.Models.Dtos.BaseDtos
     {
         [StringLength(20, MinimumLength = 3)]
         public string Nickname { get; set; }
+        public string AvatarUrl { get; set; } = "https://cdn.vuetifyjs.com/images/profiles/marcus.jpg";
+        public string BackgroundUrl { get; set; } = "https://cdn.vuetifyjs.com/images/cards/server-room.jpg";
         public bool IsOnline { get; set; }
     }
 }
