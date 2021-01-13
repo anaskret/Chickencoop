@@ -10,3 +10,15 @@ C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.DataAccess\bin\Debug\netstandard2.0\Chickencoop.DataAccess.pdb
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.dll
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.pdb
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.dll
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.pdb
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\bin\Debug\netstandard2.0\Chickencoop.DataAccess.deps.json
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\bin\Debug\netstandard2.0\Chickencoop.DataAccess.dll
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\bin\Debug\netstandard2.0\Chickencoop.DataAccess.pdb
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\bin\Debug\netstandard2.0\Chickencoop.Models.dll
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\bin\Debug\netstandard2.0\Chickencoop.Models.pdb
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.csprojAssemblyReference.cache
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.AssemblyInfoInputs.cache
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.AssemblyInfo.cs
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.csproj.CopyComplete

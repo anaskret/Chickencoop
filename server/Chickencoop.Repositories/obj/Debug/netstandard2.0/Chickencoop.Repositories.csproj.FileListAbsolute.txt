@@ -12,3 +12,17 @@ C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debu
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.DataAccess.pdb
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.Models.pdb
 C:\Users\an000\source\repos\Chickencoop\server\Chickencoop.Repositories\obj\Debug\netstandard2.0\Chickencoop.Repositories.csproj.CopyComplete
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\obj\Debug\netstandard2.0\Chickencoop.Repositories.dll
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\obj\Debug\netstandard2.0\Chickencoop.Repositories.pdb
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.Repositories.deps.json
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.Repositories.dll
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.Repositories.pdb
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.DataAccess.dll
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.Models.dll
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.DataAccess.pdb
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\bin\Debug\netstandard2.0\Chickencoop.Models.pdb
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\obj\Debug\netstandard2.0\Chickencoop.Repositories.csprojAssemblyReference.cache
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\obj\Debug\netstandard2.0\Chickencoop.Repositories.AssemblyInfoInputs.cache
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\obj\Debug\netstandard2.0\Chickencoop.Repositories.AssemblyInfo.cs
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\obj\Debug\netstandard2.0\Chickencoop.Repositories.csproj.CoreCompileInputs.cache
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Repositories\obj\Debug\netstandard2.0\Chickencoop.Repositories.csproj.CopyComplete

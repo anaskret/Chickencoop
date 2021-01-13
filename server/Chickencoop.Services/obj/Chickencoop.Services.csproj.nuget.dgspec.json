@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj": {}
+    "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj": {
+    "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj",
         "projectName": "Chickencoop.DataAccess",
-        "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\an000\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\i7\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\an000\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\i7\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
-                "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj"
+              "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
+                "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj"
               }
             }
           }
@@ -73,21 +73,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
+    "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
+        "projectUniqueName": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
         "projectName": "Chickencoop.Models",
-        "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
-        "packagesPath": "C:\\Users\\an000\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\obj\\",
+        "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
+        "packagesPath": "C:\\Users\\i7\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\an000\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\i7\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -140,21 +140,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj": {
+    "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj",
         "projectName": "Chickencoop.Repositories",
-        "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj",
-        "packagesPath": "C:\\Users\\an000\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\obj\\",
+        "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj",
+        "packagesPath": "C:\\Users\\i7\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\an000\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\i7\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -167,11 +167,11 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj"
+              "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.DataAccess\\Chickencoop.DataAccess.csproj"
               },
-              "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
-                "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj"
+              "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
+                "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj"
               }
             }
           }
@@ -202,21 +202,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj": {
+    "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj",
+        "projectUniqueName": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj",
         "projectName": "Chickencoop.Services",
-        "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj",
-        "packagesPath": "C:\\Users\\an000\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\obj\\",
+        "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\Chickencoop.Services.csproj",
+        "packagesPath": "C:\\Users\\i7\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\an000\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\i7\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -229,11 +229,11 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
-                "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj"
+              "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
+                "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj"
               },
-              "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj": {
-                "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj"
+              "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj": {
+                "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Repositories\\Chickencoop.Repositories.csproj"
               }
             }
           }
@@ -272,7 +272,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -14,7 +14,7 @@ namespace Chickencoop.App.Controllers
     public class PlayerController : Controller
     {
         private readonly IPlayerService _playerService;
-        private readonly AmazonCognitoIdentityProviderClient _client = new AmazonCognitoIdentityProviderClient();
+        private readonly AmazonCognitoIdentityProviderClient _client = new AmazonCognitoIdentityProviderClient(Amazon.RegionEndpoint.EUCentral1);
 
         //private readonly string_clientId = "1s15mbpqua63v46o0qbgd20m71";
         private readonly string _poolId = "eu-central-1_jvYBzSwNe";

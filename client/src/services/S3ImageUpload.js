@@ -1,17 +1,23 @@
-import Storage from "aws-amplify";
+import {Storage} from "aws-amplify";
 
 class S3ImageUpload {
-  uploadImage(e, type) {  //type = avatar/background
+  uploadImage(e, type) {
+    //type = avatar or background
     console.log(e);
     const file = e;
-    Storage.put(type + "/" + file.name, file, {
+    const test = Storage;
+    const path = type + "/" + file.name;
+    // console.log(test);
+    // debugger;
+    test.put(path, file, {
       contentType: "image/png"
     })
-      .then(result => console.log(result))
+      .then(result => {
+        debugger;
+        console.log(result);
+      })
       .catch(err => console.log(err));
   }
-  
-
 }
 
 export default new S3ImageUpload();

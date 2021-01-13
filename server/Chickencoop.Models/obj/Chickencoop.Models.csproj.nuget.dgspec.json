@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {}
+    "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
+    "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
+        "projectUniqueName": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
         "projectName": "Chickencoop.Models",
-        "projectPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
-        "packagesPath": "C:\\Users\\an000\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\an000\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\obj\\",
+        "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
+        "packagesPath": "C:\\Users\\i7\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\an000\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\i7\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
