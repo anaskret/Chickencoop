@@ -12,7 +12,7 @@ C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstan
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\bin\Debug\netstandard2.0\Chickencoop.Models.deps.json
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\bin\Debug\netstandard2.0\Chickencoop.Models.dll
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\bin\Debug\netstandard2.0\Chickencoop.Models.pdb
-C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.csprojAssemblyReference.cache
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.AssemblyInfoInputs.cache
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.AssemblyInfo.cs
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.csproj.CoreCompileInputs.cache
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.Models\obj\Debug\netstandard2.0\Chickencoop.Models.csprojAssemblyReference.cache

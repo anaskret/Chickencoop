@@ -16,7 +16,7 @@ using Chickencoop.Services.Mapping;
 using Chickencoop.Models.Mapping;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.Extensions.Logging;
+using Microsoft.Data.SqlClient;
 
 namespace Chickencoop.App.Configuration
 {
@@ -24,11 +24,24 @@ namespace Chickencoop.App.Configuration
     {
         public static void InstallServices(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddDbContext<ChickencoopContext>(options => {
+            /*services.AddDbContext<ChickencoopContext>(options =>
+            {
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"));
                 options.EnableSensitiveDataLogging(true);
-            });
+            });*/
+            /*services.AddDbContext<ChickencoopContext>(options =>
+            {
+                options.UseSqlServer(
+                    configuration.GetConnectionString("RdsConnection2"));
+                options.EnableSensitiveDataLogging(true);
+            });*/
+
+            var builder = new SqlConnectionStringBuilder(configuration.GetConnectionString("RdsConnection3"));
+            builder.UserID = configuration["DbUser"];
+            builder.Password = configuration["DbPassword"];
+            services.AddDbContext<ChickencoopContext>(options => options.UseSqlServer(builder.ConnectionString));
+
             services.AddControllersWithViews();
 
             services.AddCors();
@@ -62,20 +75,30 @@ namespace Chickencoop.App.Configuration
                     x.SwaggerDoc("v1", new OpenApiInfo { Title = "Chickencoop API" });
                 });
 
-            /*services.AddLogging(loggingBuilder => {
-                loggingBuilder.AddConsole()
-                    .AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information);
-                loggingBuilder.AddDebug();
-            });*/
-
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
-            
+
             services.AddScoped<IPersonalLeaderboardService, PersonalLeaderboardService>();
             services.AddScoped<IPersonalLeaderboardRepository, PersonalLeaderboardRepository>();
-            
+
             services.AddScoped<ILobbyService, LobbyService>();
             services.AddScoped<ILobbyRepository, LobbyRepository>();
         }
+
+       /* public static string GetRdsConnectionString()
+        {
+            //var appConfig = ConfigurationManager.AppSettings;
+
+            string dbname = "aalymdd8c20ioe"];
+
+            //if (string.IsNullOrEmpty(dbname)) return null;
+
+            string username = "ansakret";
+            string password = "haslo123";
+            string hostname = "aalymdd8c20ioe.cujhbgjkatdq.eu-central-1.rds.amazonaws.com";
+            //string port = "1433";
+
+            return "Data Source=" + hostname + ";Initial Catalog=" + dbname + ";User ID=" + username + ";Password=" + password + ";";
+        }*/
     }
 }

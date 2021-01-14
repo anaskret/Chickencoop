@@ -20,5 +20,5 @@ C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\bin\Debug\net
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.csprojAssemblyReference.cache
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.AssemblyInfoInputs.cache
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.AssemblyInfo.cs
-C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.csproj.CoreCompileInputs.cache
 C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.csproj.CopyComplete
+C:\Users\i7\source\repos\Chickencoop\server\Chickencoop.DataAccess\obj\Debug\netstandard2.0\Chickencoop.DataAccess.csproj.CoreCompileInputs.cache

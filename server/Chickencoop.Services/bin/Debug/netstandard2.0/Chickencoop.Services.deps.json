@@ -9,7 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "Chickencoop.Services/1.0.0": {
         "dependencies": {
-          "AWSSDK.CognitoIdentityProvider": "3.5.0.35",
+          "AWSSDK.CognitoIdentityProvider": "3.5.1.17",
           "AutoMapper": "10.1.1",
           "Chickencoop.Models": "1.0.0",
           "Chickencoop.Repositories": "1.0.0",
@@ -31,25 +31,25 @@
           }
         }
       },
-      "AWSSDK.CognitoIdentityProvider/3.5.0.35": {
+      "AWSSDK.CognitoIdentityProvider/3.5.1.17": {
         "dependencies": {
-          "AWSSDK.Core": "3.5.1.33"
+          "AWSSDK.Core": "3.5.1.59"
         },
         "runtime": {
           "lib/netstandard2.0/AWSSDK.CognitoIdentityProvider.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.5.0.35"
+            "fileVersion": "3.5.1.17"
           }
         }
       },
-      "AWSSDK.Core/3.5.1.33": {
+      "AWSSDK.Core/3.5.1.59": {
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "1.1.1"
         },
         "runtime": {
           "lib/netstandard2.0/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.5.1.33"
+            "fileVersion": "3.5.1.59"
           }
         }
       },
@@ -109,7 +109,7 @@
           "Microsoft.Extensions.DependencyInjection": "3.1.9",
           "Microsoft.Extensions.Logging": "3.1.9",
           "System.Collections.Immutable": "1.7.1",
-          "System.ComponentModel.Annotations": "4.7.0",
+          "System.ComponentModel.Annotations": "5.0.0",
           "System.Diagnostics.DiagnosticSource": "4.7.1"
         },
         "runtime": {
@@ -255,7 +255,7 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.9",
           "Microsoft.Extensions.Primitives": "3.1.9",
-          "System.ComponentModel.Annotations": "4.7.0"
+          "System.ComponentModel.Annotations": "5.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Options.dll": {
@@ -468,7 +468,7 @@
           }
         }
       },
-      "System.ComponentModel.Annotations/4.7.0": {
+      "System.ComponentModel.Annotations/5.0.0": {
         "runtime": {
           "lib/netstandard2.0/System.ComponentModel.Annotations.dll": {
             "assemblyVersion": "4.2.1.0",
@@ -1290,7 +1290,7 @@
         "dependencies": {
           "AutoMapper": "10.1.1",
           "Newtonsoft.Json": "12.0.3",
-          "System.ComponentModel.Annotations": "4.7.0"
+          "System.ComponentModel.Annotations": "5.0.0"
         },
         "runtime": {
           "Chickencoop.Models.dll": {}
@@ -1320,19 +1320,19 @@
       "path": "automapper/10.1.1",
       "hashPath": "automapper.10.1.1.nupkg.sha512"
     },
-    "AWSSDK.CognitoIdentityProvider/3.5.0.35": {
+    "AWSSDK.CognitoIdentityProvider/3.5.1.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Q7eZ7NSPeYAd1jiYp4PuOT8mgwVDk50/AQDt49Oy1EAymZwLeUKYBbXcvFCf6c6ldlGNzWyX3CMLuSXgTsS44Q==",
-      "path": "awssdk.cognitoidentityprovider/3.5.0.35",
-      "hashPath": "awssdk.cognitoidentityprovider.3.5.0.35.nupkg.sha512"
+      "sha512": "sha512-9Wwq6mbKn3wJNvvTJ74UVoA1j4gNQX6XFry9SsoGoRIxNwdjs16RC3iGq1zeK03RUBi0dALl5sQ5MsM0fLceyA==",
+      "path": "awssdk.cognitoidentityprovider/3.5.1.17",
+      "hashPath": "awssdk.cognitoidentityprovider.3.5.1.17.nupkg.sha512"
     },
-    "AWSSDK.Core/3.5.1.33": {
+    "AWSSDK.Core/3.5.1.59": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-AjEKCgmFFFqIbmyUxbe59PWu20eaC13RQPzcXj9g5KxO1oV1ve6idtT2XspMkwnmKJkPSUS/r1ZUkzS1nctVPg==",
-      "path": "awssdk.core/3.5.1.33",
-      "hashPath": "awssdk.core.3.5.1.33.nupkg.sha512"
+      "sha512": "sha512-rKac8Rv/3fihbWW1ysJpi1qYJWND//0rrKW73k+g3VQCye5FWOazGTKwel9cG95uJDHOD38opgPwwe1EWqbcMg==",
+      "path": "awssdk.core/3.5.1.59",
+      "hashPath": "awssdk.core.3.5.1.59.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
@@ -1698,12 +1698,12 @@
       "path": "system.componentmodel/4.3.0",
       "hashPath": "system.componentmodel.4.3.0.nupkg.sha512"
     },
-    "System.ComponentModel.Annotations/4.7.0": {
+    "System.ComponentModel.Annotations/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0YFqjhp/mYkDGpU0Ye1GjE53HMp9UVfGN7seGpAMttAC0C40v5gw598jCgpbBLMmCo0E5YRLBv5Z2doypO49ZQ==",
-      "path": "system.componentmodel.annotations/4.7.0",
-      "hashPath": "system.componentmodel.annotations.4.7.0.nupkg.sha512"
+      "sha512": "sha512-dMkqfy2el8A8/I76n2Hi1oBFEbG1SfxD2l5nhwXV3XjlnOmwxJlQbYpJH4W51odnU9sARCSAgv7S3CyAFMkpYg==",
+      "path": "system.componentmodel.annotations/5.0.0",
+      "hashPath": "system.componentmodel.annotations.5.0.0.nupkg.sha512"
     },
     "System.ComponentModel.Primitives/4.3.0": {
       "type": "package",

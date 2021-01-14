@@ -1,17 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "PaaAUaqkeak3cZYADxqlWMjqf9MBccVuyFmp2743Nf9CB2TDpYJ1xBYbOrHi/v78WA/txnqEcgIcJgZZCPKGNQ==",
+  "dgSpecHash": "i5XhDpwvMzHJ/isRqbyy73hapBL2kN89RxCtYX+1XMwBwehbxXwKvqW0SFA6UouqEVRRvdjvAdB756xZ2oJXYg==",
   "success": true,
   "projectFilePath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\i7\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\i7\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
-    "C:\\Users\\i7\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\i7\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\i7\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
-    "C:\\Users\\i7\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
-    "C:\\Users\\i7\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
-    "C:\\Users\\i7\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.7.0\\system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512"
+    "C:\\Users\\i7\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }
