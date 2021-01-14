@@ -18,15 +18,6 @@ namespace Chickencoop.DataAccess
         public virtual DbSet<PersonalLeaderboard> PersonalLeaderboards { get; set; }
         public virtual DbSet<Lobby> Lobbies{ get; set; }
 
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                //optionsBuilder.UseSqlServer("Server = (localdb)\\MSSQLLocalDB; Database = BookingApp; Trusted_Connection=True;");
-                optionsBuilder.UseSqlServer("Data Source=chickencoopdatabase.cujhbgjkatdq.eu-central-1.rds.amazonaws.com,1433;Initial Catalog=chickencoopdatabase;Integrated Security=False;User ID=anaskret;Password=Haslo123");
-            }
-        }*/
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

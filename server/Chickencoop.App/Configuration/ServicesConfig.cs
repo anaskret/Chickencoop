@@ -37,7 +37,7 @@ namespace Chickencoop.App.Configuration
                 options.EnableSensitiveDataLogging(true);
             });*/
 
-            var builder = new SqlConnectionStringBuilder(configuration.GetConnectionString("RdsConnection3"));
+            var builder = new SqlConnectionStringBuilder(configuration.GetConnectionString("RdsConnection"));
             builder.UserID = configuration["DbUser"];
             builder.Password = configuration["DbPassword"];
             services.AddDbContext<ChickencoopContext>(options => options.UseSqlServer(builder.ConnectionString));
