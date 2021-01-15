@@ -2,8 +2,8 @@ To play: launch two browsers(one in incognito mode) and login into 2 different a
 
 Setup:
 Frontend:
-yarn install
-in source create file: aws-exports.js
+yarn install;
+in source create file: aws-exports.js;
 inside the file paste:
 
 ```
@@ -33,16 +33,15 @@ const awsmobile = {
 
 export default awsmobile;
 ```
-
-yarn serve
+yarn serve;
 
 Backend:
-update-database
-download aws toolkit for visual studio
-open the aws toolkit
-add a new profile
-profile name: default
-access key paste: AKIASGCPWM7NGNSACK5L
-secret access key paste: 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
-account number: 150490998746
-Launch the server
+update-database;
+download aws toolkit for visual studio;
+open the aws toolkit;
+add a new profile;
+profile name: default;
+access key paste: AKIASGCPWM7NGNSACK5L;
+secret access key paste: 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;
+account number: 150490998746;
+Launch the server;
