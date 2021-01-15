@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Chickencoop.Models.Enums
 {
-    public class GamesEnum
+    public class GamesEnum //Enum for games available in the app
     {
         public enum Games
         {

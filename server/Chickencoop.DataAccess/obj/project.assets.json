@@ -6403,6 +6403,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "projectReferences": {
             "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj": {
               "projectPath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.Models\\Chickencoop.Models.csproj"
@@ -6418,6 +6419,7 @@
     },
     "frameworks": {
       "netstandard2.0": {
+        "targetAlias": "netstandard2.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -6450,7 +6452,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

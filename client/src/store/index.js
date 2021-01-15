@@ -5,12 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: null,
-    playerId: null,
+    user: null, //current user
+    playerId: null, //currecnt users id
     signedIn: false,
     showAutoLogoutModal: false,
-    avatar: null,
-    background: null
+    avatar: null, //avatar photo url
+    background: null //background photo url
   },
   mutations: {},
   actions: {},

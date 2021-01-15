@@ -72,7 +72,7 @@ namespace Chickencoop.Repositories.Repositories
     #region tests
         private void Tests(PersonalLeaderboard personalLeaderboard)
         {
-            DoesPlayerExists(personalLeaderboard.PlayerId);
+            DoesPlayerExists(personalLeaderboard.PlayerId); //tests checking if data is correct
             DoesPlayerExists(personalLeaderboard.OpponentId);
             DoesResultEnumExists(personalLeaderboard.Result);
             DoesGameNameEnumExists(personalLeaderboard.GameName);

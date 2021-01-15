@@ -71,7 +71,8 @@ namespace Chickencoop.Services.Services
             return deleted;
         }
 
-        public async Task<bool> CheckPlayers(ListUsersResponse listUsers)
+        //method for adding users to the database if Cognito User Database is different from the app db
+        public async Task<bool> CheckPlayers(ListUsersResponse listUsers) 
         {
             var getAll = await GetAllPlayers();
 
@@ -95,6 +96,8 @@ namespace Chickencoop.Services.Services
             return true;
         }
 
+        //method compares users in both databases and returns the ones that are missing from app db
+        //if a player is present in app database but not in Cognito db, he is removed from the app database
         private List<string> CompareUsersInDatabases(List<GetPlayerDto> players, ListUsersResponse listUsers)
         {
             List<string> usernames = new List<string>();

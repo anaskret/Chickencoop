@@ -35,7 +35,7 @@ namespace Chickencoop.Repositories.Repositories
         
         public async Task<bool> Create(Lobby lobby)
         {
-            IsTitleCorrect(lobby.Title);
+            IsTitleCorrect(lobby.Title); //tests if data is correct
             DoesPlayerExists(lobby.PlayerOneId);
             DoesEnumExists(lobby.GameName);
             IsPlayerSameAsOpponent(lobby);
@@ -52,11 +52,13 @@ namespace Chickencoop.Repositories.Repositories
         }
         public async Task<bool> Update(Lobby lobby)
         {
-            await DoesLobbyExists(lobby.Id);
+            await DoesLobbyExists(lobby.Id); //tests if data is correct
             IsTitleCorrect(lobby.Title);
             DoesPlayerExists(lobby.PlayerOneId);
+
             if(lobby.PlayerTwoId != null)
                 DoesPlayerExists(lobby.PlayerTwoId);
+
             DoesEnumExists(lobby.GameName);
             IsPlayerSameAsOpponent(lobby);
 
@@ -73,7 +75,8 @@ namespace Chickencoop.Repositories.Repositories
 
         public async Task<bool> Delete(Guid id)
         {
-            await DoesLobbyExists(id);
+            await DoesLobbyExists(id); //test if data is correct
+
             var doesLobbbyExist = await _context.Lobbies.FirstOrDefaultAsync(pl => pl.Id == id);
             _context.Remove(doesLobbbyExist);
             var deleted = await _context.SaveChangesAsync();
@@ -83,7 +86,7 @@ namespace Chickencoop.Repositories.Repositories
 
         #region tests
         
-        private async Task<Lobby> DoesLobbyExists(Guid id)
+        private async Task<Lobby> DoesLobbyExists(Guid id) //Check if lobby exists
         {
             var lobby = await _context.Lobbies.AsNoTracking().FirstOrDefaultAsync(pl => pl.Id == id);
 
@@ -93,27 +96,27 @@ namespace Chickencoop.Repositories.Repositories
             return lobby;
         }
         
-        private void DoesPlayerExists(Guid? id)
+        private void DoesPlayerExists(Guid? id) //check if given player exists
         {
             var player = _context.Players.FirstOrDefault(pl => pl.Id == id);
 
             if (player == null)
                 throw new ArgumentNullException("Player with this id doesn't exist");
         }
-        private void IsTitleCorrect(string title)
+        private void IsTitleCorrect(string title) //check if game title is correct
         {
             if (title.Length < 2 || title.Length > 50 || string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Title has to be longer than 3 characters and shorter than 50");
         }
 
-        private void DoesEnumExists(Games games)
+        private void DoesEnumExists(Games games) //check if correct enum is selected
         {
             if (!Enum.IsDefined(typeof(Games), games))
                 throw new ArgumentException("Wrong GameName");
         }
         
 
-        private void IsPlayerSameAsOpponent(Lobby lobby)
+        private void IsPlayerSameAsOpponent(Lobby lobby) //check if player isn't the same player as opponent
         {
             if (lobby.PlayerOneId == lobby.PlayerTwoId)
                 throw new ArgumentException("Second players Id can't be the same as the first player Id");

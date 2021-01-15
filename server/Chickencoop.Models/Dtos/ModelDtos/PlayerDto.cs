@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Chickencoop.Models.Dtos.BaseDtos
 {
-    public abstract class PlayerDto
+    public abstract class PlayerDto //base playerDto from which other dtos inherit
     {
         [StringLength(20, MinimumLength = 3)]
         public string Nickname { get; set; }

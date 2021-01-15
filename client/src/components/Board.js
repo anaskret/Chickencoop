@@ -1,5 +1,6 @@
 export default class Board {
   constructor() {
+    //define the board array
     this.cells = [
       ["", "", ""],
       ["", "", ""],
@@ -14,6 +15,7 @@ export default class Board {
    * @returns {boolean} True if successful, False if invalid move.
    */
 
+  //check if move is possible to perform, if it is perform it, otherwise return false
   doMove(x, y, player) {
     if (this.cells[x][y] !== "") {
       return false;
@@ -23,17 +25,7 @@ export default class Board {
     return true;
   }
 
-  getScore() {
-    let score = 0;
-    if (this.playerHas3InARow("x")) {
-      score -= 100;
-    }
-    if (this.playerHas3InARow("o")) {
-      score += 100;
-    }
-    return score;
-  }
-
+  //check for possible win conditions
   playerHas3InARow(player) {
     // Horizontal rows
     for (let i = 0; i < 3; i++) {
@@ -76,6 +68,7 @@ export default class Board {
     return false;
   }
 
+  //check if the game is over
   isGameOver() {
     return (
       this.getPossibleMoves().length === 0 ||
@@ -96,18 +89,7 @@ export default class Board {
     return clone;
   }
 
-  getPossibleMoves() {
-    let moves = [];
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        if (this.cells[i][j] === "") {
-          moves.push({ x: i, y: j });
-        }
-      }
-    }
-    return moves;
-  }
-
+  //crete a new board
   resetBoard() {
     this.cells = [
       ["", "", ""],

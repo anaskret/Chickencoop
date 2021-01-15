@@ -12,13 +12,13 @@ namespace Chickencoop.Models.Mapping
 {
     public class LobbyProfile: Profile
     {
-        public LobbyProfile()
+        public LobbyProfile() //Lobby mapping
         {
-            CreateMap<CreateLobbyDto, Lobby>()
+            CreateMap<CreateLobbyDto, Lobby>() //map from CreateDto to Model should ignore the Id and the relation
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Player, opt => opt.Ignore());
             CreateMap<Lobby, GetLobbyDto>();
-            CreateMap<UpdateLobbyDto, Lobby>()
+            CreateMap<UpdateLobbyDto, Lobby>() //map from UpdateDto to Model should ignore the relation
                 .ForMember(dest => dest.Player, opt => opt.Ignore());
 
         }

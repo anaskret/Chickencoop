@@ -6,6 +6,7 @@ import {
 
 export default {
   install(Vue) {
+    //configuring connection with the lobby hub
     const connection = new HubConnectionBuilder()
       .withUrl("https://localhost:5001/lobbyhub", {
         skipNegotiation: true,
@@ -18,6 +19,7 @@ export default {
 
     Vue.prototype.$lobbyHub = lobbyHub;
 
+    //use of hub methods
     lobbyHub.joinLobby = id => {
       return startedPromise
         .then(() => connection.invoke("JoinLobby", id))
@@ -90,6 +92,7 @@ export default {
       lobbyHub.$emit("game-accepted", lobbyId);
     });
 
+    //try reconeccting if connection failed
     let startedPromise = null;
     function start() {
       startedPromise = connection.start().catch(err => {

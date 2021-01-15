@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "S++SslMEHFisvRq10zJMu3AOIHLx67FoApcbTWq+jcXJ70sPt8Y6gP6k84Vipirn3CdUVvDED/Y7L8VGlUMzuw==",
+  "dgSpecHash": "JTTLXsjpW5rT7JzSbxw+zSnOULWrM6q4UzPCxRMgwM0LItIk2OPD2PhHOrVDDa7T8A97LD/TOlsVOcAfGD/ZhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\i7\\source\\repos\\Chickencoop\\server\\Chickencoop.App\\Chickencoop.App.csproj",
   "expectedPackageFiles": [
@@ -111,7 +111,11 @@
     "C:\\Users\\i7\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\i7\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\i7\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\i7\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\i7\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\microsoft.netcore.app.host.win-x86\\3.1.11\\microsoft.netcore.app.host.win-x86.3.1.11.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\i7\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512"
   ],
   "logs": []
 }

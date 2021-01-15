@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Chickencoop.App
 {
-    public class ApiRoutes
+    public class ApiRoutes //class with all the API routes
     {
         private const string Root = "api";
 

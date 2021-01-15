@@ -6,7 +6,7 @@ using static Chickencoop.Models.Enums.GamesEnum;
 
 namespace Chickencoop.Models.Dtos.IDtos
 {
-    public abstract class LobbyDto
+    public abstract class LobbyDto //base lobbyDto from which other dtos inherit
     {
         [StringLength(50, MinimumLength = 3)]
         public string Title { get; set; }

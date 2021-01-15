@@ -15,19 +15,17 @@ namespace Chickencoop.App.Controllers
 {
     public class LobbyController:Controller
     {
-        private readonly ILobbyService _lobbyService;
-        private readonly IHubContext<LobbyHub, ILobbyHub> _hubContext;
+        private readonly ILobbyService _lobbyService; //initialize service
 
-        public LobbyController(ILobbyService lobbyService, IHubContext<LobbyHub, ILobbyHub> hubContext)
+        public LobbyController(ILobbyService lobbyService)
         {
             _lobbyService = lobbyService;
-            _hubContext = hubContext;
         }
 
         [HttpGet(ApiRoutes.Lobby.GetAll)]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _lobbyService.GetAllLobbies());
+            return Ok(await _lobbyService.GetAllLobbies()); 
         }
 
         [HttpGet(ApiRoutes.Lobby.Get)]

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Chickencoop.Models.Enums
 {
-    public class ResultTypeEnum
+    public class ResultTypeEnum //enum for all the game results which are possible
     {
         public enum ResultType
         {

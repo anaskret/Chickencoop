@@ -13,15 +13,15 @@ namespace Chickencoop.Models.Mapping
 {
     public class PersonalLeaderboardProfile : Profile
     {
-        public PersonalLeaderboardProfile()
+        public PersonalLeaderboardProfile() //Leaderboard mapping
         {
-            CreateMap<CreatePersonalLeaderboardDto, PersonalLeaderboard>()
+            CreateMap<CreatePersonalLeaderboardDto, PersonalLeaderboard>() //map from CreateDto to Model should ignore the Id and the relation
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Player, opt => opt.Ignore());
             CreateMap<PersonalLeaderboard, GetPersonalLeaderboardDto>();
-            CreateMap<PersonalLeaderboard, GetPersonalLeaderboardWithNicknameDto>()
+            CreateMap<PersonalLeaderboard, GetPersonalLeaderboardWithNicknameDto>() //map from Model to GetDto should ignore the relation
                 .ForMember(dest => dest.OpponentNickname, opt => opt.Ignore());
-            CreateMap<UpdatePersonalLeaderboardDto, PersonalLeaderboard>()
+            CreateMap<UpdatePersonalLeaderboardDto, PersonalLeaderboard>() //map from UpdateDto to Model should ignore the relation
                 .ForMember(dest => dest.Player, opt => opt.Ignore());
         }
     }

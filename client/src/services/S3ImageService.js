@@ -7,9 +7,8 @@ class S3ImageService {
     const file = e;
     const test = Storage;
     const path = type + "/" + file.name;
-    // console.log(test);
-    // debugger;
-    test.put(path, file, {
+    test
+      .put(path, file, {
         level: "protected",
         contentType: "image/png"
       })
@@ -20,17 +19,14 @@ class S3ImageService {
   }
   async listImages(type) {
     const path = type + "/";
-     const res = await Storage.list(path) // for listing ALL files without prefix, pass '' instead
-      // .then(result => {
-      //   t=result;
-      // })
-      // .catch(err => console.log(err));
-      return res
-  }
-  async  removeImage(key){
-   const res = await Storage.remove(key, { level: 'protected' })
+    const res = await Storage.list(path);
     return res;
   }
+  async removeImage(key) {
+    const res = await Storage.remove(key, { level: "protected" });
+    return res;
+  }
+  //Get image from the S3 storage
   async getImgByKey(key) {
     let image = await Storage.get(key);
     return image;

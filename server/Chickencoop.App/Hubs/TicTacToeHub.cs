@@ -10,7 +10,7 @@ namespace Chickencoop.App.Hubs
     public class TicTacToeHub : Hub<ITicTacToeHub>
     {
         private string turn = "x";
-        public async Task TurnChange(int x, int y, string player, Guid lobbyId)
+        public async Task TurnChange(int x, int y, string player, Guid lobbyId) //controls tictactoe gameflow
         {
             if (player == "x")
                 turn = "o";
@@ -21,7 +21,7 @@ namespace Chickencoop.App.Hubs
             await Clients.All.TurnChange(x, y, turn, lobbyId);
         }
 
-        public async Task Victory(string player, Guid lobbyId)
+        public async Task Victory(string player, Guid lobbyId) //sends victory signal
         {
             await Clients.All.Victory(player, lobbyId);
         }

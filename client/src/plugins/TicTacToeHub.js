@@ -6,6 +6,7 @@ import {
 
 export default {
   install(Vue) {
+    //configuring connection with the lobby hub
     const connection = new HubConnectionBuilder()
       .withUrl("https://localhost:5001/tictactoehub", {
         skipNegotiation: true,
@@ -18,6 +19,7 @@ export default {
 
     Vue.prototype.$tictactoeHub = tictactoeHub;
 
+    //use of hub methods
     connection.on("TurnChange", (x, y, player, lobbyId) => {
       tictactoeHub.$emit("opponent-turn-end", { x, y, player, lobbyId });
     });
@@ -38,6 +40,7 @@ export default {
         .catch(console.error);
     };
 
+    //try reconeccting if connection failed
     let startedPromise = null;
     function start() {
       startedPromise = connection.start().catch(err => {

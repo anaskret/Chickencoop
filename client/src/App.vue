@@ -66,17 +66,19 @@ export default {
   },
   data() {
     return {
+      //is user authorized
       isAuth: true,
+      //tab elements
       links: ["Lobbies", "Profile", "Ranking"],
-      formFields: [
+      /*formFields: [
         { type: "username" },
         { type: "password" },
         { type: "email" }
-      ]
+      ]*/
     };
   },
   created() {
-    PlayerDataService.checkForUpdate();
+    PlayerDataService.checkForUpdate(); //check for new players
     this.findUser();
 
     AmplifyEventBus.$on("authState", info => {
@@ -98,10 +100,10 @@ export default {
     }
   },
   watch: {
-    isAppIdle(newS, oldS) {
+    isAppIdle(newS, oldS) {//Check if the app is idle, if it is log out the user after given time
       if (this.signedIn) {
         if (newS !== oldS) {
-          console.log("Wylogowano");
+          console.log("Signed out");
           this.$store.state.showAutoLogoutModal = true;
           this.signOut();
         }
@@ -109,18 +111,18 @@ export default {
     }
   },
   methods: {
+    //find cognito user and authenticate him
     async findUser() {
       try {
         const user = await Auth.currentAuthenticatedUser();
         this.$store.state.signedIn = true;
         this.$store.state.user = user;
 
+        //save in the app atabase that the player is online
         await PlayerDataService.get(user.username).then(res => {
           this.$store.state.playerId = res.data.id;
           this.$store.state.avatar = res.data.avatarUrl;
           this.$store.state.background = res.data.backgroundUrl;
-          console.log(res.data.avatarUrl);
-          console.log(res.data.backgroundUrl);
         });
         let data = {
           Nickname: user.username,
@@ -133,14 +135,17 @@ export default {
         PlayerDataService.checkForUpdate();
         PlayerDataService.update(this.$store.state.playerId, data);
       } catch (err) {
+        //if failed to sign in, make sure user is signed out
         this.$store.state.signedIn = false;
         this.$store.state.user = null;
       }
     },
+    //sign out the user
     async signOut() {
       try {
         await Auth.signOut();
 
+        //update the app database that the user is offline
         let data = {
           Nickname: this.$store.state.user.username,
           avatarUrl: this.$store.state.avatar,
@@ -156,6 +161,7 @@ export default {
         console.log("error signing out: ", error);
       }
     },
+    //change currently selected tab (lobbies, profile, ranking)
     changeTab(name) {
       if (name == "Profile") {
         let id = this.$store.state.playerId;

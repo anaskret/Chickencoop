@@ -10,14 +10,14 @@ namespace Chickencoop.Services.Mapping
 {
     public class PlayerProfile : Profile
     {
-        public PlayerProfile()
+        public PlayerProfile() //Player mapping
         {
-            CreateMap<CreatePlayerDto, Player>()
+            CreateMap<CreatePlayerDto, Player>() //map from CreateDto to Model should ignore the Id and the relations
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Lobbies, opt => opt.Ignore())
                 .ForMember(dest => dest.PersonalLeaderboards, opt => opt.Ignore());
             CreateMap<Player, GetPlayerDto>();
-            CreateMap<UpdatePlayerDto, Player>()
+            CreateMap<UpdatePlayerDto, Player>() //map from UpdateDto to Model should ignore the relations
                 .ForMember(dest => dest.Lobbies, opt => opt.Ignore())
                 .ForMember(dest => dest.PersonalLeaderboards, opt => opt.Ignore());
             CreateMap<List<Player>, List<PlayerDto>>();
