@@ -7,7 +7,8 @@ import {
 export default {
   install(Vue) {
     const connection = new HubConnectionBuilder()
-      .withUrl("https://localhost:5001/tictactoehub", {
+      //.withUrl("https://localhost:5001/tictactoehub", {
+      .withUrl("https://chickencoopappservice.service.signalr.net/tictactoehub", {
         skipNegotiation: true,
         transport: HttpTransportType.WebSockets
       })

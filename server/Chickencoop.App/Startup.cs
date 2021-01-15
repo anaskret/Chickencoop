@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Collections.Generic;
 
 namespace Chickencoop.App
 {
@@ -52,7 +51,7 @@ namespace Chickencoop.App
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseFileServer();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -84,6 +83,7 @@ namespace Chickencoop.App
                 endpoints.MapHub<LobbyHub>("/lobbyhub");
             });
         }
+
 
         /*private Dictionary<string, string> GetAwsDbConfig(IConfiguration configuration)
         {

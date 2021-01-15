@@ -1,0 +1,13 @@
+files:
+  "C:\\Robo\\Update_App_Pool.ps1":
+    content: |
+      Write-Verbose 'Update the application pool'
+      Set-Location C:\\Robo
+      import-module WebAdministration
+      Set-ItemProperty IIS:\AppPools\Chickencoop.App -name processModel.identityType -value 2
+   
+commands:
+  update_app_pool: 
+    command: powershell.exe -ExecutionPolicy Bypass -File "C:\\Robo\\Update_App_Pool.ps1"
+    ignoreErrors: False
+    waitAfterCompletion: 0

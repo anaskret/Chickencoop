@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
+using Amazon.Runtime;
 using Chickencoop.Models.Dtos.CreateDtos;
 using Chickencoop.Models.Dtos.UpdateDtos;
 using Chickencoop.Services.Services.Interfaces;
@@ -112,7 +113,7 @@ namespace Chickencoop.App.Controllers
         public async Task<IActionResult> CheckPlayers()
         {
             try 
-            { 
+            {
                 ListUsersRequest request = new ListUsersRequest() { UserPoolId = _poolId };
 
                 var listOfUsers = await _client.ListUsersAsync(request);

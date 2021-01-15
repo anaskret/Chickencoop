@@ -101,7 +101,7 @@ export default {
     isAppIdle(newS, oldS) {
       if (this.signedIn) {
         if (newS !== oldS) {
-          console.log("Wylogowano");
+          console.log("Signed out");
           this.$store.state.showAutoLogoutModal = true;
           this.signOut();
         }
@@ -119,8 +119,6 @@ export default {
           this.$store.state.playerId = res.data.id;
           this.$store.state.avatar = res.data.avatarUrl;
           this.$store.state.background = res.data.backgroundUrl;
-          console.log(res.data.avatarUrl);
-          console.log(res.data.backgroundUrl);
         });
         let data = {
           Nickname: user.username,
@@ -130,7 +128,6 @@ export default {
         };
         console.log(data);
         console.log(this.$store.state.playerId);
-        PlayerDataService.checkForUpdate();
         PlayerDataService.update(this.$store.state.playerId, data);
       } catch (err) {
         this.$store.state.signedIn = false;

@@ -7,7 +7,7 @@ import {
 export default {
   install(Vue) {
     const connection = new HubConnectionBuilder()
-      .withUrl("https://localhost:5001/lobbyhub", {
+      .withUrl("https://chickencoopappservice.service.signalr.net/lobbyhub", {
         skipNegotiation: true,
         transport: HttpTransportType.WebSockets
       })
